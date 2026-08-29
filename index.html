@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>Funbox 抽獎</title>
+<title>Funbox 抽陀螺</title>
 
 <style>
 * {
@@ -238,7 +238,7 @@ footer a {
 
 <body>
 
-<h1>Funbox 抽獎</h1>
+<h1>Funbox 抽陀螺</h1>
 
 <div class="subtitle">
 2026/08/29｜台北・新北・桃園・新竹
@@ -251,12 +251,12 @@ footer a {
 <div class="note">
 ⚠️ 各門市開始時間可能不同，請依門市標示時間抽獎。
 <br>
-⚫ 抽過後會自動記錄，並移到該地區最下面。
+⚫ 抽過後會自動移到該地區最下面。
 </div>
 
 
 <!-- =========================================================
-     品項選擇
+     品項切換
 ========================================================= -->
 
 <div class="product-select">
@@ -279,10 +279,6 @@ BX-35
 </div>
 
 
-<!-- =========================================================
-     內容由 JavaScript 產生
-========================================================= -->
-
 <div id="ux21" class="product-content active"></div>
 <div id="ux20" class="product-content"></div>
 <div id="bx35" class="product-content"></div>
@@ -303,9 +299,10 @@ Funbox / 來玩聚 LINE 官方帳號一鍵抽獎
 <script>
 
 /* =========================================================
-   門市資料
-   只放這次確認過的 15 家 BX-35 門市。
-   ux20 / ux21 沒有該品項的門市就留空。
+   資料
+   ---------------------------------------------------------
+   15 家 BX-35 門市。
+   UX-20 / UX-21 只有來源頁實際存在才填入。
 ========================================================= */
 
 const shops = [
@@ -318,7 +315,7 @@ const shops = [
         time: "8/29 11:00",
 
         bx35: "https://lin.ee/sjANMnS",
-        ux20: "https://lin.ee/vjuf0wr",
+        ux20: "https://lin.ee/wBvFN2J",
         ux21: "https://lin.ee/UKM6TKK"
     },
 
@@ -368,8 +365,8 @@ const shops = [
         time: "8/29 11:00",
 
         bx35: "https://lin.ee/QtIsgeh",
-        ux20: "https://lin.ee/qHTOOuh",
-        ux21: "https://lin.ee/wxDyuiT"
+        ux20: "https://lin.ee/YeKJb8H",
+        ux21: "https://lin.ee/qHTOOuh"
     },
 
     {
@@ -391,7 +388,7 @@ const shops = [
         time: "8/29 11:00",
 
         bx35: "https://lin.ee/S2hCveN",
-        ux20: "https://lin.ee/VCgeEGN",
+        ux20: "https://lin.ee/OW8V3OF",
         ux21: null
     },
 
@@ -478,7 +475,7 @@ const shops = [
 
 
 /* =========================================================
-   品項設定
+   品項
 ========================================================= */
 
 const products = {
@@ -499,7 +496,7 @@ const products = {
 
 
 /* =========================================================
-   產生門市清單
+   產生頁面
 ========================================================= */
 
 function renderProduct(product) {
@@ -508,6 +505,7 @@ function renderProduct(product) {
         document.getElementById(product);
 
     container.innerHTML = "";
+
 
     const title =
         document.createElement("div");
@@ -520,6 +518,7 @@ function renderProduct(product) {
 
 
     const regions = [];
+
 
     shops.forEach(shop => {
 
@@ -648,7 +647,7 @@ function renderProduct(product) {
 
 
 /* =========================================================
-   建立穩定的 localStorage ID
+   建立 localStorage ID
 ========================================================= */
 
 function createShopId(name) {
@@ -661,7 +660,7 @@ function createShopId(name) {
 
 
 /* =========================================================
-   顯示品項
+   品項切換
 ========================================================= */
 
 function showProduct(product, button) {
@@ -695,7 +694,7 @@ function showProduct(product, button) {
 
 
 /* =========================================================
-   localStorage Key
+   localStorage
 ========================================================= */
 
 function getKey(button) {
@@ -709,7 +708,7 @@ function getKey(button) {
 
 
 /* =========================================================
-   套用已抽過狀態
+   套用已抽過
 ========================================================= */
 
 function applyDoneState() {
@@ -718,15 +717,14 @@ function applyDoneState() {
         .querySelectorAll(".btn[data-product]")
         .forEach(button => {
 
-            const key =
-                getKey(button);
-
             if (
-                localStorage.getItem(key)
-                === "done"
+                localStorage.getItem(
+                    getKey(button)
+                ) === "done"
             ) {
 
                 button.classList.add("done");
+
                 button.textContent =
                     "已抽過";
 
@@ -814,7 +812,7 @@ function sortTable(table) {
 
 
 /* =========================================================
-   點擊抽獎
+   抽獎按鈕
 ========================================================= */
 
 document.addEventListener(
@@ -832,12 +830,8 @@ document.addEventListener(
         }
 
 
-        const key =
-            getKey(button);
-
-
         localStorage.setItem(
-            key,
+            getKey(button),
             "done"
         );
 
@@ -865,7 +859,7 @@ document.addEventListener(
 
 
 /* =========================================================
-   清除全部紀錄
+   清除全部
 ========================================================= */
 
 function resetRecords() {
