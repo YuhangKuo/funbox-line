@@ -1,0 +1,1156 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Funbox 抽獎</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, "Noto Sans TC",
+                 "Microsoft JhengHei", sans-serif;
+    max-width: 900px;
+    margin: 28px auto;
+    padding: 0 16px;
+    line-height: 1.6;
+    background: #f7f7f7;
+    color: #222;
+}
+
+h1 {
+    font-size: 1.6rem;
+    margin-bottom: 4px;
+}
+
+.subtitle {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.note {
+    background: #fff3cd;
+    padding: 11px 13px;
+    border-radius: 9px;
+    margin-bottom: 18px;
+    font-size: 0.9rem;
+}
+
+/* 品項選擇 */
+
+.product-select {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.product-btn {
+    border: 2px solid #ddd;
+    background: white;
+    padding: 13px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+.product-btn:hover {
+    border-color: #999;
+}
+
+.product-btn.active {
+    background: #222;
+    color: white;
+    border-color: #222;
+}
+
+/* 品項內容 */
+
+.product-content {
+    display: none;
+}
+
+.product-content.active {
+    display: block;
+}
+
+.product-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+/* 地區 */
+
+.region {
+    margin-top: 24px;
+}
+
+.region h2 {
+    background: #222;
+    color: white;
+    padding: 8px 13px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+/* 表格 */
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: white;
+    border-radius: 9px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+th,
+td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+th {
+    background: #fafafa;
+    color: #666;
+    font-size: 0.83rem;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+.time {
+    white-space: nowrap;
+    color: #c33;
+    font-size: 0.88rem;
+}
+
+.btn {
+    display: inline-block;
+    min-width: 88px;
+    text-align: center;
+    background: #06c755;
+    color: white;
+    text-decoration: none;
+    padding: 7px 12px;
+    border-radius: 7px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.btn:hover {
+    opacity: 0.85;
+}
+
+.btn.done {
+    background: #999;
+    opacity: 0.55;
+}
+
+tr.done-row {
+    opacity: 0.45;
+}
+
+tr.done-first td {
+    border-top: 2px solid #ddd;
+}
+
+/* 清除 */
+
+.reset-btn {
+    border: 0;
+    background: #666;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 0.86rem;
+    margin-bottom: 18px;
+}
+
+.reset-btn:hover {
+    background: #444;
+}
+
+footer {
+    margin-top: 30px;
+    padding-top: 14px;
+    border-top: 1px solid #ddd;
+    color: #777;
+    font-size: 0.8rem;
+}
+
+
+/* ==================== 手機 ==================== */
+
+@media (max-width: 600px) {
+
+    body {
+        margin: 15px auto;
+        padding: 0 10px;
+    }
+
+    h1 {
+        font-size: 1.4rem;
+    }
+
+    .subtitle {
+        font-size: 0.88rem;
+    }
+
+    .product-select {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .product-btn {
+        padding: 12px;
+    }
+
+    .note {
+        font-size: 0.84rem;
+    }
+
+    .region h2 {
+        font-size: 1rem;
+    }
+
+    thead {
+        display: none;
+    }
+
+    table,
+    tbody,
+    tr,
+    td {
+        display: block;
+        width: 100%;
+    }
+
+    tr {
+        background: white;
+        margin-bottom: 8px;
+        padding: 11px 12px;
+        border-radius: 9px;
+        border: 1px solid #e5e5e5;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    }
+
+    td {
+        border: none;
+        padding: 0;
+    }
+
+    td:first-child {
+        font-weight: 700;
+        font-size: 1rem;
+    }
+
+    td:nth-child(2) {
+        margin-top: 2px;
+        margin-bottom: 9px;
+    }
+
+    .time {
+        white-space: normal;
+        font-size: 0.82rem;
+    }
+
+    .btn {
+        display: block;
+        width: 100%;
+        padding: 9px;
+    }
+
+    .reset-btn {
+        width: 100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<h1>Funbox 抽獎</h1>
+
+<div class="subtitle">
+2026/08/29｜台北・新北・桃園・新竹
+</div>
+
+<button class="reset-btn" onclick="resetRecords()">
+↩ 清除全部抽獎紀錄
+</button>
+
+<div class="note">
+⚠️ 各門市開始時間可能不同，請依門市標示時間抽獎。
+<br>
+⚫ 抽過後會自動記錄，並移到該地區最下面。
+</div>
+
+
+<!-- ==================== 品項選擇 ==================== -->
+
+<div class="product-select">
+
+<button class="product-btn active"
+        onclick="showProduct('ux21', this)">
+UX-21 惡魔冥界改造組
+</button>
+
+<button class="product-btn"
+        onclick="showProduct('bx35', this)">
+BX-35 隨機強化組 Vol.04
+</button>
+
+</div>
+
+
+<!-- ========================================================= -->
+<!-- UX-21 -->
+<!-- ========================================================= -->
+
+<div id="ux21" class="product-content active">
+
+<div class="product-title">
+UX-21 惡魔冥界改造組
+</div>
+
+
+<!-- 台北 -->
+
+<div class="region">
+
+<h2>台北市</h2>
+
+<table>
+<tbody>
+
+<tr>
+<td>Fun box 忠孝SOGO</td>
+<td class="time">8/29 11:00</td>
+<td>
+<a class="btn"
+   data-product="ux21"
+   data-shop="taipei-sogo"
+   href="https://lin.ee/QsQzRTL"
+   target="_blank"
+   rel="noopener">
+立即抽獎
+</a>
+</td>
+</tr>
+
+<tr>
+<td>Funbox 天母三越店</td>
+<td class="time">8/29 11:00</td>
+<td>
+<a class="btn"
+   data-product="ux21"
+   data-shop="taipei-tianmu-mitsukoshi"
+   href="https://lin.ee/UKM6TKK"
+   target="_blank"
+   rel="noopener">
+立即抽獎
+</a>
+</td>
+</tr>
+
+<tr>
+<td>Funbox 信義A8店</td>
+<td class="time">8/29 11:00</td>
+<td>
+<a class="btn"
+   data-product="ux21"
+   data-shop="taipei-xinyi-a8"
+   href="https://lin.ee/q97O5u7"
+   target="_blank"
+   rel="noopener">
+立即抽獎
+</a>
+</td>
+</tr>
+
+<tr>
+<td>Funbox 天母SOGO店</td>
+<td class="time">8/29 11:00</td>
+<td>
+<a class="btn"
+   data-product="ux21"
+   data-shop="taipei-tianmu-sogo"
+   href="https://lin.ee/Xqa4sFy"
+   target="_blank"
+   rel="noopener">
+立即抽獎
+</a>
+</td>
+</tr>
+
+<tr>
+<td>Funbox 南港潤泰</td>
+<td class="time">8/29 11:00</td>
+<td>
+<a class="btn"
+   data-product="ux21"
+   data-shop="taipei-runtai"
+   href="https://lin.ee/zGviPVx"
+   target="_blank"
+   rel="noopener">
+立即抽獎
+</a>
+</td>
+</tr>
+
+<tr>
+<td>Funbox 美麗華</td>
+<td class="time">8/29</td>
+<td>
+<a class="btn"
+   data-product="ux21"
+   data-shop="taipei-miramar"
+   href="https://lin.ee/WZOYsDS"
+   target="_blank"
+   rel="noopener">
+立即抽獎
+</a>
+</td>
+</tr>
+
+<tr>
+<td>Funbox LaLaport南港</td>
+<td class="time">8/29</td>
+<td>
+<a class="btn"
+   data-product="ux21"
+   data-shop="taipei-lalaport"
+   href="https://lin.ee/wxDyuiT"
+   target="_blank"
+   rel="noopener">
+立即抽獎
+</a>
+</td>
+</tr>
+
+<tr>
+<td>Funbox 三越南西店</td>
+<td class="time">8/29</td>
+<td>
+<a class="btn"
+   data-product="ux21"
+   data-shop="taipei-nanxi"
+   href="https://lin.ee/xAesOXg"
+   target="_blank"
+   rel="noopener">
+立即抽獎
+</a>
+</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+<!-- 桃園 -->
+
+<div class="region">
+
+<h2>桃園市</h2>
+
+<table>
+<tbody>
+
+<tr>
+<td>Funbox 桃園站前三越</td>
+<td class="time">8/29 11:00</td>
+<td>
+<a class="btn"
+   data-product="ux21"
+   data-shop="taoyuan-mitsukoshi"
+   href="https://lin.ee/Q5emiZW"
+   target="_blank"
+   rel="noopener">
+立即抽獎
+</a>
+</td>
+</tr>
+
+<tr>
+<td>Funbox toys 桃園台茂店</td>
+<td class="time">8/29 11:00</td>
+<td>
+<a class="btn"
+   data-product="ux21"
+   data-shop="taoyuan-taimall"
+   href="https://lin.ee/Oh1dSHD"
+   target="_blank"
+   rel="noopener">
+立即抽獎
+</a>
+</td>
+</tr>
+
+<tr>
+<td>FunBox 中壢SOGO店</td>
+<td class="time">8/29</td>
+<td>
+<a class="btn"
+   data-product="ux21"
+   data-shop="taoyuan-zhongli-sogo"
+   href="https://lin.ee/p2JKdr5"
+   target="_blank"
+   rel="noopener">
+立即抽獎
+</a>
+</td>
+</tr>
+
+<tr>
+<td>Funbox 桃園遠東店</td>
+<td class="time">8/29</td>
+<td>
+<a class="btn"
+   data-product="ux21"
+   data-shop="taoyuan-far-east"
+   href="https://lin.ee/qESRK9p"
+   target="_blank"
+   rel="noopener">
+立即抽獎
+</a>
+</td>
+</tr>
+
+<tr>
+<td>Funbox 中壢大江店</td>
+<td class="time">8/29 11:00</td>
+<td>
+<a class="btn"
+   data-product="ux21"
+   data-shop="taoyuan-metrowalk"
+   href="https://lin.ee/8Bv63tO"
+   target="_blank"
+   rel="noopener">
+立即抽獎
+</a>
+</td>
+</tr>
+
+<tr>
+<td>Funbox 桃園環球A8店</td>
+<td class="time">8/29 11:00</td>
+<td>
+<a class="btn"
+   data-product="ux21"
+   data-shop="taoyuan-a8"
+   href="https://lin.ee/9496mkz"
+   target="_blank"
+   rel="noopener">
+立即抽獎
+</a>
+</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+<!-- 新竹 -->
+
+<div class="region">
+
+<h2>新竹市</h2>
+
+<table>
+<tbody>
+
+<tr>
+<td>Funbox 新竹遠東店</td>
+<td class="time">8/29 11:00</td>
+<td>
+<a class="btn"
+   data-product="ux21"
+   data-shop="hsinchu-fareast"
+   href="https://lin.ee/9cp66iv"
+   target="_blank"
+   rel="noopener">
+立即抽獎
+</a>
+</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+<!-- 新竹縣 -->
+
+<div class="region">
+
+<h2>新竹縣</h2>
+
+<table>
+<tbody>
+
+<tr>
+<td>Funbox 竹北遠東店</td>
+<td class="time">8/29 11:00</td>
+<td>
+<a class="btn"
+   data-product="ux21"
+   data-shop="zhubei-fareast"
+   href="https://lin.ee/SMfKXdM"
+   target="_blank"
+   rel="noopener">
+立即抽獎
+</a>
+</td>
+</tr>
+
+<tr>
+<td>funbox 享平方店</td>
+<td class="time">8/29 11:00</td>
+<td>
+<a class="btn"
+   data-product="ux21"
+   data-shop="hsinchu-square"
+   href="https://lin.ee/RVqOUW4"
+   target="_blank"
+   rel="noopener">
+立即抽獎
+</a>
+</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+</div>
+
+
+<!-- ========================================================= -->
+<!-- BX-35 -->
+<!-- ========================================================= -->
+
+<div id="bx35" class="product-content">
+
+<div class="product-title">
+BX-35 隨機強化組 Vol.04
+</div>
+
+
+<!-- 台北 -->
+
+<div class="region">
+
+<h2>台北市</h2>
+
+<table>
+<tbody>
+
+<tr>
+<td>Funbox 天母三越店</td>
+<td class="time">8/29 11:00</td>
+<td>
+<a class="btn"
+   data-product="bx35"
+   data-shop="taipei-tianmu-mitsukoshi"
+   href="https://lin.ee/sjANMnS"
+   target="_blank"
+   rel="noopener">
+立即抽獎
+</a>
+</td>
+</tr>
+
+<tr>
+<td>Funbox 大葉高島屋</td>
+<td class="time">8/29</td>
+<td>
+<a class="btn"
+   data-product="bx35"
+   data-shop="taipei-takashimaya"
+   href="https://lin.ee/NzS2cxEK"
+   target="_blank"
+   rel="noopener">
+立即抽獎
+</a>
+</td>
+</tr>
+
+<tr>
+<td>Funbox 南港潤泰</td>
+<td class="time">8/29</td>
+<td>
+<a class="btn"
+   data-product="bx35"
+   data-shop="taipei-runtai"
+   href="https://lin.ee/x2sZbiB"
+   target="_blank"
+   rel="noopener">
+立即抽獎
+</a>
+</td>
+</tr>
+
+<tr>
+<td>來玩聚-北車地下街</td>
+<td class="time">8/29</td>
+<td>
+<a class="btn"
+   data-product="bx35"
+   data-shop="taipei-mainstation"
+   href="https://lin.ee/NmI5pyX"
+   target="_blank"
+   rel="noopener">
+立即抽獎
+</a>
+</td>
+</tr>
+
+<tr>
+<td>Funbox 美麗華</td>
+<td class="time">8/29</td>
+<td>
+<a class="btn"
+   data-product="bx35"
+   data-shop="taipei-miramar"
+   href="https://lin.ee/WZOYsDS"
+   target="_blank"
+   rel="noopener">
+立即抽獎
+</a>
+</td>
+</tr>
+
+<tr>
+<td>Funbox LaLaport南港</td>
+<td class="time">8/29</td>
+<td>
+<a class="btn"
+   data-product="bx35"
+   data-shop="taipei-lalaport"
+   href="https://lin.ee/QtIsgeh"
+   target="_blank"
+   rel="noopener">
+立即抽獎
+</a>
+</td>
+</tr>
+
+<tr>
+<td>Funbox 三越南西店</td>
+<td class="time">8/29 11:00</td>
+<td>
+<a class="btn"
+   data-product="bx35"
+   data-shop="taipei-nanxi"
+   href="https://lin.ee/obbbKzJ"
+   target="_blank"
+   rel="noopener">
+立即抽獎
+</a>
+</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+<!-- 新北 -->
+
+<div class="region">
+
+<h2>新北市</h2>
+
+<table>
+<tbody>
+
+<tr>
+<td>FunBox Toys-汐止遠雄店</td>
+<td class="time">8/29 11:00</td>
+<td>
+<a class="btn"
+   data-product="bx35"
+   data-shop="newtaipei-xizhi"
+   href="https://lin.ee/S2hCveN"
+   target="_blank"
+   rel="noopener">
+立即抽獎
+</a>
+</td>
+</tr>
+
+<tr>
+<td>Funbox 板橋遠東店</td>
+<td class="time">8/29</td>
+<td>
+<a class="btn"
+   data-product="bx35"
+   data-shop="newtaipei-banqiao-fareast"
+   href="https://lin.ee/VLh1vvg"
+   target="_blank"
+   rel="noopener">
+立即抽獎
+</a>
+</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+<!-- 桃園 -->
+
+<div class="region">
+
+<h2>桃園市</h2>
+
+<table>
+<tbody>
+
+<tr>
+<td>Funbox 桃園站前三越</td>
+<td class="time">8/29</td>
+<td>
+<a class="btn"
+   data-product="bx35"
+   data-shop="taoyuan-mitsukoshi"
+   href="https://lin.ee/WHbtrMP"
+   target="_blank"
+   rel="noopener">
+立即抽獎
+</a>
+</td>
+</tr>
+
+<tr>
+<td>FunBox 桃園環球A19店</td>
+<td class="time">8/29 11:00</td>
+<td>
+<a class="btn"
+   data-product="bx35"
+   data-shop="taoyuan-a19"
+   href="https://lin.ee/PHFLgAV"
+   target="_blank"
+   rel="noopener">
+立即抽獎
+</a>
+</td>
+</tr>
+
+<tr>
+<td>Funbox 桃園環球A8店</td>
+<td class="time">8/29 11:00</td>
+<td>
+<a class="btn"
+   data-product="bx35"
+   data-shop="taoyuan-a8"
+   href="https://lin.ee/nBQY3g3"
+   target="_blank"
+   rel="noopener">
+立即抽獎
+</a>
+</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+<!-- 新竹 -->
+
+<div class="region">
+
+<h2>新竹市</h2>
+
+<table>
+<tbody>
+
+<tr>
+<td>Fun Box 新竹巨城</td>
+<td class="time">8/29</td>
+<td>
+<a class="btn"
+   data-product="bx35"
+   data-shop="hsinchu-bigcity"
+   href="https://lin.ee/wOpQsrO"
+   target="_blank"
+   rel="noopener">
+立即抽獎
+</a>
+</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+<!-- 新竹縣 -->
+
+<div class="region">
+
+<h2>新竹縣</h2>
+
+<table>
+<tbody>
+
+<tr>
+<td>Funbox 竹北遠東店</td>
+<td class="time">8/29 11:00</td>
+<td>
+<a class="btn"
+   data-product="bx35"
+   data-shop="zhubei-fareast"
+   href="https://lin.ee/tf7TuZU"
+   target="_blank"
+   rel="noopener">
+立即抽獎
+</a>
+</td>
+</tr>
+
+<tr>
+<td>funbox 享平方店</td>
+<td class="time">8/29</td>
+<td>
+<a class="btn"
+   data-product="bx35"
+   data-shop="hsinchu-square"
+   href="https://lin.ee/y2nw5fI"
+   target="_blank"
+   rel="noopener">
+立即抽獎
+</a>
+</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+</div>
+
+
+<footer>
+
+資料來源：
+<a href="https://uxux11.github.io/funbox-line/"
+   target="_blank"
+   rel="noopener">
+Funbox / 來玩聚 LINE 官方帳號一鍵抽獎
+</a>
+
+</footer>
+
+
+<script>
+
+/* ==================== 品項切換 ==================== */
+
+function showProduct(product, button) {
+
+    document.querySelectorAll(".product-content")
+        .forEach(content => {
+            content.classList.remove("active");
+        });
+
+    document.getElementById(product)
+        .classList.add("active");
+
+    document.querySelectorAll(".product-btn")
+        .forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+    button.classList.add("active");
+
+}
+
+
+/* ==================== 取得紀錄 Key ==================== */
+
+function getKey(button) {
+
+    const product = button.dataset.product;
+    const shop = button.dataset.shop;
+
+    return "funbox-draw-" + product + "-" + shop;
+
+}
+
+
+/* ==================== 排序 ==================== */
+
+function sortTable(table) {
+
+    const tbody = table.querySelector("tbody");
+
+    if (!tbody) {
+        return;
+    }
+
+    const rows = Array.from(
+        tbody.querySelectorAll("tr")
+    );
+
+    rows.sort((a, b) => {
+
+        const aButton =
+            a.querySelector(".btn[data-product]");
+
+        const bButton =
+            b.querySelector(".btn[data-product]");
+
+        const aDone =
+            localStorage.getItem(getKey(aButton)) === "done";
+
+        const bDone =
+            localStorage.getItem(getKey(bButton)) === "done";
+
+        if (aDone && !bDone) {
+            return 1;
+        }
+
+        if (!aDone && bDone) {
+            return -1;
+        }
+
+        return 0;
+
+    });
+
+    rows.forEach(row => {
+        tbody.appendChild(row);
+        row.classList.remove("done-first");
+    });
+
+    const firstDone = rows.find(row => {
+
+        const button =
+            row.querySelector(".btn[data-product]");
+
+        return localStorage.getItem(
+            getKey(button)
+        ) === "done";
+
+    });
+
+    if (firstDone) {
+        firstDone.classList.add("done-first");
+    }
+
+}
+
+
+/* ==================== 初始化 ==================== */
+
+document
+.querySelectorAll(".btn[data-product]")
+.forEach(button => {
+
+    const key = getKey(button);
+
+    if (localStorage.getItem(key) === "done") {
+
+        button.classList.add("done");
+        button.textContent = "已抽過";
+
+        const row = button.closest("tr");
+
+        if (row) {
+            row.classList.add("done-row");
+        }
+
+    }
+
+
+    button.addEventListener("click", () => {
+
+        localStorage.setItem(key, "done");
+
+        button.classList.add("done");
+        button.textContent = "已抽過";
+
+        const row = button.closest("tr");
+
+        if (row) {
+            row.classList.add("done-row");
+        }
+
+        const table = button.closest("table");
+
+        if (table) {
+            sortTable(table);
+        }
+
+    });
+
+});
+
+
+/* ==================== 頁面載入排序 ==================== */
+
+document
+.querySelectorAll(".product-content table")
+.forEach(table => {
+    sortTable(table);
+});
+
+
+/* ==================== 清除紀錄 ==================== */
+
+function resetRecords() {
+
+    if (!confirm("確定要清除 UX-21 / BX-35 的全部抽獎紀錄嗎？")) {
+        return;
+    }
+
+    document
+    .querySelectorAll(".btn[data-product]")
+    .forEach(button => {
+
+        localStorage.removeItem(
+            getKey(button)
+        );
+
+        button.classList.remove("done");
+        button.textContent = "立即抽獎";
+
+        const row = button.closest("tr");
+
+        if (row) {
+            row.classList.remove("done-row");
+        }
+
+    });
+
+
+    document
+    .querySelectorAll(".product-content table")
+    .forEach(table => {
+        sortTable(table);
+    });
+
+}
+
+</script>
+
+</body>
+</html>
