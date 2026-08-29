@@ -15,53 +15,47 @@ body {
     font-family: system-ui, -apple-system, "Noto Sans TC",
                  "Microsoft JhengHei", sans-serif;
     max-width: 900px;
-    margin: 28px auto;
-    padding: 0 16px;
+    margin: 24px auto;
+    padding: 0 14px;
     line-height: 1.6;
     background: #f7f7f7;
     color: #222;
 }
 
 h1 {
-    font-size: 1.6rem;
-    margin-bottom: 4px;
+    font-size: 1.55rem;
+    margin: 0 0 4px;
 }
 
 .subtitle {
     color: #666;
-    margin-bottom: 20px;
+    font-size: .9rem;
+    margin-bottom: 16px;
 }
 
 .note {
     background: #fff3cd;
     padding: 11px 13px;
     border-radius: 9px;
-    margin-bottom: 18px;
-    font-size: 0.9rem;
+    margin-bottom: 16px;
+    font-size: .88rem;
 }
-
-/* 品項選擇 */
 
 .product-select {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-bottom: 24px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 22px;
 }
 
 .product-btn {
     border: 2px solid #ddd;
     background: white;
-    padding: 13px 12px;
-    border-radius: 10px;
+    padding: 11px 8px;
+    border-radius: 9px;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: .95rem;
     font-weight: 700;
-    transition: 0.2s;
-}
-
-.product-btn:hover {
-    border-color: #999;
 }
 
 .product-btn.active {
@@ -69,8 +63,6 @@ h1 {
     color: white;
     border-color: #222;
 }
-
-/* 品項內容 */
 
 .product-content {
     display: none;
@@ -81,27 +73,23 @@ h1 {
 }
 
 .product-title {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     font-weight: 700;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
 }
 
-/* 地區 */
-
 .region {
-    margin-top: 24px;
+    margin-top: 22px;
 }
 
 .region h2 {
     background: #222;
     color: white;
-    padding: 8px 13px;
+    padding: 7px 12px;
     border-radius: 8px;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     margin-bottom: 8px;
 }
-
-/* 表格 */
 
 table {
     width: 100%;
@@ -110,20 +98,13 @@ table {
     background: white;
     border-radius: 9px;
     overflow: hidden;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
 }
 
 th,
 td {
-    padding: 10px 12px;
+    padding: 9px 11px;
     text-align: left;
     border-bottom: 1px solid #eee;
-}
-
-th {
-    background: #fafafa;
-    color: #666;
-    font-size: 0.83rem;
 }
 
 tr:last-child td {
@@ -133,71 +114,58 @@ tr:last-child td {
 .time {
     white-space: nowrap;
     color: #c33;
-    font-size: 0.88rem;
+    font-size: .85rem;
 }
 
 .btn {
     display: inline-block;
-    min-width: 88px;
+    min-width: 86px;
     text-align: center;
     background: #06c755;
     color: white;
     text-decoration: none;
-    padding: 7px 12px;
+    padding: 7px 11px;
     border-radius: 7px;
     font-weight: 700;
     white-space: nowrap;
 }
 
 .btn:hover {
-    opacity: 0.85;
+    opacity: .85;
 }
 
 .btn.done {
     background: #999;
-    opacity: 0.55;
+    opacity: .55;
 }
 
 tr.done-row {
-    opacity: 0.45;
+    opacity: .45;
 }
-
-tr.done-first td {
-    border-top: 2px solid #ddd;
-}
-
-/* 清除 */
 
 .reset-btn {
     border: 0;
     background: #666;
     color: white;
-    padding: 8px 14px;
+    padding: 8px 13px;
     border-radius: 7px;
     cursor: pointer;
-    font-size: 0.86rem;
-    margin-bottom: 18px;
-}
-
-.reset-btn:hover {
-    background: #444;
+    font-size: .85rem;
+    margin-bottom: 16px;
 }
 
 footer {
-    margin-top: 30px;
+    margin-top: 28px;
     padding-top: 14px;
     border-top: 1px solid #ddd;
     color: #777;
-    font-size: 0.8rem;
+    font-size: .8rem;
 }
-
-
-/* ==================== 手機 ==================== */
 
 @media (max-width: 600px) {
 
     body {
-        margin: 15px auto;
+        margin: 14px auto;
         padding: 0 10px;
     }
 
@@ -205,25 +173,12 @@ footer {
         font-size: 1.4rem;
     }
 
-    .subtitle {
-        font-size: 0.88rem;
-    }
-
     .product-select {
         grid-template-columns: 1fr;
-        gap: 8px;
     }
 
     .product-btn {
         padding: 12px;
-    }
-
-    .note {
-        font-size: 0.84rem;
-    }
-
-    .region h2 {
-        font-size: 1rem;
     }
 
     thead {
@@ -241,10 +196,9 @@ footer {
     tr {
         background: white;
         margin-bottom: 8px;
-        padding: 11px 12px;
+        padding: 10px 11px;
         border-radius: 9px;
         border: 1px solid #e5e5e5;
-        box-shadow: 0 1px 2px rgba(0,0,0,0.04);
     }
 
     td {
@@ -254,17 +208,15 @@ footer {
 
     td:first-child {
         font-weight: 700;
-        font-size: 1rem;
     }
 
     td:nth-child(2) {
         margin-top: 2px;
-        margin-bottom: 9px;
+        margin-bottom: 8px;
     }
 
     .time {
         white-space: normal;
-        font-size: 0.82rem;
     }
 
     .btn {
@@ -299,26 +251,31 @@ footer {
 </div>
 
 
-<!-- ==================== 品項選擇 ==================== -->
+<!-- 品項選擇 -->
 
 <div class="product-select">
 
 <button class="product-btn active"
-        onclick="showProduct('ux21', this)">
-UX-21 惡魔冥界改造組
+onclick="showProduct('ux21', this)">
+UX-21
 </button>
 
 <button class="product-btn"
-        onclick="showProduct('bx35', this)">
-BX-35 隨機強化組 Vol.04
+onclick="showProduct('ux20', this)">
+UX-20
+</button>
+
+<button class="product-btn"
+onclick="showProduct('bx35', this)">
+BX-35
 </button>
 
 </div>
 
 
-<!-- ========================================================= -->
+<!-- ===================================================== -->
 <!-- UX-21 -->
-<!-- ========================================================= -->
+<!-- ===================================================== -->
 
 <div id="ux21" class="product-content active">
 
@@ -326,11 +283,7 @@ BX-35 隨機強化組 Vol.04
 UX-21 惡魔冥界改造組
 </div>
 
-
-<!-- 台北 -->
-
 <div class="region">
-
 <h2>台北市</h2>
 
 <table>
@@ -341,73 +294,10 @@ UX-21 惡魔冥界改造組
 <td class="time">8/29 11:00</td>
 <td>
 <a class="btn"
-   data-product="ux21"
-   data-shop="taipei-sogo"
-   href="https://lin.ee/QsQzRTL"
-   target="_blank"
-   rel="noopener">
-立即抽獎
-</a>
-</td>
-</tr>
-
-<tr>
-<td>Funbox 天母三越店</td>
-<td class="time">8/29 11:00</td>
-<td>
-<a class="btn"
-   data-product="ux21"
-   data-shop="taipei-tianmu-mitsukoshi"
-   href="https://lin.ee/UKM6TKK"
-   target="_blank"
-   rel="noopener">
-立即抽獎
-</a>
-</td>
-</tr>
-
-<tr>
-<td>Funbox 信義A8店</td>
-<td class="time">8/29 11:00</td>
-<td>
-<a class="btn"
-   data-product="ux21"
-   data-shop="taipei-xinyi-a8"
-   href="https://lin.ee/q97O5u7"
-   target="_blank"
-   rel="noopener">
-立即抽獎
-</a>
-</td>
-</tr>
-
-<tr>
-<td>Funbox 天母SOGO店</td>
-<td class="time">8/29 11:00</td>
-<td>
-<a class="btn"
-   data-product="ux21"
-   data-shop="taipei-tianmu-sogo"
-   href="https://lin.ee/Xqa4sFy"
-   target="_blank"
-   rel="noopener">
-立即抽獎
-</a>
-</td>
-</tr>
-
-<tr>
-<td>Funbox 南港潤泰</td>
-<td class="time">8/29 11:00</td>
-<td>
-<a class="btn"
-   data-product="ux21"
-   data-shop="taipei-runtai"
-   href="https://lin.ee/zGviPVx"
-   target="_blank"
-   rel="noopener">
-立即抽獎
-</a>
+data-product="ux21"
+data-shop="taipei-sogo"
+href="https://lin.ee/QsQzRTL"
+target="_blank" rel="noopener">立即抽獎</a>
 </td>
 </tr>
 
@@ -416,13 +306,22 @@ UX-21 惡魔冥界改造組
 <td class="time">8/29</td>
 <td>
 <a class="btn"
-   data-product="ux21"
-   data-shop="taipei-miramar"
-   href="https://lin.ee/WZOYsDS"
-   target="_blank"
-   rel="noopener">
-立即抽獎
-</a>
+data-product="ux21"
+data-shop="taipei-miramar"
+href="https://lin.ee/Suuh0WP"
+target="_blank" rel="noopener">立即抽獎</a>
+</td>
+</tr>
+
+<tr>
+<td>Funbox 南港潤泰</td>
+<td class="time">8/29 11:00</td>
+<td>
+<a class="btn"
+data-product="ux21"
+data-shop="taipei-runtai"
+href="https://lin.ee/zGviPVx"
+target="_blank" rel="noopener">立即抽獎</a>
 </td>
 </tr>
 
@@ -431,13 +330,10 @@ UX-21 惡魔冥界改造組
 <td class="time">8/29</td>
 <td>
 <a class="btn"
-   data-product="ux21"
-   data-shop="taipei-lalaport"
-   href="https://lin.ee/wxDyuiT"
-   target="_blank"
-   rel="noopener">
-立即抽獎
-</a>
+data-product="ux21"
+data-shop="taipei-lalaport"
+href="https://lin.ee/wxDyuiT"
+target="_blank" rel="noopener">立即抽獎</a>
 </td>
 </tr>
 
@@ -446,13 +342,10 @@ UX-21 惡魔冥界改造組
 <td class="time">8/29</td>
 <td>
 <a class="btn"
-   data-product="ux21"
-   data-shop="taipei-nanxi"
-   href="https://lin.ee/xAesOXg"
-   target="_blank"
-   rel="noopener">
-立即抽獎
-</a>
+data-product="ux21"
+data-shop="taipei-nanxi"
+href="https://lin.ee/xAesOXg"
+target="_blank" rel="noopener">立即抽獎</a>
 </td>
 </tr>
 
@@ -461,10 +354,7 @@ UX-21 惡魔冥界改造組
 </div>
 
 
-<!-- 桃園 -->
-
 <div class="region">
-
 <h2>桃園市</h2>
 
 <table>
@@ -475,13 +365,10 @@ UX-21 惡魔冥界改造組
 <td class="time">8/29 11:00</td>
 <td>
 <a class="btn"
-   data-product="ux21"
-   data-shop="taoyuan-mitsukoshi"
-   href="https://lin.ee/Q5emiZW"
-   target="_blank"
-   rel="noopener">
-立即抽獎
-</a>
+data-product="ux21"
+data-shop="taoyuan-mitsukoshi"
+href="https://lin.ee/Q5emiZW"
+target="_blank" rel="noopener">立即抽獎</a>
 </td>
 </tr>
 
@@ -490,13 +377,10 @@ UX-21 惡魔冥界改造組
 <td class="time">8/29 11:00</td>
 <td>
 <a class="btn"
-   data-product="ux21"
-   data-shop="taoyuan-taimall"
-   href="https://lin.ee/Oh1dSHD"
-   target="_blank"
-   rel="noopener">
-立即抽獎
-</a>
+data-product="ux21"
+data-shop="taoyuan-taimall"
+href="https://lin.ee/Oh1dSHD"
+target="_blank" rel="noopener">立即抽獎</a>
 </td>
 </tr>
 
@@ -505,13 +389,10 @@ UX-21 惡魔冥界改造組
 <td class="time">8/29</td>
 <td>
 <a class="btn"
-   data-product="ux21"
-   data-shop="taoyuan-zhongli-sogo"
-   href="https://lin.ee/p2JKdr5"
-   target="_blank"
-   rel="noopener">
-立即抽獎
-</a>
+data-product="ux21"
+data-shop="taoyuan-zhongli-sogo"
+href="https://lin.ee/p2JKdr5"
+target="_blank" rel="noopener">立即抽獎</a>
 </td>
 </tr>
 
@@ -520,13 +401,10 @@ UX-21 惡魔冥界改造組
 <td class="time">8/29</td>
 <td>
 <a class="btn"
-   data-product="ux21"
-   data-shop="taoyuan-far-east"
-   href="https://lin.ee/qESRK9p"
-   target="_blank"
-   rel="noopener">
-立即抽獎
-</a>
+data-product="ux21"
+data-shop="taoyuan-fareast"
+href="https://lin.ee/qESRK9p"
+target="_blank" rel="noopener">立即抽獎</a>
 </td>
 </tr>
 
@@ -535,13 +413,10 @@ UX-21 惡魔冥界改造組
 <td class="time">8/29 11:00</td>
 <td>
 <a class="btn"
-   data-product="ux21"
-   data-shop="taoyuan-metrowalk"
-   href="https://lin.ee/8Bv63tO"
-   target="_blank"
-   rel="noopener">
-立即抽獎
-</a>
+data-product="ux21"
+data-shop="taoyuan-metrowalk"
+href="https://lin.ee/8Bv63tO"
+target="_blank" rel="noopener">立即抽獎</a>
 </td>
 </tr>
 
@@ -550,13 +425,10 @@ UX-21 惡魔冥界改造組
 <td class="time">8/29 11:00</td>
 <td>
 <a class="btn"
-   data-product="ux21"
-   data-shop="taoyuan-a8"
-   href="https://lin.ee/9496mkz"
-   target="_blank"
-   rel="noopener">
-立即抽獎
-</a>
+data-product="ux21"
+data-shop="taoyuan-a8"
+href="https://lin.ee/9496mkz"
+target="_blank" rel="noopener">立即抽獎</a>
 </td>
 </tr>
 
@@ -565,10 +437,7 @@ UX-21 惡魔冥界改造組
 </div>
 
 
-<!-- 新竹 -->
-
 <div class="region">
-
 <h2>新竹市</h2>
 
 <table>
@@ -579,13 +448,10 @@ UX-21 惡魔冥界改造組
 <td class="time">8/29 11:00</td>
 <td>
 <a class="btn"
-   data-product="ux21"
-   data-shop="hsinchu-fareast"
-   href="https://lin.ee/9cp66iv"
-   target="_blank"
-   rel="noopener">
-立即抽獎
-</a>
+data-product="ux21"
+data-shop="hsinchu-fareast"
+href="https://lin.ee/9cp66iv"
+target="_blank" rel="noopener">立即抽獎</a>
 </td>
 </tr>
 
@@ -594,10 +460,7 @@ UX-21 惡魔冥界改造組
 </div>
 
 
-<!-- 新竹縣 -->
-
 <div class="region">
-
 <h2>新竹縣</h2>
 
 <table>
@@ -608,13 +471,10 @@ UX-21 惡魔冥界改造組
 <td class="time">8/29 11:00</td>
 <td>
 <a class="btn"
-   data-product="ux21"
-   data-shop="zhubei-fareast"
-   href="https://lin.ee/SMfKXdM"
-   target="_blank"
-   rel="noopener">
-立即抽獎
-</a>
+data-product="ux21"
+data-shop="zhubei-fareast"
+href="https://lin.ee/SMfKXdM"
+target="_blank" rel="noopener">立即抽獎</a>
 </td>
 </tr>
 
@@ -623,13 +483,10 @@ UX-21 惡魔冥界改造組
 <td class="time">8/29 11:00</td>
 <td>
 <a class="btn"
-   data-product="ux21"
-   data-shop="hsinchu-square"
-   href="https://lin.ee/RVqOUW4"
-   target="_blank"
-   rel="noopener">
-立即抽獎
-</a>
+data-product="ux21"
+data-shop="hsinchu-square"
+href="https://lin.ee/RVqOUW4"
+target="_blank" rel="noopener">立即抽獎</a>
 </td>
 </tr>
 
@@ -640,21 +497,77 @@ UX-21 惡魔冥界改造組
 </div>
 
 
-<!-- ========================================================= -->
+<!-- ===================================================== -->
+<!-- UX-20 -->
+<!-- ===================================================== -->
+
+<div id="ux20" class="product-content">
+
+<div class="product-title">
+UX-20
+</div>
+
+<div class="region">
+<h2>台北市</h2>
+
+<table>
+<tbody>
+
+<!--
+  UX-20 門市資料請以來源頁逐項確認後填入。
+  格式：
+
+  <tr>
+  <td>門市名稱</td>
+  <td class="time">8/29 11:00</td>
+  <td>
+  <a class="btn"
+  data-product="ux20"
+  data-shop="唯一ID"
+  href="來源頁的UX-20連結"
+  target="_blank" rel="noopener">立即抽獎</a>
+  </td>
+  </tr>
+-->
+
+</tbody>
+</table>
+</div>
+
+<div class="region">
+<h2>新北市</h2>
+<table><tbody></tbody></table>
+</div>
+
+<div class="region">
+<h2>桃園市</h2>
+<table><tbody></tbody></table>
+</div>
+
+<div class="region">
+<h2>新竹市</h2>
+<table><tbody></tbody></table>
+</div>
+
+<div class="region">
+<h2>新竹縣</h2>
+<table><tbody></tbody></table>
+</div>
+
+</div>
+
+
+<!-- ===================================================== -->
 <!-- BX-35 -->
-<!-- ========================================================= -->
+<!-- ===================================================== -->
 
 <div id="bx35" class="product-content">
 
 <div class="product-title">
-BX-35 隨機強化組 Vol.04
+BX-35
 </div>
 
-
-<!-- 台北 -->
-
 <div class="region">
-
 <h2>台北市</h2>
 
 <table>
@@ -662,46 +575,37 @@ BX-35 隨機強化組 Vol.04
 
 <tr>
 <td>Funbox 天母三越店</td>
-<td class="time">8/29 11:00</td>
+<td class="time">8/29</td>
 <td>
 <a class="btn"
-   data-product="bx35"
-   data-shop="taipei-tianmu-mitsukoshi"
-   href="https://lin.ee/sjANMnS"
-   target="_blank"
-   rel="noopener">
-立即抽獎
-</a>
+data-product="bx35"
+data-shop="taipei-tianmu-mitsukoshi"
+href="https://lin.ee/sjANMnS"
+target="_blank" rel="noopener">立即抽獎</a>
 </td>
 </tr>
 
 <tr>
-<td>Funbox 大葉高島屋</td>
+<td>Funbox Toys-大葉高島屋</td>
 <td class="time">8/29</td>
 <td>
 <a class="btn"
-   data-product="bx35"
-   data-shop="taipei-takashimaya"
-   href="https://lin.ee/NzS2cxEK"
-   target="_blank"
-   rel="noopener">
-立即抽獎
-</a>
+data-product="bx35"
+data-shop="taipei-takashimaya"
+href="https://lin.ee/NzS2cxEK"
+target="_blank" rel="noopener">立即抽獎</a>
 </td>
 </tr>
 
 <tr>
-<td>Funbox 南港潤泰</td>
+<td>Funbox-南港潤泰</td>
 <td class="time">8/29</td>
 <td>
 <a class="btn"
-   data-product="bx35"
-   data-shop="taipei-runtai"
-   href="https://lin.ee/x2sZbiB"
-   target="_blank"
-   rel="noopener">
-立即抽獎
-</a>
+data-product="bx35"
+data-shop="taipei-runtai"
+href="https://lin.ee/x2sZbiB"
+target="_blank" rel="noopener">立即抽獎</a>
 </td>
 </tr>
 
@@ -710,13 +614,22 @@ BX-35 隨機強化組 Vol.04
 <td class="time">8/29</td>
 <td>
 <a class="btn"
-   data-product="bx35"
-   data-shop="taipei-mainstation"
-   href="https://lin.ee/NmI5pyX"
-   target="_blank"
-   rel="noopener">
-立即抽獎
-</a>
+data-product="bx35"
+data-shop="taipei-mainstation"
+href="https://lin.ee/NmI5pyX"
+target="_blank" rel="noopener">立即抽獎</a>
+</td>
+</tr>
+
+<tr>
+<td>Funbox LaLaport南港</td>
+<td class="time">8/29 11:00</td>
+<td>
+<a class="btn"
+data-product="bx35"
+data-shop="taipei-lalaport"
+href="https://lin.ee/QtIsgeh"
+target="_blank" rel="noopener">立即抽獎</a>
 </td>
 </tr>
 
@@ -725,28 +638,10 @@ BX-35 隨機強化組 Vol.04
 <td class="time">8/29</td>
 <td>
 <a class="btn"
-   data-product="bx35"
-   data-shop="taipei-miramar"
-   href="https://lin.ee/WZOYsDS"
-   target="_blank"
-   rel="noopener">
-立即抽獎
-</a>
-</td>
-</tr>
-
-<tr>
-<td>Funbox LaLaport南港</td>
-<td class="time">8/29</td>
-<td>
-<a class="btn"
-   data-product="bx35"
-   data-shop="taipei-lalaport"
-   href="https://lin.ee/QtIsgeh"
-   target="_blank"
-   rel="noopener">
-立即抽獎
-</a>
+data-product="bx35"
+data-shop="taipei-miramar"
+href="https://lin.ee/WZOYsDS"
+target="_blank" rel="noopener">立即抽獎</a>
 </td>
 </tr>
 
@@ -755,13 +650,10 @@ BX-35 隨機強化組 Vol.04
 <td class="time">8/29 11:00</td>
 <td>
 <a class="btn"
-   data-product="bx35"
-   data-shop="taipei-nanxi"
-   href="https://lin.ee/obbbKzJ"
-   target="_blank"
-   rel="noopener">
-立即抽獎
-</a>
+data-product="bx35"
+data-shop="taipei-nanxi"
+href="https://lin.ee/obbbKzJ"
+target="_blank" rel="noopener">立即抽獎</a>
 </td>
 </tr>
 
@@ -770,10 +662,7 @@ BX-35 隨機強化組 Vol.04
 </div>
 
 
-<!-- 新北 -->
-
 <div class="region">
-
 <h2>新北市</h2>
 
 <table>
@@ -784,40 +673,21 @@ BX-35 隨機強化組 Vol.04
 <td class="time">8/29 11:00</td>
 <td>
 <a class="btn"
-   data-product="bx35"
-   data-shop="newtaipei-xizhi"
-   href="https://lin.ee/S2hCveN"
-   target="_blank"
-   rel="noopener">
-立即抽獎
-</a>
+data-product="bx35"
+data-shop="newtaipei-xizhi"
+href="https://lin.ee/S2hCveN"
+target="_blank" rel="noopener">立即抽獎</a>
 </td>
 </tr>
 
-<tr>
-<td>Funbox 板橋遠東店</td>
-<td class="time">8/29</td>
-<td>
-<a class="btn"
-   data-product="bx35"
-   data-shop="newtaipei-banqiao-fareast"
-   href="https://lin.ee/VLh1vvg"
-   target="_blank"
-   rel="noopener">
-立即抽獎
-</a>
-</td>
-</tr>
+<!-- 板橋遠東已排除：該連結是 BX32 -->
 
 </tbody>
 </table>
 </div>
 
 
-<!-- 桃園 -->
-
 <div class="region">
-
 <h2>桃園市</h2>
 
 <table>
@@ -828,13 +698,10 @@ BX-35 隨機強化組 Vol.04
 <td class="time">8/29</td>
 <td>
 <a class="btn"
-   data-product="bx35"
-   data-shop="taoyuan-mitsukoshi"
-   href="https://lin.ee/WHbtrMP"
-   target="_blank"
-   rel="noopener">
-立即抽獎
-</a>
+data-product="bx35"
+data-shop="taoyuan-mitsukoshi"
+href="https://lin.ee/WHbtrMP"
+target="_blank" rel="noopener">立即抽獎</a>
 </td>
 </tr>
 
@@ -843,13 +710,10 @@ BX-35 隨機強化組 Vol.04
 <td class="time">8/29 11:00</td>
 <td>
 <a class="btn"
-   data-product="bx35"
-   data-shop="taoyuan-a19"
-   href="https://lin.ee/PHFLgAV"
-   target="_blank"
-   rel="noopener">
-立即抽獎
-</a>
+data-product="bx35"
+data-shop="taoyuan-a19"
+href="https://lin.ee/PHFLgAV"
+target="_blank" rel="noopener">立即抽獎</a>
 </td>
 </tr>
 
@@ -858,13 +722,10 @@ BX-35 隨機強化組 Vol.04
 <td class="time">8/29 11:00</td>
 <td>
 <a class="btn"
-   data-product="bx35"
-   data-shop="taoyuan-a8"
-   href="https://lin.ee/nBQY3g3"
-   target="_blank"
-   rel="noopener">
-立即抽獎
-</a>
+data-product="bx35"
+data-shop="taoyuan-a8"
+href="https://lin.ee/nBQY3g3"
+target="_blank" rel="noopener">立即抽獎</a>
 </td>
 </tr>
 
@@ -873,10 +734,7 @@ BX-35 隨機強化組 Vol.04
 </div>
 
 
-<!-- 新竹 -->
-
 <div class="region">
-
 <h2>新竹市</h2>
 
 <table>
@@ -887,13 +745,10 @@ BX-35 隨機強化組 Vol.04
 <td class="time">8/29</td>
 <td>
 <a class="btn"
-   data-product="bx35"
-   data-shop="hsinchu-bigcity"
-   href="https://lin.ee/wOpQsrO"
-   target="_blank"
-   rel="noopener">
-立即抽獎
-</a>
+data-product="bx35"
+data-shop="hsinchu-bigcity"
+href="https://lin.ee/wOpQsrO"
+target="_blank" rel="noopener">立即抽獎</a>
 </td>
 </tr>
 
@@ -902,10 +757,7 @@ BX-35 隨機強化組 Vol.04
 </div>
 
 
-<!-- 新竹縣 -->
-
 <div class="region">
-
 <h2>新竹縣</h2>
 
 <table>
@@ -913,16 +765,13 @@ BX-35 隨機強化組 Vol.04
 
 <tr>
 <td>Funbox 竹北遠東店</td>
-<td class="time">8/29 11:00</td>
+<td class="time">8/29</td>
 <td>
 <a class="btn"
-   data-product="bx35"
-   data-shop="zhubei-fareast"
-   href="https://lin.ee/tf7TuZU"
-   target="_blank"
-   rel="noopener">
-立即抽獎
-</a>
+data-product="bx35"
+data-shop="zhubei-fareast"
+href="https://lin.ee/tf7TuZU"
+target="_blank" rel="noopener">立即抽獎</a>
 </td>
 </tr>
 
@@ -931,13 +780,10 @@ BX-35 隨機強化組 Vol.04
 <td class="time">8/29</td>
 <td>
 <a class="btn"
-   data-product="bx35"
-   data-shop="hsinchu-square"
-   href="https://lin.ee/y2nw5fI"
-   target="_blank"
-   rel="noopener">
-立即抽獎
-</a>
+data-product="bx35"
+data-shop="hsinchu-square"
+href="https://lin.ee/y2nw5fI"
+target="_blank" rel="noopener">立即抽獎</a>
 </td>
 </tr>
 
@@ -952,8 +798,7 @@ BX-35 隨機強化組 Vol.04
 
 資料來源：
 <a href="https://uxux11.github.io/funbox-line/"
-   target="_blank"
-   rel="noopener">
+target="_blank" rel="noopener">
 Funbox / 來玩聚 LINE 官方帳號一鍵抽獎
 </a>
 
@@ -962,7 +807,9 @@ Funbox / 來玩聚 LINE 官方帳號一鍵抽獎
 
 <script>
 
-/* ==================== 品項切換 ==================== */
+/* ================================
+   品項切換
+================================ */
 
 function showProduct(product, button) {
 
@@ -980,86 +827,73 @@ function showProduct(product, button) {
         });
 
     button.classList.add("active");
-
 }
 
 
-/* ==================== 取得紀錄 Key ==================== */
+/* ================================
+   LocalStorage Key
+================================ */
 
 function getKey(button) {
 
-    const product = button.dataset.product;
-    const shop = button.dataset.shop;
-
-    return "funbox-draw-" + product + "-" + shop;
-
+    return "funbox-" +
+           button.dataset.product +
+           "-" +
+           button.dataset.shop;
 }
 
 
-/* ==================== 排序 ==================== */
+/* ================================
+   抽過 → 置底
+================================ */
 
 function sortTable(table) {
 
     const tbody = table.querySelector("tbody");
 
-    if (!tbody) {
-        return;
-    }
+    if (!tbody) return;
 
-    const rows = Array.from(
-        tbody.querySelectorAll("tr")
-    );
+    const rows =
+        Array.from(tbody.querySelectorAll("tr"));
 
     rows.sort((a, b) => {
 
         const aButton =
-            a.querySelector(".btn[data-product]");
+            a.querySelector(".btn");
 
         const bButton =
-            b.querySelector(".btn[data-product]");
+            b.querySelector(".btn");
+
+        if (!aButton || !bButton) {
+            return 0;
+        }
 
         const aDone =
-            localStorage.getItem(getKey(aButton)) === "done";
+            localStorage.getItem(
+                getKey(aButton)
+            ) === "done";
 
         const bDone =
-            localStorage.getItem(getKey(bButton)) === "done";
+            localStorage.getItem(
+                getKey(bButton)
+            ) === "done";
 
-        if (aDone && !bDone) {
-            return 1;
-        }
+        if (aDone && !bDone) return 1;
 
-        if (!aDone && bDone) {
-            return -1;
-        }
+        if (!aDone && bDone) return -1;
 
         return 0;
-
     });
 
     rows.forEach(row => {
         tbody.appendChild(row);
-        row.classList.remove("done-first");
     });
-
-    const firstDone = rows.find(row => {
-
-        const button =
-            row.querySelector(".btn[data-product]");
-
-        return localStorage.getItem(
-            getKey(button)
-        ) === "done";
-
-    });
-
-    if (firstDone) {
-        firstDone.classList.add("done-first");
-    }
-
 }
 
 
-/* ==================== 初始化 ==================== */
+/* ================================
+   載入紀錄
+================================ */
 
 document
 .querySelectorAll(".btn[data-product]")
@@ -1067,34 +901,38 @@ document
 
     const key = getKey(button);
 
-    if (localStorage.getItem(key) === "done") {
+    if (
+        localStorage.getItem(key)
+        === "done"
+    ) {
 
         button.classList.add("done");
+
         button.textContent = "已抽過";
 
-        const row = button.closest("tr");
-
-        if (row) {
-            row.classList.add("done-row");
-        }
-
+        button.closest("tr")
+              ?.classList.add("done-row");
     }
 
 
+    /* 點擊 */
+
     button.addEventListener("click", () => {
 
-        localStorage.setItem(key, "done");
+        localStorage.setItem(
+            key,
+            "done"
+        );
 
         button.classList.add("done");
+
         button.textContent = "已抽過";
 
-        const row = button.closest("tr");
+        button.closest("tr")
+              ?.classList.add("done-row");
 
-        if (row) {
-            row.classList.add("done-row");
-        }
-
-        const table = button.closest("table");
+        const table =
+            button.closest("table");
 
         if (table) {
             sortTable(table);
@@ -1105,20 +943,28 @@ document
 });
 
 
-/* ==================== 頁面載入排序 ==================== */
+/* ================================
+   初始排序
+================================ */
 
 document
-.querySelectorAll(".product-content table")
+.querySelectorAll("table")
 .forEach(table => {
     sortTable(table);
 });
 
 
-/* ==================== 清除紀錄 ==================== */
+/* ================================
+   清除全部紀錄
+================================ */
 
 function resetRecords() {
 
-    if (!confirm("確定要清除 UX-21 / BX-35 的全部抽獎紀錄嗎？")) {
+    if (
+        !confirm(
+            "確定要清除 UX-20 / UX-21 / BX-35 的全部抽獎紀錄嗎？"
+        )
+    ) {
         return;
     }
 
@@ -1131,23 +977,20 @@ function resetRecords() {
         );
 
         button.classList.remove("done");
+
         button.textContent = "立即抽獎";
 
-        const row = button.closest("tr");
-
-        if (row) {
-            row.classList.remove("done-row");
-        }
+        button.closest("tr")
+              ?.classList.remove("done-row");
 
     });
 
 
     document
-    .querySelectorAll(".product-content table")
+    .querySelectorAll("table")
     .forEach(table => {
         sortTable(table);
     });
-
 }
 
 </script>
