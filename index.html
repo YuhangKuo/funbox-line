@@ -1,4 +1,3 @@
-```html
 <!doctype html>
 <html lang="zh-Hant">
 <head>
@@ -30,7 +29,7 @@ h1 {
 
 .version {
     color: #888;
-    font-size: .75rem;
+    font-size: .72rem;
     font-weight: 500;
 }
 
@@ -305,14 +304,18 @@ Funbox / 來玩聚 LINE 官方帳號一鍵抽獎
 <script>
 
 /* =========================================================
-   v1.0
-   以目前 GitHub 版本為基準
-   只修正錯誤連結、移除錯誤品項、加入 BX-35
+   Funbox 抽陀螺
+   Version: v1.0
+
+   UX-20 / UX-21 / BX-35
+   地區：台北、新北、桃園、新竹
 ========================================================= */
 
 const shops = [
 
-    /* ==================== 台北市 ==================== */
+    /* =========================
+       台北市
+    ========================= */
 
     {
         region: "台北市",
@@ -325,11 +328,24 @@ const shops = [
 
     {
         region: "台北市",
-        name: "Funbox 美麗華",
-        ux21: {
-            url: "https://lin.ee/Suuh0WP",
+        name: "Funbox 天母三越",
+        ux20: {
+            url: "https://lin.ee/wBvFN2J",
             time: "8/29"
         },
+        ux21: {
+            url: "https://lin.ee/UKM6TKK",
+            time: "8/29 11:00"
+        },
+        bx35: {
+            url: "https://lin.ee/sjANMnS",
+            time: "8/29"
+        }
+    },
+
+    {
+        region: "台北市",
+        name: "Funbox 美麗華",
         bx35: {
             url: "https://lin.ee/WZOYsDS",
             time: "8/29"
@@ -339,13 +355,13 @@ const shops = [
     {
         region: "台北市",
         name: "Funbox 南港潤泰",
-        ux21: {
-            url: "https://lin.ee/zGviPVx",
-            time: "8/29 11:00"
-        },
         ux20: {
             url: "https://lin.ee/xHpCF14",
             time: "8/29"
+        },
+        ux21: {
+            url: "https://lin.ee/zGviPVx",
+            time: "8/29 11:00"
         },
         bx35: {
             url: "https://lin.ee/x2sZbiB",
@@ -359,14 +375,6 @@ const shops = [
         ux21: {
             url: "https://lin.ee/wxDyuiT",
             time: "8/29"
-        },
-        ux20: {
-            url: "https://lin.ee/qHTOOuh",
-            time: "8/29 11:00"
-        },
-        bx35: {
-            url: "https://lin.ee/QtIsgeh",
-            time: "8/29 11:00"
         }
     },
 
@@ -376,35 +384,12 @@ const shops = [
         ux21: {
             url: "https://lin.ee/xAesOXg",
             time: "8/29"
-        },
-        bx35: {
-            url: "https://lin.ee/obbbKzJ",
-            time: "8/29 11:00"
-        }
-    },
-
-    /* BX-35 額外門市：沿用來源頁，不加入 UX-21 */
-
-    {
-        region: "台北市",
-        name: "Funbox天母三越店",
-        ux20: {
-            url: "https://lin.ee/wBvFN2J",
-            time: "8/29"
-        },
-        bx35: {
-            url: "https://lin.ee/sjANMnS",
-            time: "8/29"
         }
     },
 
     {
         region: "台北市",
-        name: "Funbox Toys-大葉高島屋",
-        ux20: {
-            url: "https://lin.ee/8WUY2KX",
-            time: "8/29"
-        },
+        name: "Funbox Toys 大葉高島屋",
         bx35: {
             url: "https://lin.ee/NzS2cxEK",
             time: "8/29"
@@ -412,18 +397,20 @@ const shops = [
     },
 
 
-    /* ==================== 新北市 ==================== */
+    /* =========================
+       新北市
+    ========================= */
 
     {
         region: "新北市",
-        name: "FunBox Toys-汐止遠雄店",
+        name: "FunBox Toys 汐止遠雄",
         ux20: {
             url: "https://lin.ee/OW8V3OF",
             time: "8/29 11:00"
         },
         bx35: {
-            url: "https://lin.ee/wjRuEzM",
-            time: "8/29 11:00"
+            url: "https://lin.ee/S2hCveN",
+            time: "8/29"
         }
     },
 
@@ -441,7 +428,9 @@ const shops = [
     },
 
 
-    /* ==================== 桃園市 ==================== */
+    /* =========================
+       桃園市
+    ========================= */
 
     {
         region: "桃園市",
@@ -486,40 +475,36 @@ const shops = [
     {
         region: "桃園市",
         name: "Funbox 中壢大江店",
-        ux21: {
-            url: "https://lin.ee/8Bv63tO",
-            time: "8/29 11:00"
-        },
         ux20: {
             url: "https://lin.ee/nua1iCT",
             time: "8/29"
+        },
+        ux21: {
+            url: "https://lin.ee/9496mkz",
+            time: "8/29 11:00"
         }
     },
 
     {
         region: "桃園市",
         name: "Funbox 桃園環球A8店",
+        ux20: {
+            url: "https://lin.ee/re25qAN",
+            time: "8/29"
+        },
         ux21: {
             url: "https://lin.ee/9496mkz",
             time: "8/29 11:00"
         },
-        ux20: {
-            url: "https://lin.ee/re25qAN",
-            time: "8/29 11:00"
-        },
         bx35: {
             url: "https://lin.ee/nBQY3g3",
-            time: "8/29 11:00"
+            time: "8/29"
         }
     },
 
     {
         region: "桃園市",
-        name: "FunBox - 桃園環球A19店",
-        ux20: {
-            url: "https://lin.ee/re25qAN",
-            time: "8/29 11:00"
-        },
+        name: "FunBox 桃園環球A19店",
         bx35: {
             url: "https://lin.ee/PHFLgAV",
             time: "8/29"
@@ -527,7 +512,9 @@ const shops = [
     },
 
 
-    /* ==================== 新竹市 ==================== */
+    /* =========================
+       新竹市
+    ========================= */
 
     {
         region: "新竹市",
@@ -540,11 +527,7 @@ const shops = [
 
     {
         region: "新竹市",
-        name: "Fun Box 新竹巨城",
-        ux20: {
-            url: "https://lin.ee/826H1QK",
-            time: "8/29"
-        },
+        name: "Funbox 新竹巨城",
         bx35: {
             url: "https://lin.ee/wOpQsrO",
             time: "8/29"
@@ -552,15 +535,13 @@ const shops = [
     },
 
 
-    /* ==================== 新竹縣 ==================== */
+    /* =========================
+       新竹縣
+    ========================= */
 
     {
         region: "新竹縣",
         name: "Funbox 竹北遠東店",
-        ux21: {
-            url: "https://lin.ee/nhfKgsb",
-            time: "8/29 11:00"
-        },
         bx35: {
             url: "https://lin.ee/tf7TuZU",
             time: "8/29"
@@ -583,20 +564,12 @@ const shops = [
 ];
 
 
-/* =========================================================
-   品項
-========================================================= */
-
 const products = {
     ux21: "UX-21 惡魔冥界改造組",
     ux20: "UX-20 榮耀武神",
     bx35: "BX-35 隨機強化組 Vol.04"
 };
 
-
-/* =========================================================
-   建立唯一 ID
-========================================================= */
 
 function createShopId(name) {
 
@@ -607,10 +580,6 @@ function createShopId(name) {
 }
 
 
-/* =========================================================
-   localStorage
-========================================================= */
-
 function getKey(button) {
 
     return "funbox-" +
@@ -620,10 +589,6 @@ function getKey(button) {
 
 }
 
-
-/* =========================================================
-   產生品項
-========================================================= */
 
 function renderProduct(product) {
 
@@ -643,7 +608,6 @@ function renderProduct(product) {
 
 
     const regions = [];
-
 
     shops.forEach(shop => {
 
@@ -699,31 +663,29 @@ function renderProduct(product) {
             )
             .forEach(shop => {
 
-                const item =
-                    shop[product];
-
+                const item = shop[product];
 
                 const tr =
                     document.createElement("tr");
 
 
-                const tdName =
+                const name =
                     document.createElement("td");
 
-                tdName.textContent =
+                name.textContent =
                     shop.name;
 
 
-                const tdTime =
+                const time =
                     document.createElement("td");
 
-                tdTime.className = "time";
+                time.className = "time";
 
-                tdTime.textContent =
+                time.textContent =
                     item.time;
 
 
-                const tdButton =
+                const action =
                     document.createElement("td");
 
 
@@ -748,11 +710,11 @@ function renderProduct(product) {
                     "立即抽獎";
 
 
-                tdButton.appendChild(button);
+                action.appendChild(button);
 
-                tr.appendChild(tdName);
-                tr.appendChild(tdTime);
-                tr.appendChild(tdButton);
+                tr.appendChild(name);
+                tr.appendChild(time);
+                tr.appendChild(action);
 
                 tbody.appendChild(tr);
 
@@ -769,10 +731,6 @@ function renderProduct(product) {
 
 }
 
-
-/* =========================================================
-   品項切換
-========================================================= */
 
 function showProduct(product, button) {
 
@@ -799,10 +757,6 @@ function showProduct(product, button) {
 
 }
 
-
-/* =========================================================
-   已抽過 → 移到底部
-========================================================= */
 
 function sortTable(table) {
 
@@ -861,10 +815,6 @@ function sortTable(table) {
 }
 
 
-/* =========================================================
-   載入已抽過狀態
-========================================================= */
-
 function applyDoneState() {
 
     document
@@ -896,10 +846,6 @@ function applyDoneState() {
 
 }
 
-
-/* =========================================================
-   點擊抽獎
-========================================================= */
 
 document.addEventListener(
     "click",
@@ -944,10 +890,6 @@ document.addEventListener(
 );
 
 
-/* =========================================================
-   清除全部紀錄
-========================================================= */
-
 function resetRecords() {
 
     if (
@@ -987,10 +929,6 @@ function resetRecords() {
 }
 
 
-/* =========================================================
-   初始化
-========================================================= */
-
 renderProduct("ux21");
 renderProduct("ux20");
 renderProduct("bx35");
@@ -1001,4 +939,3 @@ applyDoneState();
 
 </body>
 </html>
-```
