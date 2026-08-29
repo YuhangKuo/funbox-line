@@ -1,10 +1,11 @@
+```html
 <!doctype html>
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>Funbox 抽陀螺</title>
+<title>Funbox 抽陀螺 v1.0</title>
 
 <style>
 * {
@@ -25,6 +26,12 @@ body {
 h1 {
     font-size: 1.55rem;
     margin: 0 0 4px;
+}
+
+.version {
+    color: #888;
+    font-size: .75rem;
+    font-weight: 500;
 }
 
 .subtitle {
@@ -238,7 +245,10 @@ footer a {
 
 <body>
 
-<h1>Funbox 抽陀螺</h1>
+<h1>
+    Funbox 抽陀螺
+    <span class="version">v1.0</span>
+</h1>
 
 <div class="subtitle">
 2026/08/29｜台北・新北・桃園・新竹
@@ -295,8 +305,9 @@ Funbox / 來玩聚 LINE 官方帳號一鍵抽獎
 <script>
 
 /* =========================================================
-   UX-20 / UX-21 / BX-35
-   資料以來源頁逐店核對
+   v1.0
+   以目前 GitHub 版本為基準
+   只修正錯誤連結、移除錯誤品項、加入 BX-35
 ========================================================= */
 
 const shops = [
@@ -314,36 +325,76 @@ const shops = [
 
     {
         region: "台北市",
+        name: "Funbox 美麗華",
+        ux21: {
+            url: "https://lin.ee/Suuh0WP",
+            time: "8/29"
+        },
+        bx35: {
+            url: "https://lin.ee/WZOYsDS",
+            time: "8/29"
+        }
+    },
+
+    {
+        region: "台北市",
+        name: "Funbox 南港潤泰",
+        ux21: {
+            url: "https://lin.ee/zGviPVx",
+            time: "8/29 11:00"
+        },
+        ux20: {
+            url: "https://lin.ee/xHpCF14",
+            time: "8/29"
+        },
+        bx35: {
+            url: "https://lin.ee/x2sZbiB",
+            time: "8/29"
+        }
+    },
+
+    {
+        region: "台北市",
+        name: "Funbox LaLaport南港",
+        ux21: {
+            url: "https://lin.ee/wxDyuiT",
+            time: "8/29"
+        },
+        ux20: {
+            url: "https://lin.ee/qHTOOuh",
+            time: "8/29 11:00"
+        },
+        bx35: {
+            url: "https://lin.ee/QtIsgeh",
+            time: "8/29 11:00"
+        }
+    },
+
+    {
+        region: "台北市",
+        name: "Funbox 三越南西店",
+        ux21: {
+            url: "https://lin.ee/xAesOXg",
+            time: "8/29"
+        },
+        bx35: {
+            url: "https://lin.ee/obbbKzJ",
+            time: "8/29 11:00"
+        }
+    },
+
+    /* BX-35 額外門市：沿用來源頁，不加入 UX-21 */
+
+    {
+        region: "台北市",
         name: "Funbox天母三越店",
         ux20: {
             url: "https://lin.ee/wBvFN2J",
             time: "8/29"
         },
-        ux21: {
-            url: "https://lin.ee/UKM6TKK",
-            time: "8/29 11:00"
-        },
         bx35: {
             url: "https://lin.ee/sjANMnS",
             time: "8/29"
-        }
-    },
-
-    {
-        region: "台北市",
-        name: "Funbox-信義A8店",
-        ux21: {
-            url: "https://lin.ee/q97O5u7",
-            time: "8/29 11:00"
-        }
-    },
-
-    {
-        region: "台北市",
-        name: "Funbox 天母SOGO店",
-        ux21: {
-            url: "https://lin.ee/Xqa4sFy",
-            time: "8/29 11:00"
         }
     },
 
@@ -360,79 +411,6 @@ const shops = [
         }
     },
 
-    {
-        region: "台北市",
-        name: "Funbox-南港潤泰",
-        ux20: {
-            url: "https://lin.ee/xHpCF14",
-            time: "8/29"
-        },
-        ux21: {
-            url: "https://lin.ee/zGviPVx",
-            time: "8/29 11:00"
-        },
-        bx35: {
-            url: "https://lin.ee/x2sZbiB",
-            time: "8/29"
-        }
-    },
-
-    {
-        region: "台北市",
-        name: "來玩聚-北車地下街",
-        ux20: {
-            url: "https://lin.ee/OXTR7l3",
-            time: "8/29"
-        },
-        bx35: {
-            url: "https://lin.ee/NmI5pyX",
-            time: "8/29"
-        }
-    },
-
-    {
-        region: "台北市",
-        name: "Funbox 美麗華",
-        ux21: {
-            url: "https://lin.ee/uDrqsH5",
-            time: "8/29"
-        },
-        bx35: {
-            url: "https://lin.ee/WZOYsDS",
-            time: "8/29"
-        }
-    },
-
-    {
-        region: "台北市",
-        name: "Funbox LaLaport南港",
-        ux20: {
-            url: "https://lin.ee/qHTOOuh",
-            time: "8/29"
-        },
-        ux21: {
-            url: "https://lin.ee/wxDyuiT",
-            time: "8/29"
-        },
-        bx35: {
-            url: "https://lin.ee/QtIsgeh",
-            time: "8/29"
-        }
-    },
-
-    {
-        region: "台北市",
-        name: "Funbox 三越南西店",
-        ux21: {
-            url: "https://lin.ee/xAesOXg",
-            time: "8/29"
-        },
-        bx35: {
-            url: "https://lin.ee/uo66qno",
-            time: "8/29"
-        }
-    },
-
 
     /* ==================== 新北市 ==================== */
 
@@ -441,17 +419,17 @@ const shops = [
         name: "FunBox Toys-汐止遠雄店",
         ux20: {
             url: "https://lin.ee/OW8V3OF",
-            time: "8/29"
+            time: "8/29 11:00"
         },
         bx35: {
-            url: "https://lin.ee/S2hCveN",
-            time: "8/29"
+            url: "https://lin.ee/wjRuEzM",
+            time: "8/29 11:00"
         }
     },
 
     {
         region: "新北市",
-        name: "Funbox板橋遠東店",
+        name: "Funbox 板橋遠東店",
         ux20: {
             url: "https://lin.ee/To1hX0R",
             time: "8/29"
@@ -467,7 +445,7 @@ const shops = [
 
     {
         region: "桃園市",
-        name: "Funbox-桃園站前三越",
+        name: "Funbox 桃園站前三越",
         ux21: {
             url: "https://lin.ee/Q5emiZW",
             time: "8/29 11:00"
@@ -480,7 +458,7 @@ const shops = [
 
     {
         region: "桃園市",
-        name: "Funbox toys - 桃園台茂店",
+        name: "Funbox toys 桃園台茂店",
         ux21: {
             url: "https://lin.ee/Oh1dSHD",
             time: "8/29 11:00"
@@ -489,7 +467,7 @@ const shops = [
 
     {
         region: "桃園市",
-        name: "FunBox - 中壢SOGO店",
+        name: "FunBox 中壢SOGO店",
         ux21: {
             url: "https://lin.ee/p2JKdr5",
             time: "8/29"
@@ -498,17 +476,9 @@ const shops = [
 
     {
         region: "桃園市",
-        name: "FunBox - 桃園環球A19店",
-        ux20: {
-            url: "https://lin.ee/qMm25ZE",
-            time: "8/29"
-        },
+        name: "Funbox 桃園遠東店",
         ux21: {
-            url: "https://lin.ee/8Bv63tO",
-            time: "8/29 11:00"
-        },
-        bx35: {
-            url: "https://lin.ee/PHFLgAV",
+            url: "https://lin.ee/qESRK9p",
             time: "8/29"
         }
     },
@@ -516,29 +486,42 @@ const shops = [
     {
         region: "桃園市",
         name: "Funbox 中壢大江店",
+        ux21: {
+            url: "https://lin.ee/8Bv63tO",
+            time: "8/29 11:00"
+        },
         ux20: {
             url: "https://lin.ee/nua1iCT",
             time: "8/29"
-        },
+        }
+    },
+
+    {
+        region: "桃園市",
+        name: "Funbox 桃園環球A8店",
         ux21: {
-            url: "https://lin.ee/PDuEWPU",
+            url: "https://lin.ee/9496mkz",
+            time: "8/29 11:00"
+        },
+        ux20: {
+            url: "https://lin.ee/re25qAN",
+            time: "8/29 11:00"
+        },
+        bx35: {
+            url: "https://lin.ee/nBQY3g3",
             time: "8/29 11:00"
         }
     },
 
     {
         region: "桃園市",
-        name: "Funbox-桃園環球A8店",
+        name: "FunBox - 桃園環球A19店",
         ux20: {
             url: "https://lin.ee/re25qAN",
-            time: "8/29"
-        },
-        ux21: {
-            url: "https://lin.ee/9496mkz",
             time: "8/29 11:00"
         },
         bx35: {
-            url: "https://lin.ee/nBQY3g3",
+            url: "https://lin.ee/PHFLgAV",
             time: "8/29"
         }
     },
@@ -548,9 +531,9 @@ const shops = [
 
     {
         region: "新竹市",
-        name: "Funbox-新竹遠東店",
+        name: "Funbox 新竹遠東店",
         ux21: {
-            url: "https://lin.ee/PDuEWPU",
+            url: "https://lin.ee/9cp66iv",
             time: "8/29 11:00"
         }
     },
@@ -587,16 +570,12 @@ const shops = [
     {
         region: "新竹縣",
         name: "funbox 享平方店",
-        ux20: {
-            url: "https://lin.ee/9TxB7HY",
-            time: "8/29"
-        },
         ux21: {
-            url: "https://lin.ee/y2nw5fI",
+            url: "https://lin.ee/RVqOUW4",
             time: "8/29 11:00"
         },
         bx35: {
-            url: "https://lin.ee/y2nw5fI",
+            url: "https://lin.ee/RLYLApx",
             time: "8/29"
         }
     }
@@ -620,21 +599,25 @@ const products = {
 ========================================================= */
 
 function createShopId(name) {
+
     return name
         .replace(/\s+/g, "")
         .replace(/[^\u4e00-\u9fffA-Za-z0-9]/g, "");
+
 }
 
 
 /* =========================================================
-   localStorage Key
+   localStorage
 ========================================================= */
 
 function getKey(button) {
+
     return "funbox-" +
            button.dataset.product +
            "-" +
            button.dataset.shop;
+
 }
 
 
@@ -649,6 +632,7 @@ function renderProduct(product) {
 
     container.innerHTML = "";
 
+
     const title =
         document.createElement("div");
 
@@ -659,6 +643,7 @@ function renderProduct(product) {
 
 
     const regions = [];
+
 
     shops.forEach(shop => {
 
@@ -714,7 +699,9 @@ function renderProduct(product) {
             )
             .forEach(shop => {
 
-                const item = shop[product];
+                const item =
+                    shop[product];
+
 
                 const tr =
                     document.createElement("tr");
@@ -809,11 +796,12 @@ function showProduct(product, button) {
 
 
     button.classList.add("active");
+
 }
 
 
 /* =========================================================
-   已抽過移到底部
+   已抽過 → 移到底部
 ========================================================= */
 
 function sortTable(table) {
@@ -839,11 +827,6 @@ function sortTable(table) {
 
         const bButton =
             b.querySelector(".btn");
-
-
-        if (!aButton || !bButton) {
-            return 0;
-        }
 
 
         const aDone =
@@ -874,6 +857,7 @@ function sortTable(table) {
     rows.forEach(row => {
         tbody.appendChild(row);
     });
+
 }
 
 
@@ -900,6 +884,7 @@ function applyDoneState() {
 
                 button.closest("tr")
                     ?.classList.add("done-row");
+
             }
 
         });
@@ -908,6 +893,7 @@ function applyDoneState() {
     document
         .querySelectorAll("table")
         .forEach(sortTable);
+
 }
 
 
@@ -997,6 +983,7 @@ function resetRecords() {
     document
         .querySelectorAll("table")
         .forEach(sortTable);
+
 }
 
 
@@ -1014,3 +1001,4 @@ applyDoneState();
 
 </body>
 </html>
+```
