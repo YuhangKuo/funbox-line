@@ -10,7 +10,7 @@
 </head>
 <body>
 <main>
-<div class="topbar"><div><h1>Funbox 抽陀螺</h1><p class="meta">v2.3.1 · 2026/09/03 23:00 核對 · 台北市、新北市、桃園市、新竹市、新竹縣</p></div><button class="clear" id="clear-records" type="button">↩ 清除全部抽獎紀錄</button></div>
+<div class="topbar"><div><h1>Funbox 抽陀螺</h1><p class="meta">v2.3.2 · 2026/09/04 核對 · 台北市、新北市、桃園市、新竹市、新竹縣</p></div><button class="clear" id="clear-records" type="button">↩ 清除全部抽獎紀錄</button></div>
 <div class="source">資料來源：<a href="https://uxux11.github.io/funbox-line/" target="_blank" rel="noopener">Funbox / 來玩聚 LINE 官方帳號一鍵抽獎</a></div>
 <div class="tabs" id="tabs" aria-label="商品型號"></div>
 <div class="summary" id="summary"></div>
@@ -19,7 +19,7 @@
 <footer>點擊後會在此裝置記錄為已抽過。</footer>
 </main>
 <script>
-const version="v2.3.1";
+const version="v2.3.2";
 const products={bx00:"BX-00 蒼龍神劍",bx10:"BX-10 極限衝擊戰鬥盤",bx35:"BX-35 隨機強化組Vol.04",ux15:"UX-15 鮫鯊狂鱗改造組",ux20:"UX-20 榮耀武神",ux21:"UX-21 惡魔冥界改造組",ux19:"UX-19 子彈獅鷲",bx50:"BX-50 天堂日輪"};
 const shops=[
 {region:"台北市",name:"Funbox 三越南西店",time:"9/4 11:00~9/5 21:00",bx00:"https://lin.ee/safDqUe",ux20:"https://lin.ee/vneOzIi",ux21:"https://lin.ee/oD41qlW"},
@@ -37,8 +37,10 @@ const shops=[
 {region:"新北市",name:"FunBox Toys-汐止遠雄店",time:"9/4 11:00~9/5 21:00",bx00:"https://lin.ee/TUTxeDL",bx50:"https://lin.ee/9nllAXf",ux20:"https://lin.ee/pP9d1Px",ux21:"https://lin.ee/wd23sQ4"},
 {region:"新北市",name:"Funbox新店誠品店",time:"9/4 11:00",bx00:"https://lin.ee/yWF0nkm",ux21:"https://lin.ee/p589taI"},
 {region:"桃園市",name:"Funbox-桃園站前三越",time:"9/4 11:00~9/5 21:00",bx35:"https://lin.ee/THnVN62k",ux15:"https://lin.ee/WlCghWy",ux19:"https://lin.ee/yCscH9nD",ux21:"https://lin.ee/xI92MJV"},
+{region:"桃園市",name:"Funbox 中壢大江店",time:"9/4 11:00~9/5 21:00",bx00:"https://lin.ee/WgeCVL5",ux20:"https://lin.ee/OA3c7Mr"},
 {region:"新竹市",name:"Funbox-新竹遠東店",time:"9/4~9/5（營業時間 11:00~21:00）",bx00:"https://lin.ee/PuaKA54",ux20:"https://lin.ee/ReA7kmv",ux21:"https://lin.ee/PuWtTsF"},
 {region:"新竹市",name:"Funbox-新竹遠雄店",time:"9/4~9/5",bx00:"https://lin.ee/P0vmXLA",ux20:"https://lin.ee/yNi1yX5",ux21:"https://lin.ee/YAjVHF3"},
+{region:"新竹市",name:"Funbox 新竹巨城店",time:"9/4~9/5",bx00:"https://lin.ee/q9afulW",ux19:"https://lin.ee/RmJTjQn",ux20:"https://lin.ee/ZtrW6ke",ux21:"https://lin.ee/VvzQGlp"},
 {region:"新竹縣",name:"Funbox 竹北遠東店",time:"9/4 11:00~9/5 21:00",bx00:"https://lin.ee/oXP77Qm",bx10:"https://lin.ee/W7q8ksN",ux20:"https://lin.ee/8KBl0s8",ux21:"https://lin.ee/YAjVHF3"}
 ];
 const regions=["台北市","新北市","桃園市","新竹市","新竹縣"];
