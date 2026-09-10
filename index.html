@@ -10,7 +10,7 @@
 </head>
 <body>
 <main>
-<div class="topbar"><div><h1>Funbox 抽陀螺</h1><p class="meta">v2.3.4 · 2026/09/10 核對 · 台北市、新北市、桃園市、新竹市、新竹縣</p></div><button class="clear" id="clear-records" type="button">↩ 清除全部抽獎紀錄</button></div>
+<div class="topbar"><div><h1>Funbox 抽陀螺</h1><p class="meta">v2.3.5 · 2026/09/10 核對 · 台北市、新北市、桃園市、新竹市、新竹縣</p></div><button class="clear" id="clear-records" type="button">↩ 清除全部抽獎紀錄</button></div>
 <div class="source">資料來源：<a href="https://uxux11.github.io/funbox-line/" target="_blank" rel="noopener">Funbox / 來玩聚 LINE 官方帳號一鍵抽獎</a></div>
 <div class="tabs" id="tabs" aria-label="商品型號"></div>
 <div class="filters"><label for="time-filter">抽選時間</label><select class="time-filter" id="time-filter"><option value="all">全部</option></select></div>
@@ -20,7 +20,7 @@
 <footer>點擊後會在此裝置記錄為已抽過。</footer>
 </main>
 <script>
-const version="v2.3.4";
+const version="v2.3.5";
 const products={bx00:"BX-00 蒼龍神劍",bx10:"BX-10 極限衝擊戰鬥盤",bx35:"BX-35 隨機強化組Vol.04",ux15:"UX-15 鮫鯊狂鱗改造組",ux20:"UX-20 榮耀武神",ux21:"UX-21 惡魔冥界改造組",ux19:"UX-19 子彈獅鷲",bx50:"BX-50 天堂日輪",cx00:"CX-00 新世紀福音戰士改造組"};
 const shops=[
 {region:"台北市",name:"Funbox-南港潤泰店",time:"9/11 11:00~9/12 21:00",bx00:"https://lin.ee/79aYEfH",ux20:"https://lin.ee/9l323EP",ux21:"https://lin.ee/RyT9nk9",cx00:"https://lin.ee/9ORwvJh"},
@@ -46,13 +46,22 @@ let nextShopIndex=null;
 let activeTime="all";
 const recordKey=(product,shop)=>`funbox-${product}-${shop.region}-${shop.name}`;
 const wasDrawn=(product,shop)=>localStorage.getItem(recordKey(product,shop))==="1";
-function getStartTime(time){const match=time.match(/\d+\/\d+\s+(\d{1,2}:\d{2})/);return match?match[1]:"all-day"}
-function timeMatches(shop){return activeTime==="all"||getStartTime(shop.time)===activeTime}
+function getStartDateTime(time){
+  const match=time.match(/(\d+\/\d+)\s+(\d{1,2}:\d{2})/);
+  return match?{date:match[1],time:match[2],key:`${match[1]} ${match[2]}`}:{date:null,time:null,key:null};
+}
+function getTimeKey(shop){return getStartDateTime(shop.time).key}
+function timeMatches(shop){return activeTime==="all"||getTimeKey(shop)===activeTime}
 function filteredEntries(){return shops.filter(s=>s[activeProduct]&&timeMatches(s))}
 function orderedEntries(){return regions.flatMap(region=>shops.filter(s=>s.region===region&&s[activeProduct]&&timeMatches(s)).sort((a,b)=>Number(wasDrawn(activeProduct,a))-Number(wasDrawn(activeProduct,b))));}
 function findNextIndex(afterIndex=null){const ordered=orderedEntries();if(!ordered.length)return null;const start=afterIndex===null?0:ordered.findIndex(s=>s===shops[afterIndex])+1;for(let i=Math.max(start,0);i<ordered.length;i++){if(!wasDrawn(activeProduct,ordered[i]))return shops.indexOf(ordered[i])}for(let i=0;i<Math.max(start,0);i++){if(!wasDrawn(activeProduct,ordered[i]))return shops.indexOf(ordered[i])}return null;}
 function renderTabs(){document.querySelector("#tabs").innerHTML=Object.entries(products).map(([key,label])=>`<button class="tab ${key===activeProduct?"active":""}" type="button" data-product="${key}">${label}</button>`).join("")}
-function renderTimeFilter(){const select=document.querySelector("#time-filter");const times=[...new Set(shops.map(getStartTime))].filter(t=>t!=="all-day").sort((a,b)=>a.localeCompare(b,undefined,{numeric:true}));select.innerHTML='<option value="all">全部</option>'+times.map(t=>`<option value="${t}">${t} 開始</option>`).join("");select.value=activeTime}
+function renderTimeFilter(){
+  const select=document.querySelector("#time-filter");
+  const times=[...new Set(shops.map(getTimeKey).filter(Boolean))].sort((a,b)=>{const [ad,at]=a.split(" "),[bd,bt]=b.split(" ");const [am,adn]=ad.split("/").map(Number),[bm,bdn]=bd.split("/").map(Number);return am-bm||adn-bdn||at.localeCompare(bt)});
+  select.innerHTML='<option value="all">全部</option>'+times.map(t=>`<option value="${t}">${t}</option>`).join("");
+  select.value=activeTime;
+}
 function renderSummary(){const entries=filteredEntries();const drawn=entries.filter(s=>wasDrawn(activeProduct,s)).length;document.querySelector("#summary").textContent=`已抽 ${drawn} / ${entries.length} · 剩餘 ${entries.length-drawn}`}
 function renderNext(){const box=document.querySelector("#next-box");const text=document.querySelector("#next-text");if(nextShopIndex===null){box.classList.remove("show");return}const shop=shops[nextShopIndex];if(!shop||!shop[activeProduct]||!timeMatches(shop)||wasDrawn(activeProduct,shop)){nextShopIndex=findNextIndex();if(nextShopIndex===null){box.classList.remove("show");return}}const nextShop=shops[nextShopIndex];text.innerHTML=`<strong>下一個：${nextShop.name}</strong><span>${nextShop.region} · ${nextShop.time}</span>`;box.classList.add("show")}
 function renderList(){document.querySelector("#list").innerHTML=regions.map(region=>{const entries=shops.filter(s=>s.region===region&&s[activeProduct]&&timeMatches(s)).sort((a,b)=>Number(wasDrawn(activeProduct,a))-Number(wasDrawn(activeProduct,b)));return `<section class="region"><h2>${region}</h2><div class="head"><span>門市</span><span>抽選時間</span><span>抽獎</span></div>${entries.length?entries.map(shop=>{const done=wasDrawn(activeProduct,shop);return `<div class="row ${done?"done":""}"><span class="shop">${shop.name}</span><span class="time">${shop.time}</span><a class="draw ${done?"done":""}" data-shop="${shops.indexOf(shop)}" href="${shop[activeProduct]}" target="_blank" rel="noopener">${done?"已抽過":"立即抽獎"}</a></div>`}).join(""):"<p class=\"empty\">目前沒有符合此篩選條件的門市。</p>"}</section>`}).join("");renderSummary();renderNext()}
