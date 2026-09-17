@@ -56,14 +56,6 @@
 - 不確定的資料不猜、不改。
 - 以最新來源為準，採最小必要修改。
 
-## 自動檢查
-
-repo 內的 validate.py 是**唯讀檢查工具**，只檢查 RULES 與 INDEX 是否有可由程式判斷的結構／規則問題，**不會自動修改 INDEX**。
-
-GitHub Actions 會在 main 的 index.html、RULES.md 或檢查工具變更時自動執行；也可以在 GitHub 的 Actions 頁面手動執行。
-
-自動檢查不是來源資料核對的替代品。來源最新資料、門市、抽選時間、商品狀態與 LINE 連結仍依 RULES.md 的核對流程處理。
-
 ## 資料來源
 
 - Funbox／來玩聚抽選資料：https://uxux11.github.io/funbox-line/
