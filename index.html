@@ -10,7 +10,7 @@
 </head>
 <body>
 <main>
-<div class="topbar"><div><h1>Funbox 抽陀螺</h1><p class="meta">v2.5.1 · 2026/09/17 核對 · 台北市、新北市、桃園市、新竹市、新竹縣</p></div><button class="clear" id="clear-records" type="button">↩ 清除全部抽獎紀錄</button></div>
+<div class="topbar"><div><h1>Funbox 抽陀螺</h1><p class="meta">v2.6.0 · 2026/09/17 21:49 核對 · 台北市、新北市、桃園市、新竹市、新竹縣</p></div><button class="clear" id="clear-records" type="button">↩ 清除全部抽獎紀錄</button></div>
 <div class="source">資料來源：<a href="https://uxux11.github.io/funbox-line/" target="_blank" rel="noopener">Funbox / 來玩聚 LINE 官方帳號一鍵抽獎</a></div>
 <div class="tabs" id="tabs" aria-label="商品型號"></div>
 <div class="filters"><label for="time-filter">抽選時間</label><select class="time-filter" id="time-filter"><option value="all">全部</option></select></div>
@@ -20,15 +20,31 @@
 <footer>點擊後會在此裝置記錄為已抽過。</footer>
 </main>
 <script>
-const version="v2.5.1";
-const products={bx10:"BX-10 極限衝擊戰鬥盤",bx35:"BX-35 隨機強化組Vol.04",ux15:"UX-15 鮫鯊狂鱗改造組",ux20:"UX-20 榮耀武神",ux21:"UX-21 惡魔冥界改造組",ux19:"UX-19 子彈獅鷲",bx48:"BX-48 隨機強化組Vol.09",bx50:"BX-50 天堂日輪",ux03:"UX-03 魔導神杖",cx00:"CX-00 新世紀福音戰士改造組",cxdi:"CX-00 迪卡狂怒"};
-const shops=[];
+const version="v2.6.0";
+const products={bx00:"BX-00 蒼龍神劍",bx08:"BX-08 三合一對戰組",bx10:"BX-10 極限衝擊戰鬥盤",bx18:"BX-18 X旋風發射器",bx26:"BX-26 獨角刺心",bx30:"BX-30 發射器握把（黑紅）",bx36:"BX-36 巨鯨怒濤 隨機強化組",bx37:"BX-37 雙重極限衝擊戰鬥盤 豪華組",bx38:"BX-38 赫燃天鳳",bx41:"BX-41 發射器握把（黑/透紅）",bx44:"BX-44 三角強襲",bx45:"BX-45 武士魂斬",bx48:"BX-48 隨機強化組Vol.09",bxg01:"BXG-01 烈焰飛鳳S",bxg04:"BXG-04 銀牙烈虎S",bxg22:"BXG-22 龍騎士S",cx00:"CX-00（迪卡狂怒 FT3-60T／新世紀福音戰士陀螺套組）",cx01:"CX-01 蒼龍勇氣",cx02:"CX-02 魔導至尊",cx06:"CX-06 極狐九尾 隨機強化組",cx07:"CX-07 天馬爆擊",cx12:"CX-12 鳳凰閃焰",cx13:"CX-13 龍王閃擊",cx14:"CX-14 騎士堡壘",cx18:"CX-18 腕龍鞭打 隨機強化組",ux03:"UX-03 魔導神杖",ux16:"UX-16 時鐘幻象 隨機強化組",ux19:"UX-19 子彈獅鷲H",ux21:"UX-21 惡魔冥界改造組"};
+const shops=[
+{region:"台北市",name:"Funbox 忠孝SOGO店",time:"9/18 11:00~9/19 21:00",bx00:"https://lin.ee/Uug2Iq3",bx37:"https://lin.ee/T7t1SBN",ux03:"https://lin.ee/5BdORQN",cx00:"https://lin.ee/njAFauO"},
+{region:"台北市",name:"Funbox 信義A8店",time:"9/18 11:00~9/19 21:00",bx00:"https://lin.ee/sbnjL6d",ux03:"https://lin.ee/rbHSRp2q",cx00:"https://lin.ee/ZrPAPe8",cx18:"https://lin.ee/9IMX8Cir"},
+{region:"台北市",name:"Funbox 三越站前店",time:"9/18 11:00~9/19 21:00",ux03:"https://lin.ee/p46IHRb",cx00:"https://lin.ee/zgLeRGS"},
+{region:"台北市",name:"Funbox 南港潤泰店",time:"9/18 11:00~9/19 21:00",ux03:"https://lin.ee/s6AwZVP",bx26:"https://lin.ee/Ypy2yeB",bxg01:"https://lin.ee/7UvN9CJ",cx00:"https://lin.ee/Ox2JQvP",bx00:"https://lin.ee/VDvQUCg"},
+{region:"台北市",name:"Funbox 台北大巨蛋店",time:"9/18 11:00~9/19 21:00",bx00:"https://lin.ee/Z5sRIgc",bx08:"https://lin.ee/Ozk3igF",bx36:"https://lin.ee/zqHgl3c",bx37:"https://lin.ee/qRsjfi5",bx38:"https://lin.ee/zgwDr7n",bx44:"https://lin.ee/XQq93P7",bx45:"https://lin.ee/S9WJeW5",bx48:"https://lin.ee/OMcziho",ux03:"https://lin.ee/XWXU0ui",ux16:"https://lin.ee/OxGyvr2",ux19:"https://lin.ee/om0oJMi",cx00:"https://lin.ee/NiOIjoU",cx01:"https://lin.ee/tjOxjcB",cx02:"https://lin.ee/7xMkYQZw",cx06:"https://lin.ee/xcpcLYL",cx07:"https://lin.ee/SIBplQs",cx12:"https://lin.ee/QZnMWJa",cx14:"https://lin.ee/uc49eSM",bxg22:"https://lin.ee/NjpbFop"},
+{region:"台北市",name:"來玩聚 台北地下街店",time:"9/18 12:00~9/19 19:30",bx00:"https://lin.ee/uVzaVvY",ux03:"https://lin.ee/WBnSzVn",cx00:"https://lin.ee/xpKAzF4",bxg01:"https://lin.ee/Wo0677W"},
+{region:"台北市",name:"Funbox 天母SOGO店",time:"9/18 11:00~9/19 21:00",bx00:"https://lin.ee/Y4bYfvZ",ux03:"https://lin.ee/70SyxXas",cx00:"https://lin.ee/rYMEV3d"},
+{region:"台北市",name:"Funbox 遠百信義A13店",time:"9/18 11:00~9/19 21:00",bx37:"https://lin.ee/NBflFpT",ux03:"https://lin.ee/st7PKoI",cx00:"https://lin.ee/5hnrhfF"},
+{region:"台北市",name:"Funbox LaLaport南港店",time:"9/18 11:00~9/19 21:00",bx00:"https://lin.ee/oXsof2F",bx37:"https://lin.ee/ZfvYsWT",ux03:"https://lin.ee/WvMF6x3",cx00:"https://lin.ee/yrNv6E8",bxg04:"https://lin.ee/W6j7aH5"},
+{region:"新北市",name:"Funbox 汐止遠雄店",time:"9/18 11:00~9/19 21:00",bx00:"https://lin.ee/tWfkajB",ux03:"https://lin.ee/uO81bZi",cx00:"https://lin.ee/PNsmVxi",bxg01:"https://lin.ee/YJHaDVu",bxg04:"https://lin.ee/r0EJfGJ"},
+{region:"新北市",name:"Funbox 板橋遠百中山店",time:"9/18 11:00~9/19 21:00",ux03:"https://lin.ee/X4qa2XL",cx00:"https://lin.ee/SoiTIk0"},
+{region:"新北市",name:"Funbox 中和環球店",time:"9/18 11:00~9/19 21:00",ux03:"https://lin.ee/7J8teIN",cx00:"https://lin.ee/7JxTO3R"},
+{region:"新北市",name:"Funbox 樹林秀泰店",time:"9/18 11:00~9/19 21:00",bx10:"https://lin.ee/Va5ps9Z",bx18:"https://lin.ee/54JARrOL",bx26:"https://lin.ee/SxeYMIg",bx30:"https://lin.ee/zchrTmH",bx41:"https://lin.ee/s4PeZAo",bx45:"https://lin.ee/rScpBY2",ux03:"https://lin.ee/O4jdONt",ux21:"https://lin.ee/7mvOZdjy",cx00:"https://lin.ee/qvFWkll",cx13:"https://lin.ee/RKDrrPj",bxg01:"https://lin.ee/VI9mzh8",bxg04:"https://lin.ee/QMFqYQP"},
+{region:"新北市",name:"Funbox 板橋大遠百店",time:"9/18 11:00~9/19 21:00",bx00:"https://lin.ee/yp47UCf",ux03:"https://lin.ee/U2hE9eB",cx00:"https://lin.ee/Q2usF7Y",cx12:"https://lin.ee/Vgc1u0M"},
+{region:"新竹市",name:"Funbox 新竹遠東店",time:"9/18 11:00~9/19 21:00",ux03:"https://lin.ee/PyQg7Mf",cx00:"https://lin.ee/RFFjwHr"},
+{region:"新竹縣",name:"Funbox 竹北遠東店",time:"9/18 11:00~9/19 21:00",bx00:"https://lin.ee/8NO2w7i",ux03:"https://lin.ee/w9GJZYU",cx00:"https://lin.ee/67NmxKq",bxg01:"https://lin.ee/XUikEqt",bxg04:"https://lin.ee/TOoH1GY"}
+];
 const regions=["台北市","新北市","桃園市","新竹市","新竹縣"];
-let activeProduct="ux21",nextShopIndex=null,activeTime="all";
+let activeProduct="bx00",nextShopIndex=null,activeTime="all";
 const recordKey=(product,shop)=>`funbox-${product}-${shop.region}-${shop.name}`;
 const wasDrawn=(product,shop)=>localStorage.getItem(recordKey(product,shop))==="1";
-function getStartDateTime(time){const m=time.match(/(\d+\/\d+)\s+(\d{1,2}:\d{2})/);return m?{key:`${m[1]} ${m[2]}`}:{key:null}}
-function getTimeKey(shop){return getStartDateTime(shop.time).key}
+function getTimeKey(shop){const m=shop.time.match(/(\d+\/\d+)\s+(\d{1,2}:\d{2})/);return m?`${m[1]} ${m[2]}`:null}
 function timeMatches(shop){return activeTime==="all"||getTimeKey(shop)===activeTime}
 function filteredEntries(){return shops.filter(s=>s[activeProduct]&&timeMatches(s))}
 function orderedEntries(){return regions.flatMap(r=>shops.filter(s=>s.region===r&&s[activeProduct]&&timeMatches(s)).sort((a,b)=>Number(wasDrawn(activeProduct,a))-Number(wasDrawn(activeProduct,b))))}
