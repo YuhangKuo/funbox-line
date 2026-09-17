@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Read-only validation for the Funbox INDEX."""
+"""Read-only validation for the Funbox INDEX.
+
+Run by GitHub Actions on pushes to main.
+"""
 
 from __future__ import annotations
 
