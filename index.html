@@ -10,7 +10,7 @@
 </head>
 <body>
 <main>
-<div class="topbar"><div><h1>Funbox 抽陀螺</h1><p class="meta">v2.4.0 · 2026/09/17 20:20 核對 · 台北市、新北市、桃園市、新竹市、新竹縣</p></div><button class="clear" id="clear-records" type="button">↩ 清除全部抽獎紀錄</button></div>
+<div class="topbar"><div><h1>Funbox 抽陀螺</h1><p class="meta">v2.4.1 · 2026/09/17 21:30 核對 · 台北市、新北市、桃園市、新竹市、新竹縣</p></div><button class="clear" id="clear-records" type="button">↩ 清除全部抽獎紀錄</button></div>
 <div class="source">資料來源：<a href="https://uxux11.github.io/funbox-line/" target="_blank" rel="noopener">Funbox / 來玩聚 LINE 官方帳號一鍵抽獎</a></div>
 <div class="tabs" id="tabs" aria-label="商品型號"></div>
 <div class="filters"><label for="time-filter">抽選時間</label><select class="time-filter" id="time-filter"><option value="all">全部</option></select></div>
@@ -20,50 +20,44 @@
 <footer>點擊後會在此裝置記錄為已抽過。</footer>
 </main>
 <script>
-const version="v2.4.0";
+const version="v2.4.1";
 const products={bx10:"BX-10 極限衝擊戰鬥盤",bx35:"BX-35 隨機強化組Vol.04",ux15:"UX-15 鮫鯊狂鱗改造組",ux20:"UX-20 榮耀武神",ux21:"UX-21 惡魔冥界改造組",ux19:"UX-19 子彈獅鷲",bx48:"BX-48 隨機強化組Vol.09",bx50:"BX-50 天堂日輪",ux03:"UX-03 魔導神杖",cx00:"CX-00 新世紀福音戰士改造組",cxdi:"CX-00 迪卡狂怒"};
 const shops=[
-{region:"台北市",name:"Funbox-南港潤泰店",time:"9/18 11:00~9/19 21:00",ux03:"https://lin.ee/s6AwZVP",cxdi:"https://lin.ee/Ox2JQvP",cx00:"https://lin.ee/9ORwvJh"},
-{region:"台北市",name:"來玩聚-北車地下街",time:"9/18 12:00~9/19 19:30",ux03:"https://lin.ee/WBnSzVn",cxdi:"https://lin.ee/wW1DFYN",ux21:"https://lin.ee/YUyfSal"},
-{region:"台北市",name:"Fun box忠孝SOGO",time:"9/18 11:00~9/19 21:00",ux03:"https://lin.ee/5BdORQN",cxdi:"https://lin.ee/njAFauO",cx00:"https://lin.ee/Teeti1U"},
-{region:"台北市",name:"Funbox 天母SOGO店",time:"9/18 11:00~9/19 21:00",ux03:"https://lin.ee/70SyxXas",cxdi:"https://lin.ee/rYMEV3d",cx00:"https://lin.ee/uq6jtZa"},
-{region:"台北市",name:"Funbox-信義A8店(陀螺販售)",time:"9/18 11:00~9/19 21:00",ux03:"https://lin.ee/rbHSRp2q",cxdi:"https://lin.ee/ZrPAPe8",cx00:"https://lin.ee/U0irnFS"},
-{region:"台北市",name:"Funbox 三越站前店",time:"9/18 11:00~9/19 21:00",ux03:"https://lin.ee/p46IHRb",cxdi:"https://lin.ee/zgLeRGS",cx00:"https://lin.ee/wNVQFEw"},
-{region:"台北市",name:"Funbox天母三越店",time:"9/18 11:00~9/19 21:00",cx00:"https://lin.ee/rFVhsbI"},
-{region:"台北市",name:"Funbox LaLaport南港",time:"9/18 11:00~9/19 21:00",cx00:"https://lin.ee/pncsz8S"},
-{region:"台北市",name:"Funbox 遠百信義A13",time:"9/18 11:00~9/19 21:00",ux20:"https://lin.ee/o91HeXX",cx00:"https://lin.ee/O9OVpCU"},
+{region:"台北市",name:"Funbox-南港潤泰店",time:"9/18 11:00~9/19 21:00",ux03:"https://lin.ee/s6AwZVP",cxdi:"https://lin.ee/Ox2JQvP"},
+{region:"台北市",name:"來玩聚-北車地下街",time:"9/18 12:00~9/19 19:30",ux03:"https://lin.ee/WBnSzVn",cxdi:"https://lin.ee/wW1DFYN"},
+{region:"台北市",name:"Fun box忠孝SOGO",time:"9/18 11:00~9/19 21:00",ux03:"https://lin.ee/5BdORQN",cxdi:"https://lin.ee/njAFauO"},
+{region:"台北市",name:"Funbox 天母SOGO店",time:"9/18 11:00~9/19 21:00",ux03:"https://lin.ee/70SyxXas",cxdi:"https://lin.ee/rYMEV3d"},
+{region:"台北市",name:"Funbox-信義A8店(陀螺販售)",time:"9/18 11:00~9/19 21:00",ux03:"https://lin.ee/rbHSRp2q",cxdi:"https://lin.ee/ZrPAPe8"},
+{region:"台北市",name:"Funbox 三越站前店",time:"9/18 11:00~9/19 21:00",ux03:"https://lin.ee/p46IHRb",cxdi:"https://lin.ee/zgLeRGS"},
+{region:"台北市",name:"Funbox LaLaport南港",time:"9/18 11:00~9/19 21:00",cx00:"https://lin.ee/yrNv6E8"},
+{region:"台北市",name:"Funbox 遠百信義A13",time:"9/18 11:00~9/19 21:00",ux03:"https://lin.ee/st7PKoI",cxdi:"https://lin.ee/5hnrhfF"},
 {region:"台北市",name:"Funbox-台北大巨蛋",time:"9/18 11:00~9/19 21:00",bx48:"https://lin.ee/OMcziho",ux03:"https://lin.ee/XWXU0ui",cxdi:"https://lin.ee/NiOIjoU"},
-{region:"新北市",name:"Funbox板橋遠東店",time:"9/18 11:00~9/19 21:00",ux03:"https://lin.ee/X4qa2XL",cxdi:"https://lin.ee/SoiTIk0",ux20:"https://lin.ee/yKmsW9Y",ux21:"https://lin.ee/Q7Ubro4",cx00:"https://lin.ee/vAF5QKG"},
-{region:"新北市",name:"FunBox Toys-汐止遠雄店",time:"9/18 11:00~9/19 21:00",ux03:"https://lin.ee/uO81bZi",cxdi:"https://lin.ee/PNsmVxi",ux21:"https://lin.ee/8552VhL",cx00:"https://lin.ee/UHqMK5X"},
-{region:"新北市",name:"Funbox新店誠品店",time:"9/18 11:00~9/19 21:00",cx00:"https://lin.ee/51lxU5K"},
-{region:"新北市",name:"Funbox樹林秀泰店",time:"9/18 11:00~9/19 21:00",ux03:"https://lin.ee/O4jdONt",cxdi:"https://lin.ee/vxHwgEJ",bx10:"https://lin.ee/qVQi9m3",ux21:"https://lin.ee/7dR60o7",cx00:"https://lin.ee/nMMo9F9"},
-{region:"新北市",name:"Funbox板橋大遠百",time:"9/18 11:00~9/19 21:00",ux21:"https://lin.ee/nwZ8UAn",cx00:"https://lin.ee/wzZcF5u"},
-{region:"桃園市",name:"Funbox-桃園站前三越",time:"9/18 11:00~9/19 21:00",ux20:"https://lin.ee/9l323EP",ux21:"https://lin.ee/RyT9nk9",bx50:"https://lin.ee/qUn33fe",cx00:"https://lin.ee/nQmhrsZ"},
-{region:"新竹市",name:"Funbox-新竹遠東店",time:"9/18 11:00~9/19 21:00",ux03:"https://lin.ee/PyQg7Mf",cxdi:"https://lin.ee/RFFjwHr",cx00:"https://lin.ee/nwUL9bje"},
-{region:"新竹市",name:"Funbox-新竹遠雄店",time:"9/18 11:00~9/19 21:00",ux21:"https://lin.ee/5mqMzNZ",cx00:"https://lin.ee/ofEN0zN"},
-{region:"新竹縣",name:"Funbox 竹北遠東店",time:"9/18 11:00~9/19 21:00",ux03:"https://lin.ee/w9GJZYU",cxdi:"https://lin.ee/NYSuIfB6",ux20:"https://lin.ee/WaOcOXM",cx00:"https://lin.ee/nAdCSiL"}
+{region:"新北市",name:"Funbox板橋遠東店",time:"9/18 11:00~9/19 21:00",ux03:"https://lin.ee/X4qa2XL",cxdi:"https://lin.ee/SoiTIk0"},
+{region:"新北市",name:"FunBox Toys-汐止遠雄店",time:"9/18 11:00~9/19 21:00",ux03:"https://lin.ee/uO81bZi",cxdi:"https://lin.ee/PNsmVxi"},
+{region:"新北市",name:"Funbox樹林秀泰店",time:"9/18 11:00~9/19 21:00",ux03:"https://lin.ee/O4jdONt",cxdi:"https://lin.ee/vxHwgEJ",bx10:"https://lin.ee/Va5ps9Z",ux21:"https://lin.ee/7mvOZdjy",cx00:"https://lin.ee/qvFWkll"},
+{region:"新北市",name:"Funbox板橋大遠百",time:"9/18 11:00~9/19 21:00",ux03:"https://lin.ee/U2hE9eB",cxdi:"https://lin.ee/Q2usF7Y"},
+{region:"新竹市",name:"Funbox-新竹遠東店",time:"9/18 11:00~9/19 21:00",ux03:"https://lin.ee/PyQg7Mf",cxdi:"https://lin.ee/RFFjwHr"},
+{region:"新竹縣",name:"Funbox 竹北遠東店",time:"9/18 11:00~9/19 21:00",ux03:"https://lin.ee/w9GJZYU",cxdi:"https://lin.ee/NYSuIfB6",cx00:"https://lin.ee/67NmxKq"}
 ];
 const regions=["台北市","新北市","桃園市","新竹市","新竹縣"];
-let activeProduct="ux21";
-let nextShopIndex=null;
-let activeTime="all";
+let activeProduct="ux21",nextShopIndex=null,activeTime="all";
 const recordKey=(product,shop)=>`funbox-${product}-${shop.region}-${shop.name}`;
 const wasDrawn=(product,shop)=>localStorage.getItem(recordKey(product,shop))==="1";
-function getStartDateTime(time){const match=time.match(/(\d+\/\d+)\s+(\d{1,2}:\d{2})/);return match?{date:match[1],time:match[2],key:`${match[1]} ${match[2]}`}:{date:null,time:null,key:null}}
+function getStartDateTime(time){const m=time.match(/(\d+\/\d+)\s+(\d{1,2}:\d{2})/);return m?{key:`${m[1]} ${m[2]}`}:{key:null}}
 function getTimeKey(shop){return getStartDateTime(shop.time).key}
 function timeMatches(shop){return activeTime==="all"||getTimeKey(shop)===activeTime}
 function filteredEntries(){return shops.filter(s=>s[activeProduct]&&timeMatches(s))}
-function orderedEntries(){return regions.flatMap(region=>shops.filter(s=>s.region===region&&s[activeProduct]&&timeMatches(s)).sort((a,b)=>Number(wasDrawn(activeProduct,a))-Number(wasDrawn(activeProduct,b))));}
-function findNextIndex(afterIndex=null){const ordered=orderedEntries();if(!ordered.length)return null;const start=afterIndex===null?0:ordered.findIndex(s=>s===shops[afterIndex])+1;for(let i=Math.max(start,0);i<ordered.length;i++){if(!wasDrawn(activeProduct,ordered[i]))return shops.indexOf(ordered[i])}for(let i=0;i<Math.max(start,0);i++){if(!wasDrawn(activeProduct,ordered[i]))return shops.indexOf(ordered[i])}return null;}
-function renderTabs(){document.querySelector("#tabs").innerHTML=Object.entries(products).map(([key,label])=>`<button class="tab ${key===activeProduct?"active":""}" type="button" data-product="${key}">${label}</button>`).join("")}
-function renderTimeFilter(){const select=document.querySelector("#time-filter");const times=[...new Set(shops.map(getTimeKey).filter(Boolean))].sort((a,b)=>{const [ad,at]=a.split(" "),[bd,bt]=b.split(" ");const [am,adn]=ad.split("/").map(Number),[bm,bdn]=bd.split("/").map(Number);return am-bm||adn-bdn||at.localeCompare(bt)});select.innerHTML='<option value="all">全部</option>'+times.map(t=>`<option value="${t}">${t}</option>`).join("");select.value=activeTime}
-function renderSummary(){const entries=filteredEntries();const drawn=entries.filter(s=>wasDrawn(activeProduct,s)).length;document.querySelector("#summary").textContent=`已抽 ${drawn} / ${entries.length} · 剩餘 ${entries.length-drawn}`}
-function renderNext(){const box=document.querySelector("#next-box");const text=document.querySelector("#next-text");if(nextShopIndex===null){box.classList.remove("show");return}const shop=shops[nextShopIndex];if(!shop||!shop[activeProduct]||!timeMatches(shop)||wasDrawn(activeProduct,shop)){nextShopIndex=findNextIndex();if(nextShopIndex===null){box.classList.remove("show");return}}const nextShop=shops[nextShopIndex];text.innerHTML=`<strong>下一個：${nextShop.name}</strong><span>${nextShop.region} · ${nextShop.time}</span>`;box.classList.add("show")}
-function renderList(){document.querySelector("#list").innerHTML=regions.map(region=>{const entries=shops.filter(s=>s.region===region&&s[activeProduct]&&timeMatches(s)).sort((a,b)=>Number(wasDrawn(activeProduct,a))-Number(wasDrawn(activeProduct,b)));return `<section class="region"><h2>${region}</h2><div class="head"><span>門市</span><span>抽選時間</span><span>抽獎</span></div>${entries.length?entries.map(shop=>{const done=wasDrawn(activeProduct,shop);return `<div class="row ${done?"done":""}"><span class="shop">${shop.name}</span><span class="time">${shop.time}</span><a class="draw ${done?"done":""}" data-shop="${shops.indexOf(shop)}" href="${shop[activeProduct]}" target="_blank" rel="noopener">${done?"已抽過":"立即抽獎"}</a></div>`}).join(""):"<p class=\"empty\">目前沒有符合此篩選條件的門市。</p>"}</section>`}).join("");renderSummary();renderNext()}
+function orderedEntries(){return regions.flatMap(r=>shops.filter(s=>s.region===r&&s[activeProduct]&&timeMatches(s)).sort((a,b)=>Number(wasDrawn(activeProduct,a))-Number(wasDrawn(activeProduct,b))))}
+function findNextIndex(afterIndex=null){const o=orderedEntries();if(!o.length)return null;const p=afterIndex===null?-1:o.findIndex(s=>s===shops[afterIndex]);for(let i=p+1;i<o.length;i++)if(!wasDrawn(activeProduct,o[i]))return shops.indexOf(o[i]);for(let i=0;i<=p;i++)if(!wasDrawn(activeProduct,o[i]))return shops.indexOf(o[i]);return null}
+function renderTabs(){document.querySelector("#tabs").innerHTML=Object.entries(products).map(([k,l])=>`<button class="tab ${k===activeProduct?"active":""}" type="button" data-product="${k}">${l}</button>`).join("")}
+function renderTimeFilter(){const s=document.querySelector("#time-filter"),t=[...new Set(shops.map(getTimeKey).filter(Boolean))].sort();s.innerHTML='<option value="all">全部</option>'+t.map(x=>`<option value="${x}">${x}</option>`).join("");s.value=activeTime}
+function renderSummary(){const e=filteredEntries(),d=e.filter(s=>wasDrawn(activeProduct,s)).length;document.querySelector("#summary").textContent=`已抽 ${d} / ${e.length} · 剩餘 ${e.length-d}`}
+function renderNext(){const b=document.querySelector("#next-box"),t=document.querySelector("#next-text");if(nextShopIndex===null){b.classList.remove("show");return}const s=shops[nextShopIndex];if(!s||!s[activeProduct]||!timeMatches(s)||wasDrawn(activeProduct,s)){nextShopIndex=findNextIndex();if(nextShopIndex===null){b.classList.remove("show");return}}const n=shops[nextShopIndex];t.innerHTML=`<strong>下一個：${n.name}</strong><span>${n.region} · ${n.time}</span>`;b.classList.add("show")}
+function renderList(){document.querySelector("#list").innerHTML=regions.map(r=>{const e=shops.filter(s=>s.region===r&&s[activeProduct]&&timeMatches(s)).sort((a,b)=>Number(wasDrawn(activeProduct,a))-Number(wasDrawn(activeProduct,b)));return `<section class="region"><h2>${r}</h2><div class="head"><span>門市</span><span>抽選時間</span><span>抽獎</span></div>${e.length?e.map(s=>{const d=wasDrawn(activeProduct,s);return `<div class="row ${d?"done":""}"><span class="shop">${s.name}</span><span class="time">${s.time}</span><a class="draw ${d?"done":""}" data-shop="${shops.indexOf(s)}" href="${s[activeProduct]}" target="_blank" rel="noopener">${d?"已抽過":"立即抽獎"}</a></div>`}).join(""):"<p class=\"empty\">目前沒有符合此篩選條件的門市。</p>"}</section>`}).join("");renderSummary();renderNext()}
 document.querySelector("#tabs").addEventListener("click",e=>{const b=e.target.closest("[data-product]");if(!b)return;activeProduct=b.dataset.product;nextShopIndex=null;renderTabs();renderList()});
 document.querySelector("#time-filter").addEventListener("change",e=>{activeTime=e.target.value;nextShopIndex=null;renderList()});
-document.querySelector("#list").addEventListener("click",e=>{const link=e.target.closest(".draw[data-shop]");if(!link)return;const index=Number(link.dataset.shop);localStorage.setItem(recordKey(activeProduct,shops[index]),"1");nextShopIndex=findNextIndex(index);renderList()});
-document.querySelector("#next-button").addEventListener("click",()=>{if(nextShopIndex===null)return;const shop=shops[nextShopIndex];if(!shop||!shop[activeProduct]||!timeMatches(shop)||wasDrawn(activeProduct,shop)){nextShopIndex=findNextIndex();renderNext();return}localStorage.setItem(recordKey(activeProduct,shop),"1");window.open(shop[activeProduct],"_blank","noopener");nextShopIndex=findNextIndex(nextShopIndex);renderList()});
+document.querySelector("#list").addEventListener("click",e=>{const l=e.target.closest(".draw[data-shop]");if(!l)return;const i=Number(l.dataset.shop);localStorage.setItem(recordKey(activeProduct,shops[i]),"1");nextShopIndex=findNextIndex(i);renderList()});
+document.querySelector("#next-button").addEventListener("click",()=>{if(nextShopIndex===null)return;const s=shops[nextShopIndex];if(!s||!s[activeProduct]||!timeMatches(s)||wasDrawn(activeProduct,s)){nextShopIndex=findNextIndex();renderNext();return}localStorage.setItem(recordKey(activeProduct,s),"1");window.open(s[activeProduct],"_blank","noopener");nextShopIndex=findNextIndex(nextShopIndex);renderList()});
 document.querySelector("#clear-records").addEventListener("click",()=>{Object.keys(localStorage).filter(k=>k.startsWith("funbox-")).forEach(k=>localStorage.removeItem(k));nextShopIndex=null;renderList()});
 renderTabs();renderTimeFilter();renderList();
 </script>
