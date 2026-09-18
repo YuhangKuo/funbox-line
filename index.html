@@ -10,7 +10,7 @@
 </head>
 <body>
 <main>
-<div class="topbar"><div><h1>Funbox 抽陀螺</h1><p class="meta">v2.6.7 · 2026/09/18 核對 · 台北市、新北市、桃園市、新竹市、新竹縣</p></div><button class="clear" id="clear-records" type="button">↩ 清除全部抽獎紀錄</button></div>
+<div class="topbar"><div><h1>Funbox 抽陀螺</h1><p class="meta">v2.6.8 · 2026/09/18 新增 CX-07 · 台北市、新北市、桃園市、新竹市、新竹縣</p></div><button class="clear" id="clear-records" type="button">↩ 清除全部抽獎紀錄</button></div>
 <div class="source">資料來源：<a href="https://uxux11.github.io/funbox-line/" target="_blank" rel="noopener">Funbox / 來玩聚 LINE 官方帳號一鍵抽獎</a></div>
 <div class="tabs" id="tabs" aria-label="商品型號"></div>
 <div class="filters"><label for="time-filter">抽選時間</label><select class="time-filter" id="time-filter"><option value="all">全部</option></select></div>
@@ -20,14 +20,14 @@
 <footer>點擊後會在此裝置記錄為已抽過。</footer>
 </main>
 <script>
-const version="v2.6.7";
-const products={bx00:"BX-00 蒼龍神劍",bx10:"BX-10 極限衝擊戰鬥盤",bx48:"BX-48 隨機強化組Vol.09",cx00eva:"CX-00 新世紀福音戰士陀螺套組",cx00db:"CX-00 迪卡狂怒",ux03:"UX-03 魔導神杖",ux16:"UX-16 時鐘幻象 隨機強化組",ux19:"UX-19 子彈獅鷲",ux21:"UX-21 惡魔冥界改造組"};
+const version="v2.6.8";
+const products={bx00:"BX-00 蒼龍神劍",bx10:"BX-10 極限衝擊戰鬥盤",bx48:"BX-48 隨機強化組Vol.09",cx00eva:"CX-00 新世紀福音戰士陀螺套組",cx00db:"CX-00 迪卡狂怒",ux03:"UX-03 魔導神杖",ux16:"UX-16 時鐘幻象 隨機強化組",ux19:"UX-19 子彈獅鷲",ux21:"UX-21 惡魔冥界改造組",cx07:"CX-07 天馬爆擊"};
 const shops=[
 {region:"台北市",name:"Funbox 忠孝SOGO店",time:"9/18 11:00~9/19 21:00",bx00:"https://lin.ee/Uug2Iq3",ux03:"https://lin.ee/5BdORQN",cx00db:"https://lin.ee/njAFauO"},
 {region:"台北市",name:"Funbox 信義A8店",time:"9/18 11:00~9/19 21:00",bx00:"https://lin.ee/sbnjL6d",ux03:"https://lin.ee/rbHSRp2q",cx00db:"https://lin.ee/ZrPAPe8"},
 {region:"台北市",name:"Funbox 三越站前店",time:"9/18 11:00~9/19 21:00",ux03:"https://lin.ee/p46IHRb",cx00db:"https://lin.ee/zgLeRGS"},
 {region:"台北市",name:"Funbox 南港潤泰店",time:"9/18 11:00~9/19 21:00",ux03:"https://lin.ee/s6AwZVP",cx00db:"https://lin.ee/Ox2JQvP"},
-{region:"台北市",name:"Funbox 台北大巨蛋店",time:"9/18 11:00~9/19 21:00",bx00:"https://lin.ee/Z5sRIgc",bx48:"https://lin.ee/OMcziho",ux03:"https://lin.ee/XWXU0ui",ux16:"https://lin.ee/OxGyvr2",ux19:"https://lin.ee/om0oJMi",cx00db:"https://lin.ee/NiOIjoU"},
+{region:"台北市",name:"Funbox 台北大巨蛋店",time:"9/18 11:00~9/19 21:00",cx07:"https://lin.ee/SIBplQs",bx00:"https://lin.ee/Z5sRIgc",bx48:"https://lin.ee/OMcziho",ux03:"https://lin.ee/XWXU0ui",ux16:"https://lin.ee/OxGyvr2",ux19:"https://lin.ee/om0oJMi",cx00db:"https://lin.ee/NiOIjoU"},
 {region:"台北市",name:"來玩聚 台北地下街店",time:"9/18 12:00~9/19 19:30",ux03:"https://lin.ee/WBnSzVn",cx00eva:"https://lin.ee/xpKAzF4",cx00db:"https://lin.ee/wW1DFYN"},
 {region:"台北市",name:"Funbox 天母SOGO店",time:"9/18 11:00~9/19 21:00",bx00:"https://lin.ee/Y4bYfvZ",ux03:"https://lin.ee/70SyxXas",cx00db:"https://lin.ee/rYMEV3d"},
 {region:"台北市",name:"Funbox 遠百信義A13店",time:"9/18 11:00~9/19 21:00",ux03:"https://lin.ee/st7PKoI",cx00db:"https://lin.ee/5hnrhfF"},
