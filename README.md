@@ -22,7 +22,7 @@ GitHub Pages
 
 ### 來源同步
 
-GitHub Actions 會定期從來源 Repo 的 `main/index.html` 建立：
+需要更新時，透過 GitHub Actions 從來源 Repo 的 `main/index.html` 手動同步建立：
 
 - `data/source/latest.html`：目前來源原始 HTML 快照
 - `data/source/latest.json`：來源 Repo、上游 commit、抓取時間等 metadata
@@ -35,7 +35,7 @@ GitHub Actions 會定期從來源 Repo 的 `main/index.html` 建立：
 
 > **「新增追蹤商品 XXX」**
 
-依 RULES.md 確認商品後加入追蹤清單，並同步核對 INDEX。
+依 RULES.md 確認商品後加入追蹤清單，並同步核對 INDEX；新增追蹤商品後，同步更新本 README 的商品清單。
 
 ### 更新 INDEX
 
@@ -55,6 +55,9 @@ GitHub Actions 會定期從來源 Repo 的 `main/index.html` 建立：
 - BX-00 — BX-00 蒼龍神劍
 - BX-09 — BX-09 戰鬥通行證
 - BX-10 — BX-10 極限衝擊戰鬥盤
+- BX-30 — BX-30 X發射器改造型握把（黑紅）
+- BX-41 — BX-41 X發射器改造型握把（黑/透紅）
+- BX-42 — BX-42 X發射器改造型握把（藍/透明）
 - BX-35 — BX-35 隨機強化組Vol.04
 - BX-48 — BX-48 隨機強化組Vol.09
 - BX-50 — BX-50 天堂日輪
