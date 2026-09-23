@@ -41,7 +41,7 @@ def extract_rules_products(text: str) -> list[tuple[str, str]]:
         if not match:
             continue
         code, name = match.groups()
-        if code == "型號代碼":
+        if code in {"型號代碼", "---"}:
             continue
         products.append((code, name))
     return products
