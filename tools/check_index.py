@@ -53,7 +53,9 @@ def extract_js_products(text: str) -> dict[str, str]:
         raise ValueError("找不到 index.html 的 products 定義")
 
     result = {}
-    for key, value in re.findall(r"(\w+):"([^"]*)"", match.group(1)):
+    for key, value in re.findall(r'(\w+):"([^"]*)"', match.group(1)):
+        if key in result:
+            raise ValueError(f"INDEX products 出現重複 key：{key}")
         result[key] = value
     return result
 
@@ -62,7 +64,7 @@ def extract_shop_objects(text: str) -> list[str]:
     match = re.search(r"const shops=\[\n(.*?)\n\]\nconst regions=", text, re.S)
     if not match:
         raise ValueError("找不到 index.html 的 shops 定義")
-    return re.findall(r"\{region:".*?\}", match.group(1), re.S)
+    return re.findall(r'\{region:".*?\}', match.group(1), re.S)
 
 
 def extract_shop_fields(shop: str) -> dict[str, str]:
@@ -129,15 +131,16 @@ def main() -> int:
         print("PASS: INDEX 沒有未追蹤商品")
 
     # 2. 商品 key 必須唯一。
-    if len(js_products) != len(set(js_products)):
-        fail("INDEX products 出現重複 key")
-        errors += 1
-    else:
-        print("PASS: 商品 key 無重複")
+    # extract_js_products 已在解析階段檢查重複 key。
+    print("PASS: 商品 key 無重複")
 
     # 3. 門市地區。
     invalid_regions = sorted(
-        {shop.get("region", "") for shop in shops if shop.get("region") not in ALLOWED_REGIONS}
+        {
+            shop.get("region", "")
+            for shop in shops
+            if shop.get("region") not in ALLOWED_REGIONS
+        }
     )
     if invalid_regions:
         for region in invalid_regions:
@@ -166,7 +169,11 @@ def main() -> int:
             if key not in product_keys:
                 continue
             parsed = urlparse(url)
-            if parsed.scheme != "https" or parsed.netloc != "lin.ee" or not parsed.path.strip("/"):
+            if (
+                parsed.scheme != "https"
+                or parsed.netloc != "lin.ee"
+                or not parsed.path.strip("/")
+            ):
                 fail(f"LINE URL 格式異常：{shop.get('name')} / {key} / {url}")
                 errors += 1
                 url_errors += 1
