@@ -7,8 +7,6 @@ on:
       - ".github/workflows/sync-source.yml"
       - "RULES.md"
       - "README.md"
-  schedule:
-    - cron: "0 0 * * *"
 
 permissions:
   contents: write
