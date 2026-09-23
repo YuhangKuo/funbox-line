@@ -227,10 +227,10 @@ INDEX 必須同時符合以下條件：
    - LINE URL
    - 商品選單是否只顯示 Active Products
 9. **修正所有已確認差異。**
-10. **同步檢查 README.md；若商品清單、INDEX 規則或專案操作說明因本次更新而需要反映變更，必須一併更新 README.md。README 不重複完整 RULES，只維持給人閱讀的簡要說明。**
-11. **完整反向驗證：來源母集合 → RULES → INDEX → README。**
+10. **README.md 不納入一般 INDEX 更新流程；只有專案結構或使用方式有重大變更時，才需要同步更新 README.md。README 不重複完整 RULES，只維持給人閱讀的簡要說明。**
+11. **完整反向驗證：來源母集合 → RULES → INDEX。**
 12. **再次確認 INDEX 不含未指定商品、不含目前沒有來源資料的商品選單、不含未確認資料。**
-13. **確認 RULES、INDEX、README 三者內容一致後 COMMIT。**
+13. **確認 RULES 與 INDEX 內容一致後 COMMIT；若本次屬於專案結構或使用方式重大變更，再一併確認 README.md。**
 
 ### 更新時的重要判斷
 
