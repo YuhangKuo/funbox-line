@@ -10,7 +10,7 @@
 </head>
 <body>
 <main>
-<div class="topbar"><div><h1>Funbox 抽陀螺</h1><p class="meta">v2.9.1 · 2026/09/23 來源同步 · 台北市、新北市、桃園市、新竹市、新竹縣</p></div><button class="clear" id="clear-records" type="button">↩ 清除全部抽獎紀錄</button></div>
+<div class="topbar"><div><h1>Funbox 抽陀螺</h1><p class="meta">v2.9.2 · 2026/09/23 來源同步 · 台北市、新北市、桃園市、新竹市、新竹縣</p></div><button class="clear" id="clear-records" type="button">↩ 清除全部抽獎紀錄</button></div>
 <div class="source">資料來源：<a href="https://uxux11.github.io/funbox-line/" target="_blank" rel="noopener">Funbox / 來玩聚 LINE 官方帳號一鍵抽獎</a></div>
 <div class="tabs" id="tabs" aria-label="商品型號"></div>
 <div class="filters"><label for="time-filter">抽選時間</label><select class="time-filter" id="time-filter"><option value="all">全部</option></select></div>
@@ -20,16 +20,16 @@
 <footer>點擊後會在此裝置記錄為已抽過。</footer>
 </main>
 <script>
-const version="v2.9.1";
-const products={bx00:"BX-00 蒼龍神劍",bx09:"BX-09 戰鬥通行證",bx10:"BX-10 極限衝擊戰鬥盤",bx35:"BX-35 隨機強化組Vol.04",bx48:"BX-48 隨機強化組Vol.09",bx50:"BX-50 天堂日輪",ux03:"UX-03 魔導神杖",ux15:"UX-15 鮫鯊狂鱗改造組",ux16:"UX-16 時鐘幻象 隨機強化組",ux19:"UX-19 子彈獅鷲",ux20:"UX-20 榮耀武神",ux21:"UX-21 惡魔冥界改造組",cx00eva:"CX-00 新世紀福音戰士陀螺套組",cx00db:"CX-00 迪卡狂怒",cx07:"CX-07 天馬爆擊",cx11:"CX-11 帝王威能",cx19:"CX-19 鱷魚裂甲"};
+const version="v2.9.2";
+const products={bx00:"BX-00 蒼龍神劍",bx09:"BX-09 戰鬥通行證",bx10:"BX-10 極限衝擊戰鬥盤",bx35:"BX-35 隨機強化組Vol.04",bx48:"BX-48 隨機強化組Vol.09",bx50:"BX-50 天堂日輪",ux03:"UX-03 魔導神杖",ux15:"UX-15 鮫鯊狂鱗改造組",ux16:"UX-16 時鐘幻象 隨機強化組",ux19:"UX-19 子彈獅鷲",ux20:"UX-20 榮耀武神",ux21:"UX-21 惡魔冥界改造組",cx00eva:"CX-00 新世紀福音戰士陀螺套組",cx00db:"CX-00 迪卡狂怒",cx07:"CX-07 天馬爆擊",cx11:"CX-11 帝王威能",cx19:"CX-19 鱷魚裂甲",cx16:"CX-16 極限衝擊對戰組C"};
 const shops=[
-{region:"台北市",name:"Funbox 南港潤泰",time:"9/24 11:00~9/25 21:00",bx00:"https://lin.ee/VynKNIV",bx09:"https://lin.ee/oy7Cz9BP",ux03:"https://lin.ee/qCHfdSx",ux15:"https://lin.ee/tW9LP8f",ux19:"https://lin.ee/tOEJRss",ux20:"https://lin.ee/QtUquaf",cx00eva:"https://lin.ee/7XX2Yib",cx11:"https://lin.ee/vwq27EK",cx19:"https://lin.ee/R5EUfii"},
+{region:"台北市",name:"Funbox 南港潤泰",time:"9/24 11:00~9/25 21:00",bx09:"https://lin.ee/oy7Cz9BP",ux03:"https://lin.ee/qCHfdSx",ux15:"https://lin.ee/tW9LP8f",ux19:"https://lin.ee/tOEJRss",ux20:"https://lin.ee/QtUquaf",cx00eva:"https://lin.ee/7XX2Yib",cx11:"https://lin.ee/vwq27EK",cx19:"https://lin.ee/R5EUfii"},
 {region:"台北市",name:"Funbox 台北大巨蛋",time:"9/24 11:00~9/25 21:00",bx00:"https://lin.ee/wqvsxLT",bx09:"https://lin.ee/Z76uTqx",ux03:"https://lin.ee/sxzKaFm8",ux15:"https://lin.ee/7WAq435",ux19:"https://lin.ee/NUJbrDq",ux20:"https://lin.ee/vODNwsEd",cx00eva:"https://lin.ee/Pmk8iM1",cx11:"https://lin.ee/Stzqk8d",cx19:"https://lin.ee/TV9MYTU"},
-{region:"台北市",name:"Funbox 信義A8",time:"9/24 11:00~9/25 21:00",bx09:"https://lin.ee/ZJfKF22",ux03:"https://lin.ee/VEQJzC3",ux15:"https://lin.ee/9WebNwX",ux19:"https://lin.ee/SKirLcd",ux20:"https://lin.ee/Phbzbw3",cx00eva:"https://lin.ee/VeGdajx",cx00db:"https://lin.ee/TABv3w6X",cx11:"https://lin.ee/7ukC3qG",cx19:"https://lin.ee/9HZob3M"},
-{region:"台北市",name:"Funbox 忠孝SOGO店",time:"9/24 11:00~9/25 21:00",bx09:"https://lin.ee/YshEzMr",ux03:"https://lin.ee/xeHYbqd",ux15:"https://lin.ee/8KnCSl8R",ux19:"https://lin.ee/NTHIx7n",ux20:"https://lin.ee/XEshJg9",cx00eva:"https://lin.ee/Y6247D2",cx00db:"https://lin.ee/ZG7OtJY",cx11:"https://lin.ee/WiTikvvy",cx19:"https://lin.ee/T2PRZhP"},
+{region:"台北市",name:"Funbox 信義A8",time:"9/24 11:00~9/25 21:00",bx09:"https://lin.ee/ZJfKF22",ux03:"https://lin.ee/VEQJzC3",ux15:"https://lin.ee/9WebNwX",ux19:"https://lin.ee/SKirLcd",ux20:"https://lin.ee/Phbzbw3",cx00eva:"https://lin.ee/VeGdajx",cx00db:"https://lin.ee/TABv3w6X",cx11:"https://lin.ee/7ukC3qG",cx19:"https://lin.ee/9HZob3M",cx16:"https://lin.ee/7qZYwKM"},
+{region:"台北市",name:"Funbox 忠孝SOGO店",time:"9/24 11:00~9/25 21:00",bx09:"https://lin.ee/YshEzMr",ux03:"https://lin.ee/xeHYbqd",ux15:"https://lin.ee/8KnCSl8R",ux19:"https://lin.ee/NTHIx7n",ux20:"https://lin.ee/XEshJg9",cx00eva:"https://lin.ee/Y6247D2",cx00db:"https://lin.ee/ZG7OtJY",cx11:"https://lin.ee/WiTikvvy",cx19:"https://lin.ee/T2PRZhP",cx16:"https://lin.ee/pKMo7GE"},
 {region:"台北市",name:"Funbox 三越站前店",time:"9/24 11:00~9/25 21:00",bx09:"https://lin.ee/76XiEqu",ux03:"https://lin.ee/XvBZKlg",ux15:"https://lin.ee/vgFw1zA",ux19:"https://lin.ee/njnLUe4",ux20:"https://lin.ee/zUfJfP0",cx00eva:"https://lin.ee/usaDh5J",cx11:"https://lin.ee/sJiCZwR",cx19:"https://lin.ee/USeuBL5"},
-{region:"新北市",name:"Funbox 汐科遠雄",time:"9/24 11:00~9/25 21:00",bx09:"https://lin.ee/PBOv3SP",ux03:"https://lin.ee/vzqFCK8",ux15:"https://lin.ee/YZjpRDq",ux19:"https://lin.ee/NAp1Yeq",ux20:"https://lin.ee/rFEfuo7P",cx00eva:"https://lin.ee/VbhWBoI",cx11:"https://lin.ee/6FOilFy",cx19:"https://lin.ee/xQ5NB2Q"},
-{region:"新北市",name:"Funbox 中和環球店",time:"9/24 11:00~9/25 21:00",bx09:"https://lin.ee/u3dIcDP",ux03:"https://lin.ee/TJSJjho",ux15:"https://lin.ee/vJiN2dv",ux19:"https://lin.ee/Zx8F0jO",ux20:"https://lin.ee/v53C4OE",cx00eva:"https://lin.ee/Uo68eoZ",cx11:"https://lin.ee/u1KhsQw",cx19:"https://lin.ee/zsClsW5"},
+{region:"新北市",name:"Funbox 汐科遠雄",time:"9/24 11:00~9/25 21:00",bx09:"https://lin.ee/PBOv3SP",ux03:"https://lin.ee/vzqFCK8",ux15:"https://lin.ee/YZjpRDq",ux19:"https://lin.ee/NAp1Yeq",ux20:"https://lin.ee/rFEfuo7P",cx00eva:"https://lin.ee/VbhWBoI",cx11:"https://lin.ee/6FOilFy",cx19:"https://lin.ee/xQ5NB2Q",cx16:"https://lin.ee/urzSiM2"},
+{region:"新北市",name:"Funbox 中和環球店",time:"9/24 11:00~9/25 21:00",bx09:"https://lin.ee/u3dIcDP",ux03:"https://lin.ee/TJSJjho",ux15:"https://lin.ee/vJiN2dv",ux19:"https://lin.ee/Zx8F0jO",ux20:"https://lin.ee/v53C4OE",cx00eva:"https://lin.ee/Uo68eoZ",cx11:"https://lin.ee/u1KhsQw",cx19:"https://lin.ee/zsClsW5",cx16:"https://lin.ee/t9AdfOl"},
 {region:"桃園市",name:"Funbox 桃園新光站前店",time:"9/24 11:00~9/25 21:00",bx09:"https://lin.ee/pAfl4Sp",ux03:"https://lin.ee/nxwYe6U",ux15:"https://lin.ee/vXOPypA",ux19:"https://lin.ee/7hZVM1E",ux20:"https://lin.ee/Pzm9qB8",cx00eva:"https://lin.ee/64u8OUS",cx11:"https://lin.ee/YOnDqu8",cx19:"https://lin.ee/57xH5R8"}
 ]
 const regions=["台北市","新北市","桃園市","新竹市","新竹縣"];
