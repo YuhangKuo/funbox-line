@@ -1,0 +1,67 @@
+name: Sync upstream Funbox source
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "15 * * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  sync-source:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fetch upstream source repository
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p data/source
+
+          curl -fsSL --retry 3 --retry-delay 2 \
+            https://raw.githubusercontent.com/UXUX11/funbox-line/main/index.html \
+            -o data/source/latest.html
+
+          curl -fsSL --retry 3 --retry-delay 2 \
+            https://api.github.com/repos/UXUX11/funbox-line/commits/main \
+            -o /tmp/upstream-commit.json
+
+          python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          commit = json.loads(Path("/tmp/upstream-commit.json").read_text(encoding="utf-8"))
+          meta = {
+              "source_repository": "https://github.com/UXUX11/funbox-line",
+              "source_file": "index.html",
+              "source_raw_url": "https://raw.githubusercontent.com/UXUX11/funbox-line/main/index.html",
+              "source_commit": commit["sha"],
+              "source_commit_date": commit["commit"]["committer"]["date"],
+              "fetched_at": datetime.now(timezone.utc).isoformat(),
+          }
+          Path("data/source/latest.json").write_text(
+              json.dumps(meta, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8",
+          )
+          PY
+
+      - name: Commit source snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add data/source/latest.html data/source/latest.json
+
+          if git diff --cached --quiet; then
+            echo "Source unchanged."
+            exit 0
+          fi
+
+          git commit -m "chore: 同步 Funbox 上游來源快照"
+          git push
