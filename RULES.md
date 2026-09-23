@@ -6,7 +6,12 @@
 ## 1. 專案資料來源
 
 ### 主要來源
-- https://uxux11.github.io/funbox-line/
+- **來源 Repo：** https://github.com/UXUX11/funbox-line
+- **本專案來源快照：** `data/source/latest.html`
+- **來源 Repo commit metadata：** `data/source/latest.json`
+- GitHub Pages（來源 Repo 的部署結果）：https://uxux11.github.io/funbox-line/
+
+INDEX 更新時，優先使用來源 Repo 的最新 commit 與本專案保存的來源快照；不再把來源 GitHub Pages 當成唯一抓取入口。
 
 ### 專案 GitHub
 - https://github.com/YuhangKuo/funbox-line
@@ -15,7 +20,7 @@
 - https://yuhangkuo.github.io/funbox-line/
 
 ### 來源優先原則
-- 商品、門市、抽選／販售時間、LINE 連結以主要來源的**最新可確認資料**為準。
+- 商品、門市、抽選／販售時間、LINE 連結以來源 Repo 的**最新可確認資料**為準；本專案先保存來源快照，再從快照核對 INDEX。
 - 除非需要辨識商品名稱、確認來源內容或處理來源無法直接取得的情況，否則不使用外部網站作為主要資料來源。
 - 不以舊版 INDEX、舊 LINE URL 或記憶中的資料覆蓋最新來源。
 
@@ -186,7 +191,7 @@ INDEX 必須同時符合以下條件：
 - 不把舊資料當成目前資料。
 - 若只有部分欄位可確認，只修改已確認的部分，不臆補其他欄位。
 
-若主要來源暫時無法取得：
+若來源 Repo 或來源快照暫時無法取得：
 
 1. 不宣稱已完成完整核對。
 2. 不用舊資料冒充最新資料。
@@ -213,8 +218,8 @@ INDEX 必須同時符合以下條件：
 
 1. **讀取最新 RULES.md。**
 2. **取得 GitHub main 最新 INDEX。**
-3. **取得主要來源最新資料。**
-4. **建立固定 5 地區完整門市母集合。**
+3. **取得來源 Repo 最新 commit，並同步／確認 `data/source/latest.html` 與 `data/source/latest.json`。**
+4. **從來源快照建立固定 5 地區完整門市母集合。**
 5. **從當期資料找出各門市的 Tracked Products。**
 6. **套用商品名稱正規化規則。**
 7. **建立 Active Products 清單。**
