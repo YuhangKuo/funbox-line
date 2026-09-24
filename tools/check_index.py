@@ -4,7 +4,7 @@
 用途：
 - 只檢查，不修改任何檔案。
 - 不抓網路、不 commit、不改 index.html。
-- 目前針對 RULES.md 與 index.html 做基本一致性檢查。
+- 檢查 RULES.md、來源 latest.html 與 index.html 的一致性。
 
 執行：
     python tools/check_index.py
@@ -21,6 +21,7 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parents[1]
 RULES = ROOT / "RULES.md"
 INDEX = ROOT / "index.html"
+SOURCE = ROOT / "data" / "source" / "latest.html"
 
 ALLOWED_REGIONS = {"台北市", "新北市", "桃園市", "新竹市", "新竹縣"}
 
@@ -74,12 +75,82 @@ def extract_shop_fields(shop: str) -> dict[str, str]:
     return fields
 
 
+def normalize_date_time(text: str) -> str:
+    """將來源的完整日期時間轉成 INDEX 使用的顯示格式。"""
+    text = re.sub(r"抽選/購買時間：", "", text).strip()
+
+    def repl(match: re.Match[str]) -> str:
+        return f"{int(match.group(2))}/{int(match.group(3))}"
+
+    text = re.sub(r"(\d{4})/(\d{1,2})/(\d{1,2})", repl, text)
+    return re.sub(r"\s+", "", text)
+
+
+def normalize_model(product_name: str, product_keys: set[str]) -> str | None:
+    """從來源商品名稱找出 INDEX 對應 key。"""
+    match = re.search(r"\b(BXG|BGX|BX|UX|CX)\s*-\s*(\d{2})\b", product_name.upper())
+    if not match:
+        return None
+
+    model = f"{match.group(1).replace('BGX', 'BXG')}-{match.group(2)}".lower()
+    if model == "cx-00":
+        if "新世紀福音戰士" in product_name:
+            return "cx00eva" if "cx00eva" in product_keys else None
+        if "迪卡狂怒" in product_name:
+            return "cx00db" if "cx00db" in product_keys else None
+        return None
+
+    key = model.replace("-", "")
+    return key if key in product_keys else None
+
+
+def extract_source_records(text: str, product_keys: set[str]) -> list[dict[str, str]]:
+    """解析來源 draw-store，回傳固定五地區內可對應到 INDEX 的商品資料。"""
+    records = []
+    starts = [m.start() for m in re.finditer(r'<div class="draw-store"[^>]*>', text)]
+
+    for pos, start in enumerate(starts):
+        end = starts[pos + 1] if pos + 1 < len(starts) else len(text)
+        block = text[start:end]
+
+        city = re.search(r'data-draw-city="([^"]+)"', block)
+        name = re.search(r'<div class="draw-store-name">([^<]+)</div>', block)
+        draw_time = re.search(r'<div class="draw-start">([^<]+)</div>', block)
+        if not city or not name or not draw_time:
+            continue
+        if city.group(1) not in ALLOWED_REGIONS:
+            continue
+
+        time = normalize_date_time(draw_time.group(1))
+        for item in re.finditer(
+            r'<div class="draw-item[^>]*data-draw-href="([^"]+)"[^>]*>.*?'
+            r'<div class="draw-product">([^<]+)</div>',
+            block,
+            re.S,
+        ):
+            url, product_name = item.groups()
+            key = normalize_model(product_name, product_keys)
+            if key is None:
+                continue
+            records.append(
+                {
+                    "region": city.group(1),
+                    "name": name.group(1).strip(),
+                    "time": time,
+                    "key": key,
+                    "url": url.strip(),
+                }
+            )
+
+    return records
+
+
 def main() -> int:
     errors = 0
     print("Funbox INDEX 測試版檢查器")
     print("=" * 32)
 
-    for path in (RULES, INDEX):
+    for path in (RULES, INDEX, SOURCE):
         if not path.exists():
             fail(f"找不到檔案：{path}")
             errors += 1
@@ -89,6 +160,7 @@ def main() -> int:
 
     rules_text = RULES.read_text(encoding="utf-8")
     index_text = INDEX.read_text(encoding="utf-8")
+    source_text = SOURCE.read_text(encoding="utf-8")
 
     try:
         rules_products = extract_rules_products(rules_text)
@@ -102,6 +174,47 @@ def main() -> int:
     print(f"RULES 追蹤商品：{len(rules_products)}")
     print(f"INDEX 商品定義：{len(js_products)}")
     print(f"INDEX 門市：{len(shops)}")
+
+    # 0. 來源 ↔ INDEX：商品/門市/時間/LINE URL 必須一致。
+    source_records = extract_source_records(source_text, set(js_products))
+    print(f"來源固定 5 地區商品資料：{len(source_records)}")
+    if not source_records:
+        fail("來源 latest.html 沒有解析到固定 5 地區的商品資料")
+        errors += 1
+    else:
+        print("PASS: 已解析來源固定 5 地區商品資料")
+
+    index_records = []
+    for shop in shops:
+        for key in product_keys:
+            if key in shop:
+                index_records.append({
+                    "region": shop.get("region", ""),
+                    "name": shop.get("name", ""),
+                    "time": normalize_date_time(shop.get("time", "")),
+                    "key": key,
+                    "url": shop[key],
+                })
+
+    source_set = {(r["region"], r["name"], r["time"], r["key"], r["url"]) for r in source_records}
+    index_set = {(r["region"], r["name"], r["time"], r["key"], r["url"]) for r in index_records}
+
+    missing_from_index = sorted(source_set - index_set)
+    missing_from_source = sorted(index_set - source_set)
+
+    if missing_from_index:
+        for region, name, time, key, url in missing_from_index:
+            fail(f"來源有、INDEX 缺少：{region} / {name} / {js_products[key]} / {time} / {url}")
+            errors += 1
+    else:
+        print("PASS: 來源商品資料都有對應 INDEX")
+
+    if missing_from_source:
+        for region, name, time, key, url in missing_from_source:
+            fail(f"INDEX 有、來源沒有或資料不一致：{region} / {name} / {js_products[key]} / {time} / {url}")
+            errors += 1
+    else:
+        print("PASS: INDEX 沒有來源以外的商品資料")
 
     # 1. RULES 商品名稱是否存在於 INDEX products。
     rule_names = {name for _, name in rules_products}
