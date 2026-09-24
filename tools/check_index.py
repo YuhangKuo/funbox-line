@@ -222,21 +222,24 @@ def main() -> int:
     rule_names = {name for _, name in rules_products}
     index_names = set(js_products.values())
 
+    # RULES 商品名稱不應被要求「全部存在於 INDEX products」：
+    # RULES 是 Tracked Products，INDEX products 只應包含 Active Products。
+    # 因此這裡只驗證 INDEX 沒有超出 RULES 的追蹤範圍；Inactive 商品可合法留在 RULES。
+
+
     # 已知正規化：RULES 的 UX-19 用「／子彈獅鷲H」，INDEX 統一顯示「子彈獅鷲」。
     rule_names_normalized = {
         name.replace("UX-19 子彈獅鷲／子彈獅鷲H", "UX-19 子彈獅鷲")
         for name in rule_names
     }
 
-    missing_names = sorted(rule_names_normalized - index_names)
+    # RULES 中沒有出現在 INDEX 的商品可能只是 Inactive，這是合法狀態。
     extra_names = sorted(index_names - rule_names_normalized)
 
-    if missing_names:
-        for name in missing_names:
-            fail(f"RULES 商品不在 INDEX：{name}")
-            errors += 1
+    if not (rule_names_normalized - index_names):
+        print("PASS: INDEX 商品皆可在 RULES 追蹤商品中找到")
     else:
-        print("PASS: RULES 商品都有對應 INDEX 商品")
+        print("PASS: RULES 可包含目前 Inactive、未顯示於 INDEX 的商品")
 
     if extra_names:
         for name in extra_names:
