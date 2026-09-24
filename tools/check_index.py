@@ -184,6 +184,8 @@ def main() -> int:
     else:
         print("PASS: 已解析來源固定 5 地區商品資料")
 
+    product_keys = set(js_products)
+
     index_records = []
     for shop in shops:
         for key in product_keys:
