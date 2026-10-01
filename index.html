@@ -10,6 +10,48 @@
 </head>
 <body>
 <main>
+<div class="topbar"><div><h1>Funbox 抽陀螺</h1><p class="meta">v2.9.13 · 2026/10/02 CX 名稱映射同步 · 台北市、新北市、桃園市、新竹市、新竹縣</p></div><button class="clear" id="clear-records" type="button">↩ 清除全部抽獎紀錄</button></div>
+<div class="source">資料來源：<a href="https://uxux11.github.io/funbox-line/" target="_blank" rel="noopener">Funbox / 來玩聚 LINE 官方帳號一鍵抽獎</a></div>
+<div class="tabs" id="tabs" aria-label="商品型號"></div>
+<div class="filters"><label for="time-filter">抽選時間</label><select class="time-filter" id="time-filter"><option value="all">全部</option></select></div>
+<div class="summary" id="summary"></div>
+<div class="next" id="next-box"><div class="next-text" id="next-text"></div><button class="next-button" id="next-button" type="button">打開下一個</button></div>
+<div id="list"></div>
+<footer>點擊後會在此裝置記錄為已抽過。</footer>
+</main>
+<script>
+const version="v2.9.13";
+const products={bx00:"BX-00 蒼龍神劍",bx09:"BX-09 戰鬥通行證",bx10:"BX-10 極限衝擊戰鬥盤",bx30:"BX-30 X發射器改造型握把（黑紅）",bx41:"BX-41 X發射器改造型握把（黑/透紅）",bx42:"BX-42 X發射器改造型握把（藍/透明）",bx35:"BX-35 隨機強化組Vol.04",bx48:"BX-48 隨機強化組Vol.09",bx50:"BX-50 天堂日輪",ux01:"UX-01 蒼龍爆刃",ux03:"UX-03 魔導神杖",ux15:"UX-15 鮫鯊狂鱗改造組",ux16:"UX-16 時鐘幻象 隨機強化組",ux17:"UX-17 隕星龍騎士",ux19:"UX-19 子彈獅鷲",ux20:"UX-20 榮耀武神",ux21:"UX-21 惡魔冥界改造組",cx00eva:"CX-00 新世紀福音戰士陀螺套組",cx00db:"CX-00 迪卡狂怒",cx07:"CX-07 天馬爆擊",cx11:"CX-11 帝王威能",cx19:"CX-19 鱷魚裂甲",cx16:"CX-16 極限衝擊對戰組C"};
+const shops=[
+{region:"台北市",name:"Funbox 南港潤泰",time:"10/02 11:00~10/03 21:00",ux01:"https://lin.ee/yF6X0kS",ux03:"https://lin.ee/vjM90kw",ux16:"https://lin.ee/Wu7KWWS",ux17:"https://lin.ee/uZzH2S6",ux19:"https://lin.ee/7RQgmux",cx00eva:"https://lin.ee/rdX8gu7",cx11:"https://lin.ee/QaqrfPC",cx16:"https://lin.ee/yYWqrgR",cx19:"https://lin.ee/PvQSP4Z"},
+{region:"台北市",name:"Funbox 信義A8",time:"10/02 11:00~10/03 21:00",ux01:"https://lin.ee/ozAu9Hp",ux03:"https://lin.ee/tqYq5ai",ux16:"https://lin.ee/Zw7zOX8",ux17:"https://lin.ee/n51N5Su",ux19:"https://lin.ee/SKirLcd",cx00eva:"https://lin.ee/rq9WA14",cx16:"https://lin.ee/trPxoT5"},
+{region:"台北市",name:"Funbox-忠孝SOGO店",time:"10/02 11:00~10/03 21:00",ux01:"https://lin.ee/YMVtTVb",ux03:"https://lin.ee/zL9A0bU",ux16:"https://lin.ee/Nryv8zhu",ux17:"https://lin.ee/Tp67h5G",cx00eva:"https://lin.ee/5NY1bAc",cx16:"https://lin.ee/8P8N87X"},
+{region:"台北市",name:"來玩聚-台北地下街店",time:"10/02 12:00~10/03 19:30",ux01:"https://lin.ee/rGCyqe7",ux03:"https://lin.ee/UxlHm8I",ux15:"https://lin.ee/PrarqQV",ux16:"https://lin.ee/RFo0Uzh",ux17:"https://lin.ee/qzWUbnx4",ux19:"https://lin.ee/oSqPZ5a",ux20:"https://lin.ee/PSnFJUv",cx00eva:"https://lin.ee/udhNKxQ",cx16:"https://lin.ee/9S44qNk"},
+{region:"台北市",name:"Funbox-新光三越站前店",time:"10/02 11:00~10/03 21:00",ux01:"https://lin.ee/o8810aQ",ux16:"https://lin.ee/Pj6OSLb",ux17:"https://lin.ee/tE0lLIl",ux19:"https://lin.ee/7fnafVD",cx00eva:"https://lin.ee/n0jLrLo",cx11:"https://lin.ee/Swd88ge",cx16:"https://lin.ee/u2ePqBw"},
+{region:"台北市",name:"Funbox 天母三越店",time:"10/02 11:00~10/03 21:00",ux01:"https://lin.ee/osE7m3u1",ux03:"https://lin.ee/r9D3eXf",ux16:"https://lin.ee/uMF8bXt",ux17:"https://lin.ee/RQpJZ9u",ux19:"https://lin.ee/wcxsmm5",cx00eva:"https://lin.ee/8PEaWlW",cx11:"https://lin.ee/zEyF7vgN",cx16:"https://lin.ee/XzCiLt9",cx19:"https://lin.ee/r2lNix9"},
+{region:"台北市",name:"Funbox-天母SOGO店",time:"10/02 11:00~10/03 21:00",ux01:"https://lin.ee/zbjAj7p",ux03:"https://lin.ee/yJR7TRI",ux16:"https://lin.ee/rjsV6az",ux17:"https://lin.ee/6QTN6Yx",ux19:"https://lin.ee/QUaIkqA",cx00eva:"https://lin.ee/VIJcAFI",cx00db:"https://lin.ee/6J0gZ5J",cx11:"https://lin.ee/utIbCw7",cx16:"https://lin.ee/sBdPMJK"},
+{region:"台北市",name:"Funbox Toys-大葉高島屋店",time:"10/02 11:00~10/03 21:00",ux03:"https://lin.ee/5O2tp06",ux15:"https://lin.ee/YagpM0p",ux16:"https://lin.ee/XLD9DBm",ux19:"https://lin.ee/X27BzlA",ux21:"https://lin.ee/5HyQ4D3",cx00eva:"https://lin.ee/qWf0LKD",cx00db:"https://lin.ee/trid9qZ",cx11:"https://lin.ee/YiB5It3",cx16:"https://lin.ee/ZyrIGHU"},
+{region:"台北市",name:"FunBox Toys 遠百信義 A13",time:"10/02 11:00~10/03 21:00",ux01:"https://lin.ee/6bEpdX9",ux03:"https://lin.ee/q7Kh1FZ5",ux15:"https://lin.ee/sgCOhX2",ux16:"https://lin.ee/V7HYOlQ",ux17:"https://lin.ee/XPY8FrN",ux19:"https://lin.ee/PB6hLtH",ux20:"https://lin.ee/R5mIGa7",cx00eva:"https://lin.ee/xOoOKc5",cx11:"https://lin.ee/QcSNg23"},
+{region:"新北市",name:"Funbox 中和環球",time:"10/02 11:00~10/03 21:00",ux01:"https://lin.ee/Sf1xZKSC",ux16:"https://lin.ee/tcoa3iX",ux17:"https://lin.ee/Q29zbZW",cx00eva:"https://lin.ee/Xg9VQ6p"},
+{region:"新北市",name:"Funbox&Sanrio板橋大遠百",time:"10/02 11:00~10/03 21:00",ux03:"https://lin.ee/rCks2L4",ux16:"https://lin.ee/RJjFeyi",ux17:"https://lin.ee/ZGdXTpI",ux19:"https://lin.ee/xvMccmh",cx11:"https://lin.ee/qlFAzgl"},
+{region:"新北市",name:"Fun box & 星奇市 汐科遠雄店",time:"10/02 11:00~10/03 21:00",ux01:"https://lin.ee/Vux0hiCb",ux03:"https://lin.ee/ZpDr8wK",ux16:"https://lin.ee/o2SafcD",ux17:"https://lin.ee/8CZWcif",ux19:"https://lin.ee/VK6LOiA",ux20:"https://lin.ee/sG1GUlJ",cx00eva:"https://lin.ee/TL8S3g1",cx00db:"https://lin.ee/zsTv97m",cx11:"https://lin.ee/7KH8Obe"},
+{region:"新北市",name:"Funbox 板橋遠百中山店",time:"10/02 11:00~10/03 21:00",ux01:"https://lin.ee/V9Kyc7M",ux03:"https://lin.ee/Wt9rhXX",ux16:"https://lin.ee/UV338W0",ux17:"https://lin.ee/umU2dFOd",ux19:"https://lin.ee/Xd4VE6Q",cx00eva:"https://lin.ee/vgP2Xau",cx11:"https://lin.ee/zDczrmS"},
+{region:"新北市",name:"Funbox-淡水禮萊廣場店",time:"10/02 11:00~10/03 21:00",ux01:"https://lin.ee/PLRN6q54",ux03:"https://lin.ee/WvzokGYi",ux15:"https://lin.ee/ZmThtu8",ux16:"https://lin.ee/xitZ9s6",ux17:"https://lin.ee/8MZjuz2",ux19:"https://lin.ee/ZjgS8xb",ux20:"https://lin.ee/tYAyZIC",cx00eva:"https://lin.ee/syWNto6",cx11:"https://lin.ee/RB6UntD"},
+{region:"桃園市",name:"Funbox 桃園新光站前店",time:"10/02 11:00~10/03 21:00",cx16:"https://lin.ee/5LcZkAX"},
+{region:"新竹市",name:"Funbox-新竹遠雄",time:"10/02 11:00~10/03 21:00",ux01:"https://lin.ee/uTnxSg9",ux03:"https://lin.ee/YZ455oE",ux16:"https://lin.ee/75jlb5l",ux17:"https://lin.ee/pxHCTQvz",ux19:"https://lin.ee/RrpzwhV",cx00eva:"https://lin.ee/WH6zwIf",cx11:"https://lin.ee/Zg8klWX"},
+{region:"新竹縣",name:"Funbox 竹北遠東店",time:"10/02 11:00~10/03 21:00",ux01:"https://lin.ee/VV1awfY",ux03:"https://lin.ee/yLuncJl",ux15:"https://lin.ee/9Fh7ZGs",ux16:"https://lin.ee/xle15Mf",ux17:"https://lin.ee/5uOj4dq",ux19:"https://lin.ee/87VKARB",cx00eva:"https://lin.ee/RWm4agBw",cx11:"https://lin.ee/8eiKSa4",cx16:"https://lin.ee/QLeQWfG",cx19:"https://lin.ee/PFcp4007"}
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Funbox 抽陀螺</title>
+<style>
+:root{color-scheme:light}*{box-sizing:border-box}body{margin:0;background:#f2f3f5;color:#24292f;font-family:system-ui,-apple-system,"Noto Sans TC",sans-serif}main{max-width:900px;margin:0 auto;padding:24px 16px 40px}h1{margin:0;font-size:1.7rem}.meta{color:#667085;font-size:.9rem;margin:5px 0 18px}.topbar{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:16px}button,select{font:inherit;cursor:pointer}.clear{border:0;background:none;color:#667085;padding:6px 0;font-size:.9rem;text-decoration:underline}.source{margin:-8px 0 18px;font-size:.9rem}.source a{color:#2563eb;font-weight:700}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}.tab{border:1px solid #cbd5e1;background:#fff;color:#334155;border-radius:999px;padding:9px 14px;font-weight:700}.tab.active{background:#334155;color:#fff;border-color:#334155}.filters{display:flex;align-items:center;gap:10px;margin:0 0 12px}.filters label{color:#64748b;font-size:.9rem;font-weight:700}.time-filter{border:1px solid #cbd5e1;background:#fff;color:#334155;border-radius:7px;padding:8px 10px}.summary{color:#64748b;font-size:.9rem;margin:0 0 22px}.region{margin:24px 0}.region h2{border-bottom:2px solid #94a3b8;font-size:1.1rem;margin:0 0 8px;padding-bottom:7px}.head,.row{display:grid;grid-template-columns:minmax(0,1fr) 170px 106px;gap:12px;align-items:center}.head{color:#64748b;font-size:.8rem;font-weight:700;padding:6px 10px}.row{background:#fff;border-radius:10px;margin:7px 0;padding:10px;box-shadow:0 1px 2px rgb(15 23 42 / .08)}.row.done{opacity:.55}.shop{font-weight:700}.time{color:#64748b;font-size:.9rem}.draw{text-decoration:none;text-align:center;background:#08a33a;color:#fff;padding:8px 10px;border-radius:7px;font-weight:700;font-size:.88rem}.draw.done{background:#94a3b8}.empty{color:#64748b;padding:12px 0}.next{display:none;margin:0 0 18px;padding:12px 14px;background:#fff;border:1px solid #cbd5e1;border-radius:10px}.next.show{display:flex;justify-content:space-between;gap:12px;align-items:center}.next-text{font-size:.9rem}.next-text strong{display:block}.next-button{border:0;background:#334155;color:#fff;border-radius:7px;padding:8px 12px;font-weight:700;white-space:nowrap}footer{color:#64748b;font-size:.78rem;margin-top:26px}@media(max-width:560px){main{padding-top:18px}.topbar{align-items:flex-start;flex-direction:column}.filters{align-items:flex-start;flex-direction:column;gap:6px}.head{display:none}.row{grid-template-columns:1fr auto;gap:7px 10px}.time{grid-column:1/-1;grid-row:2}.draw{grid-column:2;grid-row:1}.next.show{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<main>
 <div class="topbar"><div><h1>Funbox 抽陀螺</h1><p class="meta">v2.9.12 · 2026/10/02 來源同步 · 台北市、新北市、桃園市、新竹市、新竹縣</p></div><button class="clear" id="clear-records" type="button">↩ 清除全部抽獎紀錄</button></div>
 <div class="source">資料來源：<a href="https://uxux11.github.io/funbox-line/" target="_blank" rel="noopener">Funbox / 來玩聚 LINE 官方帳號一鍵抽獎</a></div>
 <div class="tabs" id="tabs" aria-label="商品型號"></div>
