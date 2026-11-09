@@ -4,6 +4,15 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script>
+(function(){
+    try {
+        if (localStorage.getItem('funbox_theme_mode_v1') === 'dark') {
+            document.documentElement.classList.add('theme-dark');
+        }
+    } catch (e) {}
+})();
+</script>
 <title>Funbox / 來玩聚 LINE 官方帳號一鍵抽獎</title>
 <style>
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background-color: #f4f6f9; margin: 0; padding: 15px; color: #333; }
@@ -675,7 +684,225 @@
         padding: 8px 16px;
     }
 }
-</style></head>
+</style>
+<style id="funbox-theme-styles">
+/* ===== 明暗模式開關 ===== */
+.draw-header-actions {
+    max-width: 1000px;
+    min-height: 34px;
+    margin: 0 auto 2px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+.draw-header-actions .draw-last-updated {
+    position: static !important;
+    transform: none !important;
+    margin: 0;
+    font-size: 12px;
+    color: #888;
+    white-space: nowrap;
+}
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 32px;
+    padding: 5px 9px;
+    border: 1px solid #cfd6df;
+    border-radius: 999px;
+    background: #fff;
+    color: #253247;
+    box-shadow: 0 1px 4px rgba(0,0,0,.08);
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+.theme-toggle:focus-visible {
+    outline: 2px solid #3182ce;
+    outline-offset: 3px;
+}
+.theme-toggle-icon { font-size: 14px; }
+.theme-switch-track {
+    width: 31px;
+    height: 18px;
+    display: inline-flex;
+    align-items: center;
+    padding: 2px;
+    box-sizing: border-box;
+    border-radius: 999px;
+    background: #cbd5e1;
+    transition: background .18s ease;
+}
+.theme-switch-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(0,0,0,.22);
+    transform: translateX(0);
+    transition: transform .18s ease;
+}
+html.theme-dark .theme-toggle {
+    background: #202a38;
+    color: #e6edf7;
+    border-color: #455267;
+}
+html.theme-dark .theme-switch-track { background: #16a34a; }
+html.theme-dark .theme-switch-thumb { transform: translateX(13px); }
+
+@media (max-width: 600px) {
+    .draw-header-actions {
+        gap: 6px;
+        min-height: 32px;
+        margin-bottom: 2px;
+    }
+    .draw-header-actions .draw-last-updated {
+        font-size: 10px;
+    }
+    .theme-toggle {
+        gap: 5px;
+        min-height: 30px;
+        padding: 4px 7px;
+        font-size: 11px;
+    }
+    .theme-switch-track { width: 29px; height: 17px; }
+    html.theme-dark .theme-switch-thumb { transform: translateX(12px); }
+}
+
+/* ===== 暗黑模式：整個頁面 ===== */
+html.theme-dark { color-scheme: dark; }
+html.theme-dark body {
+    background: #11161e !important;
+    color: #e5eaf2 !important;
+}
+html.theme-dark h1,
+html.theme-dark .draw-main-title { color: #a9c8ff !important; }
+html.theme-dark p.subtitle,
+html.theme-dark .draw-last-updated,
+html.theme-dark .draw-start,
+html.theme-dark .line-id,
+html.theme-dark .draw-mode-desc,
+html.theme-dark .continuous-draw-progress,
+html.theme-dark .continuous-draw-store,
+html.theme-dark #continuousDrawAutoStatus { color: #aab5c5 !important; }
+
+/* 門市清單與抽選門市卡片 */
+html.theme-dark .card,
+html.theme-dark .draw-store,
+html.theme-dark .continuous-draw-panel,
+html.theme-dark .draw-mode-panel,
+html.theme-dark .draw-missing-box,
+html.theme-dark #missing-store-panel {
+    background: #1b2430 !important;
+    color: #e5eaf2 !important;
+    border-color: #354254 !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,.28) !important;
+}
+html.theme-dark .store-name,
+html.theme-dark .draw-store-name,
+html.theme-dark .draw-product,
+html.theme-dark .continuous-draw-product,
+html.theme-dark .draw-mode-title,
+html.theme-dark .draw-missing-title,
+html.theme-dark #missing-store-panel summary,
+html.theme-dark .continuous-draw-guide strong {
+    color: #edf2fa !important;
+}
+html.theme-dark .draw-city {
+    color: #a9c8ff !important;
+    border-color: #5578a8 !important;
+}
+html.theme-dark .draw-item { border-top-color: #354254 !important; }
+html.theme-dark .draw-item-clickable:hover:not(.quick-drawn):not(.not-started) {
+    background: #263345 !important;
+}
+html.theme-dark .draw-item-clickable.quick-drawn,
+html.theme-dark .draw-item.quick-drawn,
+html.theme-dark .draw-item-clickable:has(.draw-link.clicked),
+html.theme-dark #page-draws .draw-item.quick-drawn,
+html.theme-dark #page-draws .draw-item-clickable:has(.draw-link.clicked) {
+    background: #343d49 !important;
+    color: #b8c1ce !important;
+}
+html.theme-dark .draw-item.quick-drawn .draw-product,
+html.theme-dark .draw-item-clickable.quick-drawn .draw-product {
+    color: #b8c1ce !important;
+}
+
+/* 篩選按鈕與下拉選單 */
+html.theme-dark .filter-btn:not(.active),
+html.theme-dark .page-tab:not(.active),
+html.theme-dark .time-filter-btn:not(.active),
+html.theme-dark .draw-mode-btn:not(.active),
+html.theme-dark .continuous-draw-scope:not(.active),
+html.theme-dark .continuous-draw-skip {
+    background: #303b4a !important;
+    color: #e5eaf2 !important;
+    border-color: #465366 !important;
+}
+html.theme-dark .filter-btn.active,
+html.theme-dark .page-tab.active,
+html.theme-dark .time-filter-btn.active,
+html.theme-dark .draw-mode-btn.active,
+html.theme-dark .continuous-draw-scope.active {
+    color: #fff !important;
+}
+html.theme-dark .product-filter-label { color: #a9c8ff !important; }
+html.theme-dark .product-filter-select,
+html.theme-dark select,
+html.theme-dark option {
+    background: #202a38 !important;
+    color: #e5eaf2 !important;
+    border-color: #465366 !important;
+}
+
+/* 說明區、未販售區及提示區 */
+html.theme-dark .continuous-draw-guide {
+    background: #273241 !important;
+    color: #cbd5e1 !important;
+}
+html.theme-dark #missing-store-panel .missing-store-list,
+html.theme-dark #missing-store-panel .missing-store-item {
+    border-color: #354254 !important;
+}
+html.theme-dark #missing-store-panel .missing-note,
+html.theme-dark .draw-missing-box .draw-missing-row {
+    color: #cbd5e1 !important;
+}
+html.theme-dark .draw-missing-box { border-color: #354254 !important; }
+
+/* 連結與按鈕保留品牌辨識色，已抽選灰底仍保持可辨識 */
+html.theme-dark .draw-link,
+html.theme-dark .add-btn,
+html.theme-dark .add-friend-btn,
+html.theme-dark .continuous-draw-open { color: #fff !important; }
+html.theme-dark .draw-link.clicked,
+html.theme-dark .draw-item.quick-drawn .draw-link,
+html.theme-dark #page-draws .draw-item.quick-drawn .draw-link {
+    background: #737f8e !important;
+    color: #fff !important;
+    border-color: #737f8e !important;
+}
+html.theme-dark .draw-mode-btn,
+html.theme-dark .filter-btn,
+html.theme-dark .time-filter-btn,
+html.theme-dark .page-tab,
+html.theme-dark .continuous-draw-scope,
+html.theme-dark .continuous-draw-open,
+html.theme-dark .continuous-draw-next,
+html.theme-dark .continuous-draw-stop,
+html.theme-dark .continuous-draw-skip {
+    transition: background-color .15s ease, color .15s ease, border-color .15s ease;
+}
+</style>
+
+</head>
 <body>
 <h1 id="stores-title" style="display:none;; display:none !important">LINE 門市帳號一鍵快速加好友</h1>
 <p class="subtitle" id="stores-subtitle" style="display:none;; display:none !important">上方可直接依縣市篩選門市；點擊右側按鈕會開啟 LINE App 加好友（已點過會自動變灰色）</p>
@@ -799,7 +1026,16 @@
   color: #666 !important;
 }
 </style>
-<div class="draw-title-wrap"><h1 class="draw-main-title">11/06 11/07 抽選</h1><div class="draw-last-updated" id="hiddenDrawReset" style="cursor:default;user-select:none;-webkit-user-select:none;" title="">最後更新：2026/11/06 16:17</div>
+<div class="draw-title-wrap">
+<div class="draw-header-actions">
+<div class="draw-last-updated" id="hiddenDrawReset" style="cursor:default;user-select:none;-webkit-user-select:none;" title="">最後更新：2026/11/09 08:32</div>
+<button class="theme-toggle" id="themeToggle" type="button" role="switch" aria-checked="false" aria-label="切換暗黑模式">
+<span class="theme-toggle-icon" id="themeToggleIcon" aria-hidden="true">🌙</span>
+<span class="theme-toggle-label" id="themeToggleLabel">暗黑模式</span>
+<span class="theme-switch-track" aria-hidden="true"><span class="theme-switch-thumb"></span></span>
+</button>
+</div>
+<h1 class="draw-main-title">11/06 11/07 抽選</h1>
 <div class="draw-mode-panel" id="drawModePanel">
 <div class="draw-mode-title">抽選模式</div>
 <div class="draw-mode-buttons">
@@ -2536,5 +2772,35 @@ function render() {
     });
 })();
 </script>
+
+<script id="funbox-theme-controller">
+(function(){
+    "use strict";
+    var button = document.getElementById('themeToggle');
+    if (!button) return;
+    var icon = document.getElementById('themeToggleIcon');
+    var label = document.getElementById('themeToggleLabel');
+    var storageKey = 'funbox_theme_mode_v1';
+
+    function applyTheme(isDark, save){
+        document.documentElement.classList.toggle('theme-dark', !!isDark);
+        button.setAttribute('aria-checked', isDark ? 'true' : 'false');
+        button.setAttribute('aria-label', isDark ? '切換明亮模式' : '切換暗黑模式');
+        if (icon) icon.textContent = isDark ? '☀️' : '🌙';
+        if (label) label.textContent = isDark ? '明亮模式' : '暗黑模式';
+        if (save) {
+            try { localStorage.setItem(storageKey, isDark ? 'dark' : 'light'); } catch(e) {}
+        }
+    }
+
+    var initialDark = document.documentElement.classList.contains('theme-dark');
+    applyTheme(initialDark, false);
+    button.addEventListener('click', function(){
+        var nextDark = !document.documentElement.classList.contains('theme-dark');
+        applyTheme(nextDark, true);
+    });
+})();
+</script>
+
 </body>
 </html>
