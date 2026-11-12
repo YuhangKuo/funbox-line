@@ -4,15 +4,6 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<script>
-(function(){
-    try {
-        if (localStorage.getItem('funbox_theme_mode_v1') === 'dark') {
-            document.documentElement.classList.add('theme-dark');
-        }
-    } catch (e) {}
-})();
-</script>
 <title>Funbox / 來玩聚 LINE 官方帳號一鍵抽獎</title>
 <style>
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background-color: #f4f6f9; margin: 0; padding: 15px; color: #333; }
@@ -684,8 +675,7 @@
         padding: 8px 16px;
     }
 }
-</style>
-<style id="funbox-theme-styles">
+</style><style id="funbox-theme-styles">
 /* ===== 明暗模式開關 ===== */
 .draw-header-actions {
     max-width: 1000px;
@@ -901,7 +891,39 @@ html.theme-dark .continuous-draw-skip {
     transition: background-color .15s ease, color .15s ease, border-color .15s ease;
 }
 </style>
-
+<script>
+(function(){
+    try {
+        if (localStorage.getItem('funbox_theme_mode_v1') === 'dark') {
+            document.documentElement.classList.add('theme-dark');
+        }
+    } catch (e) {}
+})();
+</script>
+<script id="draw-round-cleanup-1113-1114">
+(function(){
+  var marker = 'funbox_round_cleanup_1113_1114_v1';
+  try {
+    if (localStorage.getItem(marker) !== 'done') {
+      [
+        'funbox_continuous_draw_1106_1107_drawn',
+        'visited_draw_links_1106_1107',
+        'funbox_continuous_draw_1002_1003_drawn',
+        'visited_draw_links_1002_1003',
+        'funbox_continuous_draw_v9_drawn',
+        'funbox_selected_draw_region',
+        'funbox_selected_draw_product',
+        'funbox_selected_draw_time'
+      ].forEach(function(key){ try { localStorage.removeItem(key); } catch(e) {} });
+      localStorage.setItem(marker, 'done');
+    }
+  } catch(e) {}
+  try {
+    ['funbox_draw_mode','funbox_auto_draw_active','funbox_auto_draw_pending_url','funbox_auto_draw_lower_sequence']
+      .forEach(function(key){ try { sessionStorage.removeItem(key); } catch(e) {} });
+  } catch(e) {}
+})();
+</script>
 </head>
 <body>
 <h1 id="stores-title" style="display:none;; display:none !important">LINE 門市帳號一鍵快速加好友</h1>
@@ -1028,14 +1050,14 @@ html.theme-dark .continuous-draw-skip {
 </style>
 <div class="draw-title-wrap">
 <div class="draw-header-actions">
-<div class="draw-last-updated" id="hiddenDrawReset" style="cursor:default;user-select:none;-webkit-user-select:none;" title="">最後更新：2026/11/09 08:32</div>
-<button class="theme-toggle" id="themeToggle" type="button" role="switch" aria-checked="false" aria-label="切換暗黑模式">
-<span class="theme-toggle-icon" id="themeToggleIcon" aria-hidden="true">🌙</span>
+<div class="draw-last-updated" id="hiddenDrawReset" style="cursor:default;user-select:none;-webkit-user-select:none;" title="2 秒內快速點擊 3 下可重置所有已抽選灰底">最後更新：2026/11/12 11:56</div>
+<button aria-checked="false" aria-label="切換暗黑模式" class="theme-toggle" id="themeToggle" role="switch" type="button">
+<span aria-hidden="true" class="theme-toggle-icon" id="themeToggleIcon">🌙</span>
 <span class="theme-toggle-label" id="themeToggleLabel">暗黑模式</span>
-<span class="theme-switch-track" aria-hidden="true"><span class="theme-switch-thumb"></span></span>
+<span aria-hidden="true" class="theme-switch-track"><span class="theme-switch-thumb"></span></span>
 </button>
 </div>
-<h1 class="draw-main-title">11/06 11/07 抽選</h1>
+<h1 class="draw-main-title">11/13 11/14 抽選</h1>
 <div class="draw-mode-panel" id="drawModePanel">
 <div class="draw-mode-title">抽選模式</div>
 <div class="draw-mode-buttons">
@@ -1046,56 +1068,87 @@ html.theme-dark .continuous-draw-skip {
 <div aria-live="polite" id="continuousDrawAutoStatus" role="status" style="margin-top:8px;text-align:center;font-size:12px;line-height:1.5;color:#666;">自動偵測：目前為手動模式</div>
 </div>
 </div>
-<div class="draw-missing-box"><div class="draw-missing-title">本週未販售陀螺門市</div><div class="draw-missing-row">Funbox-台中遠東</div><div class="draw-missing-row">Funbox-遠百信義A13</div><div class="draw-missing-row">Funbox-台中遠雄店</div><div class="draw-missing-row">Funbox-樹林秀泰</div><div class="draw-missing-row">Funbox-高雄大立</div><div class="draw-missing-row">Funbox-新屏家樂福</div><div class="draw-missing-row">Funbox-澎坊商場</div><div class="draw-missing-row">來玩聚-台東家樂福</div><div class="draw-missing-row">來玩聚-台北地下街店</div></div>
-<div class="draw-filter-btn-group"><button class="filter-btn" onclick="filterDrawRegion('all', this)">全部 (69)</button><button class="filter-btn" onclick="filterDrawRegion('台北市', this)">台北市 (11)</button><button class="filter-btn" onclick="filterDrawRegion('新北市', this)">新北市 (8)</button><button class="filter-btn" onclick="filterDrawRegion('桃園市', this)">桃園市 (7)</button><button class="filter-btn" onclick="filterDrawRegion('新竹市', this)">新竹市 (3)</button><button class="filter-btn" onclick="filterDrawRegion('新竹縣', this)">新竹縣 (2)</button><button class="filter-btn" onclick="filterDrawRegion('苗栗縣', this)">苗栗縣 (1)</button><button class="filter-btn" onclick="filterDrawRegion('台中市', this)">台中市 (9)</button><button class="filter-btn" onclick="filterDrawRegion('彰化縣', this)">彰化縣 (2)</button><button class="filter-btn" onclick="filterDrawRegion('雲林縣', this)">雲林縣 (1)</button>
-<button class="filter-btn" onclick="filterDrawRegion('嘉義市', this)">嘉義市 (3)</button><button class="filter-btn" onclick="filterDrawRegion('台南市', this)">台南市 (5)</button><button class="filter-btn" onclick="filterDrawRegion('高雄市', this)">高雄市 (12)</button><button class="filter-btn" onclick="filterDrawRegion('屏東縣', this)">屏東縣 (2)</button><button class="filter-btn" onclick="filterDrawRegion('宜蘭縣', this)">宜蘭縣 (1)</button><button class="filter-btn" onclick="filterDrawRegion('花蓮縣', this)">花蓮縣 (1)</button><button class="filter-btn" onclick="filterDrawRegion('台東縣', this)">台東縣 (1)</button></div>
-<div class="draw-secondary-filters"><div class="product-filter-wrap"><label class="product-filter-label" for="drawProductFilter">商品篩選：</label><select class="product-filter-select" id="drawProductFilter" onchange="filterDrawProduct(this.value)"><option value="all">全部商品</option><option value="BX-00">BX-00</option><option value="BX-09">BX-09</option><option value="BX-10">BX-10</option><option value="BX-26">BX-26</option><option value="BX-37">BX-37</option><option value="UX-00">UX-00</option><option value="UX-01">UX-01</option><option value="UX-03">UX-03</option><option value="UX-11">UX-11</option><option value="UX-13">UX-13</option><option value="UX-14">UX-14</option><option value="UX-15">UX-15</option><option value="UX-16">UX-16</option><option value="UX-17">UX-17</option><option value="UX-19">UX-19</option><option value="UX-20">UX-20</option><option value="UX-21">UX-21</option><option value="CX-00">CX-00</option><option value="CX-01">CX-01</option><option value="CX-02">CX-02</option><option value="CX-03">CX-03</option><option value="CX-05">CX-05</option><option value="CX-08">CX-08</option><option value="CX-11">CX-11</option><option value="CX-13">CX-13</option><option value="CX-14">CX-14</option><option value="CX-15">CX-15</option><option value="CX-16">CX-16</option><option value="CX-17">CX-17</option><option value="CX-19">CX-19</option><option value="BXG-01">BXG-01</option><option value="BXG-04">BXG-04</option><option value="BX-08">BX-08</option><option value="BX-13">BX-13</option><option value="BX-38">BX-38</option><option value="BX-44">BX-44</option><option value="BX-45">BX-45</option><option value="BX-53">BX-53</option><option value="UX-02">UX-02</option><option value="CX-06">CX-06</option><option value="CX-07">CX-07</option><option value="CX-12">CX-12</option><option value="BXG-22">BXG-22</option></select></div><div class="time-filter-wrap"><div class="product-filter-label">時間篩選：</div><div class="time-filter-btn-group"><button class="time-filter-btn active" data-time-filter="all" onclick="filterDrawTime('all', this)">全部時間</button><button class="time-filter-btn" data-time-filter="10:00" onclick="filterDrawTime('10:00', this)">10:00</button>
-<button class="time-filter-btn" data-time-filter="10:30" onclick="filterDrawTime('10:30', this)">10:30</button><button class="time-filter-btn" data-time-filter="11:00" onclick="filterDrawTime('11:00', this)">11:00</button><button class="time-filter-btn" data-time-filter="unknown" onclick="filterDrawTime('unknown', this)">未標示時間</button><button class="time-filter-btn" data-time-filter="11:11" onclick="filterDrawTime('11:11', this)">11:11</button><button class="time-filter-btn" data-time-filter="12:00" onclick="filterDrawTime('12:00', this)">12:00</button><button class="time-filter-btn" data-time-filter="開店" onclick="filterDrawTime('開店', this)">開店</button></div></div></div>
-<div class="draw-list"><div class="draw-city-group" data-draw-city-group="台北市"><div class="draw-city" data-draw-city-heading="台北市">台北市</div><div class="draw-store" data-draw-city="台北市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-天母SOGO店</div><div class="draw-start">抽選開始：2026/11/06 11:00 ｜ 抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/Tvg4gmQ" data-draw-id="draw-funbox-tianmu-sogo-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="台北市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-南港潤泰</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/PDLwxMi" data-draw-id="draw-funbox-nangang-runtai-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="台北市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-大葉高島屋店</div><div class="draw-start">抽選開始：2026/11/06 11:00 ｜ 購買資格券有效期間：2026/11/06 11:00~22:00、2026/11/07 11:00~21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/vvvRyVH" data-draw-id="draw-funbox-daiye-takashimaya-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="台北市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-新光三越南西店</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/6RUJsXy" data-draw-id="draw-funbox-taipei-shinkong-nanxi-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="台北市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-信義A8</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/zFsHsNC" data-draw-id="draw-funbox-taipei-xinyi-a8-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="台北市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-台北大巨蛋</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:30</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/pwLOJHL" data-draw-id="draw-funbox-taipei-taipei-dome-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="台北市" data-draw-start-time="11:11"><div class="draw-store-name">Funbox-美麗華</div><div class="draw-start">抽選開始：2026/11/06 11:11 ｜ 抽選/購買時間：2026/11/06 11:11~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/Zkgl6KR" data-draw-id="draw-funbox-taipei-miramar-beyblade-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="台北市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-天母三越店</div><div class="draw-start">抽選開始：2026/11/06 11:00 ｜ 抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/VmSR2SW" data-draw-id="draw-funbox-tianmu-mitsukoshi-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="台北市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-新光三越站前店</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/XYb3WDA" data-draw-id="draw-funbox-taipei-shinkong-stationfront-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="台北市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-忠孝SOGO店</div><div class="draw-start">抽選開始：2026/11/06 11:00 ｜ 抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/zUOYgbu" data-draw-id="draw-funbox-zhongxiao-sogo-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="台北市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-南港LaLaport</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/YCM7TCI" data-draw-id="draw-funbox-nangang-lalaport-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div></div><div class="draw-city-group" data-draw-city-group="新北市"><div class="draw-city" data-draw-city-heading="新北市">新北市</div><div class="draw-store" data-draw-city="新北市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-中和環球店</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/6t8OV07" data-draw-id="draw-funbox-zhonghe-global-mall-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="新北市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-汐科遠雄店</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/sMjqSbg" data-draw-id="draw-funbox-xike-farglory-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="新北市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-板橋大遠百</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/pdG2WRf" data-draw-id="draw-funbox-sanrio-banqiao-far-east-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="新北市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-板橋遠百中山店</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/XnFY0wC" data-draw-id="draw-funbox-banqiao-far-east-zhongshan-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="新北市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-淡水禮萊廣場店</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/6Zz23bD" data-draw-id="draw-funbox-tamsui-lailai-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="新北市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-新店誠品-裕隆城</div><div class="draw-start">抽選開放：2026/11/06 11:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/w7Lm5za" data-draw-id="draw-funbox-newtaipei-xindian-yulon-city-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="新北市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-宏匯廣場</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~22:00、2026/11/07 11:00~22:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/9sKv9Ek" data-draw-id="draw-funbox-honghui-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="新北市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-比漾廣場</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00前</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/tvn4mmW" data-draw-id="draw-funbox-biyang-plaza-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div></div><div class="draw-city-group" data-draw-city-group="桃園市"><div class="draw-city" data-draw-city-heading="桃園市">桃園市</div><div class="draw-store" data-draw-city="桃園市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-桃園新光站前店</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/WEWWtTB" data-draw-id="draw-funbox-taoyuan-shinkong-station-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="桃園市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-桃園環球A8</div><div class="draw-start">抽選時間：2026/11/06 11:00~2026/11/07 21:00（抽完為止） ｜ 購買資格時間：2026/11/06 11:00~21:00、2026/11/07 11:00~21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/qHsTQcR" data-draw-id="draw-funbox-taoyuan-global-a8-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="桃園市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-桃園環球A19</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/8qlf64g" data-draw-id="draw-funbox-taoyuan-global-a19-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div>
-<div class="draw-store" data-draw-city="桃園市" data-draw-start-time="11:00">
-<div class="draw-store-name">Funbox-桃園台茂店</div>
-<div class="draw-start">抽選/購買資格券抽籤期間：2026/11/06 11:00～2026/11/07 21:30（逾時恕不受理）｜請於營業時間內來店購買</div>
+<div class="draw-filter-btn-group">
+<button class="filter-btn active" onclick="filterDrawRegion('all', this)">全部 (7)</button><button class="filter-btn" onclick="filterDrawRegion('台北市', this)">台北市 (2)</button><button class="filter-btn" onclick="filterDrawRegion('新北市', this)">新北市 (1)</button><button class="filter-btn" onclick="filterDrawRegion('台中市', this)">台中市 (1)</button><button class="filter-btn" onclick="filterDrawRegion('新竹市', this)">新竹市 (1)</button><button class="filter-btn" onclick="filterDrawRegion('花蓮縣', this)">花蓮縣 (1)</button><button class="filter-btn" onclick="filterDrawRegion('台東縣', this)">台東縣 (1)</button></div>
+<div class="draw-secondary-filters">
+<div class="product-filter-wrap">
+<label class="product-filter-label" for="drawProductFilter">商品篩選：</label>
+<select class="product-filter-select" id="drawProductFilter" onchange="filterDrawProduct(this.value)">
+<option value="all">全部商品</option><option value="BX-09">BX-09</option><option value="BX-52">BX-52</option><option value="BX-53">BX-53</option><option value="BX-56">BX-56</option></select>
+</div>
+<div class="time-filter-wrap">
+<div class="product-filter-label">時間篩選：</div>
+<div class="time-filter-btn-group">
+<button class="time-filter-btn active" data-time-filter="all" onclick="filterDrawTime('all', this)">全部時間</button>
+<button class="time-filter-btn" data-time-filter="11:00" onclick="filterDrawTime('11:00', this)">11:00</button>
+</div>
+</div>
+</div>
+<div class="draw-list">
+<div class="draw-city-group" data-draw-city-group="台北市"><div class="draw-city" data-draw-city-heading="台北市">台北市</div><div class="draw-store" data-draw-city="台北市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox Toys-大葉高島屋店</div><div class="draw-start">抽選/購買時間：2026/11/13～2026/11/14
+購買資格券有效期間：11/13 11:00～22:00、11/14 11:00～21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/TGFVXtn" data-draw-id="draw-dayeh-takashimaya-bx52-1113" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-52 輝耀龍騎士 6-60LC</div></div><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/9IJRxWT" data-draw-id="draw-dayeh-takashimaya-bx56-1113" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-56 左迴旋風發射器 白紫</div></div></div></div><div class="draw-store" data-draw-city="台北市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-南港潤泰</div><div class="draw-start">抽選/購買時間：2026/11/13 11:00～2026/11/14 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/nhXyQXF" data-draw-id="draw-nangang-runtai-bx52-1113" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-52 輝耀龍騎士 6-60LC</div></div><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/ZRrk19b" data-draw-id="draw-nangang-runtai-bx53-1113" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/ZRba1Y3" data-draw-id="draw-nangang-runtai-bx56-1113" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-56 左迴旋風發射器 白紫</div></div></div></div></div><div class="draw-city-group" data-draw-city-group="新北市"><div class="draw-city" data-draw-city-heading="新北市">新北市</div><div class="draw-store" data-draw-city="新北市" data-draw-start-time="11:00"><div class="draw-store-name">Fun box &amp; 星奇市 汐科遠雄店</div><div class="draw-start">抽選/購買時間：2026/11/13 11:00～2026/11/14 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/RxjB9wg" data-draw-id="draw-xike-far-eastern-bx52-1113" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-52 耀輝龍騎士 6-60LC</div></div><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/oxmdKSJ" data-draw-id="draw-xike-far-eastern-bx53-1113" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/nEOXcH6" data-draw-id="draw-xike-far-eastern-bx56-1113" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-56 左迴旋風發射器 白紫</div></div></div></div></div><div class="draw-city-group" data-draw-city-group="台中市">
+<div class="draw-city" data-draw-city-heading="台中市">台中市</div>
+<div class="draw-store" data-draw-city="台中市" data-draw-start-time="11:00">
+<div class="draw-store-name">Funbox-台中港三井店</div>
+<div class="draw-start">抽選時間&使用期限：2026/11/13 11:00～2026/11/14 20:30</div>
 <div class="draw-items">
-<div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/xu4ngXk" data-draw-id="draw-funbox-taoyuan-tamall-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0">
-<div class="draw-product">BX-53 極限衝擊對戰組</div>
+<div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/XzMDrIh" data-draw-id="draw-funbox-taichung-port-mitsui-bx52-1113" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-52 輝耀龍騎士 6-60LC</div></div>
+<div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/wqn6V1I" data-draw-id="draw-funbox-taichung-port-mitsui-bx56-1113" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-56 左迴旋風發射器 白紫</div></div>
 </div>
 </div>
 </div>
-<div class="draw-store" data-draw-city="桃園市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-桃園遠東店</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/69Fzp8o" data-draw-id="draw-funbox-taoyuan-far-eastern-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="桃園市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-中壢SOGO</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/8J5DQlz" data-draw-id="draw-funbox-zhongli-sogo-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="桃園市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-中壢大江店</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/ZKBjVZn" data-draw-id="draw-funbox-zhongli-metromall-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div></div>
-<div class="draw-city-group" data-draw-city-group="新竹市"><div class="draw-city" data-draw-city-heading="新竹市">新竹市</div><div class="draw-store" data-draw-city="新竹市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-新竹遠東店</div><div class="draw-start">抽選/購買時間：2026/11/06～2026/11/07 ｜ 櫃台結帳時間：每日 11:00~21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/XGDunvA" data-draw-id="draw-funbox-hsinchu-far-east-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="新竹市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-新竹遠雄</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00～2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/oAWkyiI" data-draw-id="draw-funbox-hsinchu-far-eastern-xiong-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="新竹市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-新竹巨城</div><div class="draw-start">抽選/購買時間（依門市營業時間推估）：2026/11/06 11:00~22:00、2026/11/07 11:00~22:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/UwJ5crG" data-draw-id="draw-funbox-hsinchu-big-city-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div></div>
-<div class="draw-city-group" data-draw-city-group="新竹縣"><div class="draw-city" data-draw-city-heading="新竹縣">新竹縣</div><div class="draw-store" data-draw-city="新竹縣" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-竹北遠東店</div><div class="draw-start">抽選/兌獎/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/nh8N2rC" data-draw-id="draw-funbox-zhubei-far-east-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="新竹縣" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-新竹享平方</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/uE0o6oA" data-draw-id="draw-funbox-hsinchu-square-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div></div><div class="draw-city-group" data-draw-city-group="苗栗縣"><div class="draw-city" data-draw-city-heading="苗栗縣">苗栗縣</div><div class="draw-store" data-draw-city="苗栗縣" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-苗栗尚順店</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 20:30</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/S3BQ2Y3" data-draw-id="draw-funbox-miaoli-shangshun-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div></div><div class="draw-city-group" data-draw-city-group="台中市"><div class="draw-city" data-draw-city-heading="台中市">台中市</div><div class="draw-store" data-draw-city="台中市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-新光三越台中中港店</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/yduBiAE" data-draw-id="draw-funbox-taichung-shinkong-zhonggang-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="台中市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-台中港三井</div><div class="draw-start">抽籤時間/使用期限：2026/11/06 11:00~2026/11/07 20:30</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/ORS4uRs" data-draw-id="draw-funbox-taichung-port-mitsui-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="台中市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-台中中友</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/Xls9IhsE" data-draw-id="draw-funbox-taichung-zhongyou-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="台中市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-豐原太平洋店</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/NiTp9aN" data-draw-id="draw-funbox-taichung-fengyuan-pacific-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="台中市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-廣三SOGO</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/ucNt4EJ" data-draw-id="draw-funbox-taichung-guangsan-sogo-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div>
-<div class="draw-store" data-draw-city="台中市" data-draw-start-time="10:30">
-<div class="draw-store-name">Funbox-麗寶一期</div>
-<div class="draw-start">抽選&amp;購買時間：2026/11/06 10:30～2026/11/07 21:00</div>
+<div class="draw-city-group" data-draw-city-group="新竹市">
+<div class="draw-city" data-draw-city-heading="新竹市">新竹市</div>
+<div class="draw-store" data-draw-city="新竹市" data-draw-start-time="11:00">
+<div class="draw-store-name">Funbox-新竹遠雄</div>
+<div class="draw-start">抽選/販售時間：2026/11/13 11:00～2026/11/14</div>
 <div class="draw-items">
-<div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/UecqWGi" data-draw-id="draw-funbox-lihpao-phase1-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0">
-<div class="draw-product">BX-53 極限衝擊對戰組</div>
+
+
+
+<div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/RbMveeT" data-draw-id="draw-funbox-hsinchu-far-east-bx09-1113" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BB90524 BX-09 戰鬥陀螺X通行證</div></div><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/T4jRht1" data-draw-id="draw-funbox-hsinchu-far-east-bx52-1113" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BB08555 BX-52 輝耀龍騎士 6-60LC</div></div><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/yDI27Vx" data-draw-id="draw-funbox-hsinchu-far-east-bx56-1113" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BB05891 BX-56 左迴旋風發射器（白）</div></div></div>
 </div>
-</div>
-</div>
-<div class="draw-store" data-draw-city="台中市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-文心秀泰店</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/OHPoiXA" data-draw-id="draw-funbox-taichung-wenxin-showtime-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="台中市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-台中LaLaport店</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/R5eQluD" data-draw-id="draw-funbox-taichung-lalaport-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="台中市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-漢神洲際</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00～2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/74bssDIr" data-draw-id="draw-funbox-taichung-hanshin-intercontinental-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div></div><div class="draw-city-group" data-draw-city-group="彰化縣"><div class="draw-city" data-draw-city-heading="彰化縣">彰化縣</div><div class="draw-store" data-draw-city="彰化縣" data-draw-start-time="10:00"><div class="draw-store-name">來玩聚-員林店</div><div class="draw-start">抽選/購買時間：2026/11/06 10:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/xL2EDyF" data-draw-id="draw-funbox-yuanlin-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="彰化縣" data-draw-start-time="10:00"><div class="draw-store-name">來玩聚-彰化店</div><div class="draw-start">抽選/購買時間：2026/11/06 10:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/tPLQUjp" data-draw-id="draw-funbox-changhua-wanjiafu-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div></div><div class="draw-city-group" data-draw-city-group="雲林縣">
-<div class="draw-city" data-draw-city-heading="雲林縣">雲林縣</div>
-<div class="draw-store" data-draw-city="雲林縣" data-draw-start-time="10:00">
-<div class="draw-store-name">來玩聚-斗六店</div>
-<div class="draw-start">抽選/購買時間：2026/11/06 10:00~2026/11/07 21:00</div>
+</div><div class="draw-city-group" data-draw-city-group="花蓮縣">
+<div class="draw-city" data-draw-city-heading="花蓮縣">花蓮縣</div>
+<div class="draw-store" data-draw-city="花蓮縣" data-draw-start-time="11:00">
+<div class="draw-store-name">Funbox-花蓮店</div>
+<div class="draw-start">抽選/購買時間：2026/11/13 11:00～2026/11/14</div>
 <div class="draw-items">
-<div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/9SCnRAA" data-draw-id="draw-funbox-douliu-carrefour-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0">
-<div class="draw-product">BX-53 極限衝擊對戰組</div>
+<div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/S09AhV5" data-draw-id="draw-funbox-hualien-bx09-1113" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-09 戰鬥陀螺X通行證</div></div>
+<div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/PR5W4Po" data-draw-id="draw-funbox-hualien-bx52-1113" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-52 輝耀龍騎士 6-60LC</div></div>
+<div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/PoJDK3u" data-draw-id="draw-funbox-hualien-bx56-1113" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-56 左迴旋風發射器 白紫</div></div>
 </div>
 </div>
 </div>
-</div>
-<div class="draw-city-group" data-draw-city-group="嘉義市"><div class="draw-city" data-draw-city-heading="嘉義市">嘉義市</div><div class="draw-store" data-draw-city="嘉義市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-嘉義遠東</div><div class="draw-start">抽選資格時間：2026/11/06 11:00~2026/11/07 21:00 ｜ 中籤購買時間：11/06 11:00~22:00、11/07 11:00~21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/qT7lL54" data-draw-id="draw-funbox-chiayi-far-east-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="嘉義市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-嘉義三越</div><div class="draw-start">抽選開放：2026/11/06 11:00 ｜ 購買資格券有效期間：11/06 11:00~22:00、11/07 11:00~21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/PPJa8qB" data-draw-id="draw-funbox-chiayi-shinkong-mitsukoshi-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="嘉義市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-嘉義耐斯</div><div class="draw-start">抽選時間：2026/11/06 11:00~2026/11/07 21:00 ｜ 中籤購買時間：2026/11/06 11:00~22:00、2026/11/07 11:00~21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/575d8lX" data-draw-id="draw-funbox-chiayi-nice-plaza-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div></div><div class="draw-city-group" data-draw-city-group="台南市"><div class="draw-city" data-draw-city-heading="台南市">台南市</div><div class="draw-store" data-draw-city="台南市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-台南三井</div><div class="draw-start">抽選/購買資格時間：2026/11/06 11:00~2026/11/07 20:30</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/OcLE0No" data-draw-id="draw-funbox-tainan-mitsui-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="台南市" data-draw-start-time="11:00"><div class="draw-store-name">來玩聚-新仁店</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 20:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/8J8uWXa" data-draw-id="draw-laiwanju-tainan-xinren-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="台南市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-南紡購物中心</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/6DjeVDP" data-draw-id="draw-funbox-tainan-nanfang-shopping-center-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="台南市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-台南遠百店</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/uTNylL8" data-draw-id="draw-funbox-tainan-far-eastern-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="台南市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-台南新天地</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/9iwDfob" data-draw-id="draw-funbox-tainan-xintiandi-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div></div><div class="draw-city-group" data-draw-city-group="高雄市"><div class="draw-city" data-draw-city-heading="高雄市">高雄市</div><div class="draw-store" data-draw-city="高雄市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-高雄漢神店</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/PsIA9y7Q" data-draw-id="draw-funbox-kaohsiung-hanshin-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="高雄市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-夢時代店</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/6cABqwU" data-draw-id="draw-funbox-kaohsiung-dream-mall-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="高雄市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-大魯閣新光</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/qp5A2CG" data-draw-id="draw-funbox-kaohsiung-taroko-shinkong-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="高雄市" data-draw-start-time="11:00"><div class="draw-store-name">鳳山來玩聚</div><div class="draw-start">抽選/販售時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/XnU9eyl" data-draw-id="draw-fengshan-laiwanju-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="高雄市" data-draw-start-time="10:00"><div class="draw-store-name">來玩聚-楠梓店</div><div class="draw-start">抽選/購買時間：2026/11/06 10:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/PpVQMlN" data-draw-id="draw-laiwanju-kaohsiung-nanzi-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="高雄市" data-draw-start-time="10:00"><div class="draw-store-name">來玩聚-新楠店</div><div class="draw-start">抽選/購買時間：2026/11/06 10:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/ObOlKaZ" data-draw-id="draw-laiwanju-kaohsiung-xinnan-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="高雄市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-高雄大遠百</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/yNKVKHo" data-draw-id="draw-funbox-kaohsiung-far-eastern-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="高雄市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-漢神巨蛋店</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/7YXUCTu" data-draw-id="draw-funbox-kaohsiung-hanshin-arena-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="高雄市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-高雄SOGO店</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/P72hRM3" data-draw-id="draw-funbox-kaohsiung-sogo-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div>
-<div class="draw-store" data-draw-city="高雄市" data-draw-start-time="10:30">
-<div class="draw-store-name">Funbox-高雄左營店</div>
-<div class="draw-start">抽選&amp;購買資格時間：2026/11/06 10:30～2026/11/07 21:00</div>
+<div class="draw-city-group" data-draw-city-group="台東縣">
+<div class="draw-city" data-draw-city-heading="台東縣">台東縣</div>
+<div class="draw-store" data-draw-city="台東縣" data-draw-start-time="11:00">
+<div class="draw-store-name">Funbox-台東秀泰店</div>
+<div class="draw-start">抽選/購買時間：2026/11/13 11:00～2026/11/14 21:00止</div>
 <div class="draw-items">
-<div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/7AHngjX" data-draw-id="draw-funbox-kaohsiung-zuoying-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0">
-<div class="draw-product">BX-53 極限衝擊對戰組</div>
+<div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/uUvqy6e" data-draw-id="draw-funbox-taitung-showtime-bx09-1113" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-09 戰鬥陀螺X通行證（原價 $995）</div></div>
+<div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/O13VpFr" data-draw-id="draw-funbox-taitung-showtime-bx52-1113" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-52 輝耀龍騎士6-60LC（原價 $495）</div></div>
+<div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/6nOHIpW" data-draw-id="draw-funbox-taitung-showtime-bx56-1113" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-56 左迴旋旋風發射器白紫（原價 $250）</div></div>
 </div>
 </div>
-</div>
-<div class="draw-store" data-draw-city="高雄市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-義大二館</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00～2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/Ub94gYU" data-draw-id="draw-funbox-kaohsiung-eda-second-hall-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="高雄市" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-義享天地</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00～2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/w85yziv" data-draw-id="draw-funbox-kaohsiung-skylark-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div></div><div class="draw-city-group" data-draw-city-group="屏東縣"><div class="draw-city" data-draw-city-heading="屏東縣">屏東縣</div><div class="draw-store" data-draw-city="屏東縣" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-屏東太平洋店</div><div class="draw-start">抽選/購買資格時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/pE1w1ZJ" data-draw-id="draw-funbox-pingtung-pacific-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div><div class="draw-store" data-draw-city="屏東縣" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-屏東環球</div><div class="draw-start">抽選/購買資格時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/TGlOKTH" data-draw-id="draw-funbox-pingtung-global-mall-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div></div><div class="draw-city-group" data-draw-city-group="宜蘭縣"><div class="draw-city" data-draw-city-heading="宜蘭縣">宜蘭縣</div><div class="draw-store" data-draw-city="宜蘭縣" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-宜蘭新月廣場店</div><div class="draw-start">抽選開始：2026/11/06 11:00 ｜ 購買資格券有效期間：2026/11/06 11:00~22:00、2026/11/07 11:00~21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/wYBwDB7" data-draw-id="draw-funbox-yilan-luna-plaza-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div></div><div class="draw-city-group" data-draw-city-group="花蓮縣"><div class="draw-city" data-draw-city-heading="花蓮縣">花蓮縣</div><div class="draw-store" data-draw-city="花蓮縣" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-花蓮店</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/5nondXS" data-draw-id="draw-funbox-hualien-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div></div><div class="draw-city-group" data-draw-city-group="台東縣"><div class="draw-city" data-draw-city-heading="台東縣">台東縣</div><div class="draw-store" data-draw-city="台東縣" data-draw-start-time="11:00"><div class="draw-store-name">Funbox-台東秀泰店</div><div class="draw-start">抽選/購買時間：2026/11/06 11:00~2026/11/07 21:00</div><div class="draw-items"><div class="draw-item draw-item-clickable" data-draw-href="https://lin.ee/vm13nnh" data-draw-id="draw-funbox-taitung-showtime-bx53-1106" onclick="openDrawRow(event, this)" onkeydown="handleDrawRowKey(event, this)" role="link" tabindex="0"><div class="draw-product">BX-53 極限衝擊對戰組</div></div></div></div></div></div></div>
+</div></div></div>
+<script id="default-missing-draw-time-to-1100">
+// 本週未提供開始時刻的門市，先統一預設為 11:00；新加入的空白時刻門市也會套用。
+(function(){
+    document.querySelectorAll("#page-draws .draw-store").forEach(function(store){
+        var time = String(store.getAttribute("data-draw-start-time") || "").trim();
+        if (time) return;
+        store.setAttribute("data-draw-start-time", "11:00");
+        var startEl = store.querySelector(".draw-start");
+        if (startEl) {
+            var text = startEl.textContent || "";
+            text = text.replace(/抽選\/販售日期：(202\d\/\d{1,2}\/\d{1,2})～/, "抽選/販售時間：$1 11:00～");
+            text = text.replace(/（公告未標示開始時刻）/g, "");
+            startEl.textContent = text;
+        }
+    });
+})();
+</script>
 <script>
 
         function showPage(page, btnElement) {
@@ -1144,17 +1197,17 @@ html.theme-dark .continuous-draw-skip {
             // 以「列 ID」保存，避免同一個 URL 被誤貼到兩個不同商品時兩列一起變灰。
             let visited = [];
             try {
-                visited = JSON.parse(localStorage.getItem('visited_draw_links_1106_1107') || '[]');
+                visited = JSON.parse(localStorage.getItem('visited_draw_links_1113_1114') || '[]');
                 if (!Array.isArray(visited)) visited = [];
             } catch (e) { visited = []; }
             if (!visited.includes(id)) visited.push(id);
             try {
-                localStorage.setItem('visited_draw_links_1106_1107', JSON.stringify(visited));
+                localStorage.setItem('visited_draw_links_1113_1114', JSON.stringify(visited));
             } catch (e) {}
 
             // 連續抽選仍以 URL 為主，因此同步寫入網址紀錄。
             try {
-                const key = 'funbox_continuous_draw_1106_1107_drawn';
+                const key = 'funbox_continuous_draw_1113_1114_drawn';
                 const map = JSON.parse(localStorage.getItem(key) || '{}') || {};
                 const href = row.getAttribute('data-draw-href');
                 if (href) {
@@ -1179,12 +1232,12 @@ html.theme-dark .continuous-draw-skip {
             let visited = [];
             let drawnMapForQuick = {};
             try {
-                visited = JSON.parse(localStorage.getItem('visited_draw_links_1106_1107') || '[]');
+                visited = JSON.parse(localStorage.getItem('visited_draw_links_1113_1114') || '[]');
                 if (!Array.isArray(visited)) visited = [];
             } catch (e) { visited = []; }
             try {
                 drawnMapForQuick = JSON.parse(
-                    localStorage.getItem('funbox_continuous_draw_1106_1107_drawn') || '{}'
+                    localStorage.getItem('funbox_continuous_draw_1113_1114_drawn') || '{}'
                 ) || {};
             } catch (e) { drawnMapForQuick = {}; }
 
@@ -1202,7 +1255,7 @@ html.theme-dark .continuous-draw-skip {
             });
 
             try {
-                localStorage.setItem('visited_draw_links_1106_1107', JSON.stringify(visited));
+                localStorage.setItem('visited_draw_links_1113_1114', JSON.stringify(visited));
             } catch (e) {}
         }
 
@@ -1295,7 +1348,7 @@ html.theme-dark .continuous-draw-skip {
 (function () {
     "use strict";
 
-    var DRAWN_KEY = "funbox_continuous_draw_1106_1107_drawn";
+    var DRAWN_KEY = "funbox_continuous_draw_1113_1114_drawn";
     // 將舊版「已變灰／已點過」的抽獎按鈕同步到快速抽選紀錄。
     // 同一個網址下，換 HTML 不會清掉 localStorage；這裡把舊紀錄補進新的 DRAWN_KEY。
     function migrateLegacyDrawnRecords() {
@@ -1546,12 +1599,12 @@ html.theme-dark .continuous-draw-skip {
             if (rowId) {
                 var visited = [];
                 try {
-                    visited = JSON.parse(localStorage.getItem("visited_draw_links_1106_1107") || "[]");
+                    visited = JSON.parse(localStorage.getItem("visited_draw_links_1113_1114") || "[]");
                 } catch (e) {}
                 if (!visited.includes(rowId)) {
                     visited.push(rowId);
                     try {
-                        localStorage.setItem("visited_draw_links_1106_1107", JSON.stringify(visited));
+                        localStorage.setItem("visited_draw_links_1113_1114", JSON.stringify(visited));
                     } catch (e) {}
                 }
             }
@@ -1572,7 +1625,7 @@ html.theme-dark .continuous-draw-skip {
         var map = drawnMap();
         var visited = [];
         try {
-            visited = JSON.parse(localStorage.getItem("visited_draw_links_1106_1107") || "[]");
+            visited = JSON.parse(localStorage.getItem("visited_draw_links_1113_1114") || "[]");
             if (!Array.isArray(visited)) visited = [];
         } catch (e) { visited = []; }
 
@@ -2725,8 +2778,10 @@ function render() {
     const originalText = el.textContent;
 
     function resetDrawGrayState() {
-        // 清除目前 11/06-11/07 的紀錄，也一併清除舊版相容 key。
+        // 清除目前 11/13-11/14 的紀錄，也一併清除前一期紀錄。
         const keys = [
+            'funbox_continuous_draw_1113_1114_drawn',
+            'visited_draw_links_1113_1114',
             'funbox_continuous_draw_1106_1107_drawn',
             'visited_draw_links_1106_1107',
             'funbox_continuous_draw_1002_1003_drawn',
@@ -2772,7 +2827,6 @@ function render() {
     });
 })();
 </script>
-
 <script id="funbox-theme-controller">
 (function(){
     "use strict";
@@ -2801,6 +2855,5 @@ function render() {
     });
 })();
 </script>
-
 </body>
 </html>
